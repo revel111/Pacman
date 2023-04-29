@@ -6,22 +6,17 @@ import java.awt.*;
 public class MainMenu extends JFrame {
     public MainMenu() {
         JFrame jframe = new JFrame("Pacman");
-        jframe.setForeground(Color.YELLOW);
-        jframe.setLayout(new BorderLayout());
+//        jframe.setLayout(new BorderLayout());
 
-//        JLabel background = new JLabel("", new ImageIcon("src/images/background.gif"), JLabel.CENTER);
-//        Image backIcon = new Image("src/images/background.gif");
-//        JLabel background = new JLabel() {
-//            @Override
-//            protected void paintComponent(Graphics g) {
-//                super.paintComponent(g);
-//                g.drawImage(b), 0,0,getWidth(),getHeight(),this);
-//            }
-//        };
-//        for (int i = 10; i < Math.min(getWidth(), getHeight()) / 2; i += 10)
-//            background.setBounds(i, i, getWidth() - i * 2, getHeight() - i * 2);
-//
-//        jframe.add(background);
+        JLabel title = new JLabel("Pacman Game", JLabel.CENTER);
+        title.setFont(new Font("OCR A Extended", Font.PLAIN, 70));
+        title.setForeground(Color.YELLOW);
+        title.setBackground(Color.BLACK);
+        title.setOpaque(true);
+        title.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));// ne obyaz
+        jframe.add(title, BorderLayout.NORTH);
+
+        //add background
 
         JPanel buttons = new JPanel(new GridBagLayout());
         buttons.setBackground(Color.BLACK);
