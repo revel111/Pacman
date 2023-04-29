@@ -11,6 +11,6 @@ public class Presentation {
 //            }
 //        });
 
-        SwingUtilities.invokeLater(() -> new MainMenu());
+        SwingUtilities.invokeLater(MainMenu::new);
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="project was created">
-      <change afterPath="$PROJECT_DIR$/src/Presentation.java" afterDir="false" />
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="backup before resizing">
+      <change afterPath="$PROJECT_DIR$/src/images/icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Prsentation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Presentation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/menus/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menus/MainMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,13 +26,16 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2P05HmNguMGWwH9bBzrDq2H2KDb" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;G:/Coding/finished/sharaga/java/idea/testing&quot;,
@@ -90,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682581622774</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="backup before resizing">
+      <created>1682593936356</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682593936356</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -105,7 +115,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="project was created" />
-    <option name="LAST_COMMIT_MESSAGE" value="project was created" />
+    <MESSAGE value="backup before resizing" />
+    <option name="LAST_COMMIT_MESSAGE" value="backup before resizing" />
   </component>
 </project>
