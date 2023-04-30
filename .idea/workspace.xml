@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="backup before resizing">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="gif was removed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/menus/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menus/MainMenu.java" afterDir="false" />
     </list>
@@ -105,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682771208011</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="gif was removed">
+      <created>1682779575231</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682779575231</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +130,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="project was created" />
     <MESSAGE value="backup before resizing" />
-    <option name="LAST_COMMIT_MESSAGE" value="backup before resizing" />
+    <MESSAGE value="gif was removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="gif was removed" />
   </component>
 </project>

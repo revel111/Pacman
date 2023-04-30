@@ -2,11 +2,13 @@ package menus;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
     public MainMenu() {
         JFrame jframe = new JFrame("Pacman");
-//        jframe.setLayout(new BorderLayout());
+//        jframe.setLayout(new BorderLayout()); //idk for what
 
         JLabel title = new JLabel("Pacman Game", JLabel.CENTER);
         title.setFont(new Font("OCR A Extended", Font.PLAIN, 70));
@@ -38,6 +40,28 @@ public class MainMenu extends JFrame {
         highScores.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
         exit.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
+//        newGame.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) { // start game
+//
+//            }
+//        });
+
+//        highScores.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {  //high scores
+//
+//            }
+//        });
+
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //stop all threads
+                System.exit(-1);
+            }
+        });
+
         newGame.setForeground(Color.YELLOW);
         highScores.setForeground(Color.YELLOW);
         exit.setForeground(Color.YELLOW);
@@ -52,10 +76,8 @@ public class MainMenu extends JFrame {
 
         gbc.gridx = 0;
         buttons.add(newGame, gbc);
-
         gbc.gridx = 1;
         buttons.add(highScores, gbc);
-
         gbc.gridx = 2;
         buttons.add(exit, gbc);
 
