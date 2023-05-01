@@ -2,11 +2,9 @@ package menus;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
-public class MainMenu extends JFrame {
+public class MainMenu extends JFrame implements KeyListener {
     public MainMenu() {
         JFrame jframe = new JFrame("Pacman");
 //        jframe.setLayout(new BorderLayout()); //idk for what
@@ -17,7 +15,7 @@ public class MainMenu extends JFrame {
         title.setBackground(Color.BLACK);
         title.setOpaque(true);
         title.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));// ne obyaz
-        jframe.add(title, BorderLayout.NORTH);
+        add(title, BorderLayout.NORTH);
 
         //add background
 
@@ -48,14 +46,13 @@ public class MainMenu extends JFrame {
 //            }
 //        });
 
-//        highScores.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {  //high scores
-////                jframe.setVisible(false);
-////                JFrame jframeNew = new JFrame("Pacman");
-////                jframeNew.setVisible(true);
-//            }
-//        });
+        highScores.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {  //high scores
+                buttons.setVisible(false);
+                title.setVisible(false);
+            }
+        });
 
         exit.addActionListener(new ActionListener() {
             @Override
@@ -64,6 +61,14 @@ public class MainMenu extends JFrame {
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to exit?", "Warning", JOptionPane.OK_CANCEL_OPTION, dialogButton);
                 if (dialogResult == JOptionPane.YES_OPTION) {
                     System.exit(-1);
+                }
+            }
+        });
+
+        addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.isControlDown() && e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_Q) {
+                    dispose();
                 }
             }
         });
@@ -95,5 +100,20 @@ public class MainMenu extends JFrame {
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
