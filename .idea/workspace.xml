@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="gif was removed">
+      <change afterPath="$PROJECT_DIR$/src/Ghost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/menus/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menus/MainMenu.java" afterDir="false" />
     </list>
@@ -112,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682779575231</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="gif was removed">
+      <created>1682881769972</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682881769972</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

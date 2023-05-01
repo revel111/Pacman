@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class MainMenu extends JFrame {
     public MainMenu() {
@@ -50,15 +51,20 @@ public class MainMenu extends JFrame {
 //        highScores.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {  //high scores
-//
+////                jframe.setVisible(false);
+////                JFrame jframeNew = new JFrame("Pacman");
+////                jframeNew.setVisible(true);
 //            }
 //        });
 
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //stop all threads
-                System.exit(-1);
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to exit?", "Warning", JOptionPane.OK_CANCEL_OPTION, dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    System.exit(-1);
+                }
             }
         });
 
