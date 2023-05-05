@@ -1,4 +1,4 @@
-package menus;
+package windows;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,17 +61,12 @@ public class MainMenu extends JFrame {
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { // start game
-                buttons.setVisible(false);
-                title.setVisible(false);
-
                 String valueStr = JOptionPane.showInputDialog(null, "Enter a value from 10 to 100:", "Input Value", JOptionPane.PLAIN_MESSAGE);
                 int value;
                 try {
                     value = Integer.parseInt(valueStr);
                 } catch (NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
-                    buttons.setVisible(true);
-                    title.setVisible(true);
                     return;
                 }
 
@@ -81,38 +76,23 @@ public class MainMenu extends JFrame {
                     return;
                 }
 
-
-                String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
-
-                if (name == null || name.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
-                    buttons.setVisible(true);
-                    title.setVisible(true);
-                    return;
-                }
-
-                SwingUtilities.invokeLater(Game::new);
-//                else
-//                    JOptionPane.showMessageDialog(null, "Valid value entered: " + value, "Success", JOptionPane.INFORMATION_MESSAGE);
-
-//                Object[][] data = {
-//                        {"John", 24, "Male"},
-//                        {"Jane", 30, "Female"},
-//                        {"Bob", 42, "Male"},
-//                        {"Alice", 18, "Female"}
-//                };
-//                String[] columnNames = {"Name", "Age", "Gender"};
+//                String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
 //
-//                JTable table = new JTable(data, columnNames);
-//                jframe.add(table);
+//                if (name == null || name.isEmpty()) {
+//                    JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
+//                    return;
+//                }
+                //kill main menu
+                jframe.dispose();
+                SwingUtilities.invokeLater(() -> new Game(value));
             }
         });
 
         highScores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {  //high scores
-                buttons.setVisible(false);
-                title.setVisible(false);
+                jframe.dispose();
+                SwingUtilities.invokeLater(Scores::new);
             }
         });
 
@@ -122,11 +102,19 @@ public class MainMenu extends JFrame {
                 int dialogButton = JOptionPane.YES_NO_OPTION;
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to exit?", "Warning", JOptionPane.OK_CANCEL_OPTION, dialogButton);
                 if (dialogResult == JOptionPane.YES_OPTION) {
-                    System.exit(-1);
+                    jframe.dispose();
                 }
             }
         });
 
+        KeyStroke ctrlShiftQ = KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK);
+        jframe.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(ctrlShiftQ, "closeWindow");
+        jframe.getRootPane().getActionMap().put("closeWindow", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jframe.dispose();
+            }
+        });
 
         jframe.add(buttons);
         Image frameImage = new ImageIcon("src/images/icon.png").getImage();
@@ -136,11 +124,5 @@ public class MainMenu extends JFrame {
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
-
-//        JPanel panel = new JPanel();
-//        panel.setBackground(Color.BLACK);
-//        panel.add(buttons);
-//        panel.add(title);
-//        jframe.add(panel);
     }
 }
