@@ -1,39 +1,18 @@
 package windows;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 
 import operations.TableModel;
 
 public class Game extends JFrame {
-//    private int[][] map = {
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//20
-//            {16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8},
-//            {8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8}
-//    };
-
     public Game(int size) {
         JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage();
@@ -48,7 +27,50 @@ public class Game extends JFrame {
         tableModel.generateMap(size);
         JTable jTable = new JTable(tableModel);
 
-        jTable.addComponentListener(new ComponentAdapter() {
+        jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {//draw map
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                ((JLabel) c).setText(null);//no text
+                table.setShowGrid(false);//no grid lines
+                table.setIntercellSpacing(new Dimension(0, 0));//no grid lines
+
+                if (value.toString().equals("0")) {
+                    setBackground(new Color(0, 0, 47));
+                    setBorder(BorderFactory.createLineBorder(new Color(0, 0, 185), 1));
+                } else if (value.toString().equals("1")) {
+                    setBackground(Color.BLACK);
+                    JPanel dotPanel = new JPanel() {
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            super.paintComponent(g);
+                            Graphics2D g2d = (Graphics2D) g.create();
+
+                            // Fill the background with black
+                            g2d.setColor(Color.BLACK);
+                            g2d.fillRect(0, 0, getWidth(), getHeight());
+
+                            // Draw the yellow dot
+                            g2d.setColor(Color.YELLOW);
+                            int centerX = getWidth() / 2;
+                            int centerY = getHeight() / 2;
+                            int dotX = centerX - (3);
+                            int dotY = centerY - (3);
+                            g2d.fillOval(dotX, dotY, 3, 3);
+                            g2d.dispose();
+                        }
+                    };
+                    return dotPanel;
+                } else
+                    setBackground(Color.BLACK);
+
+                return c;
+            }
+        });
+
+
+        jTable.addComponentListener(new ComponentAdapter() { // resize-able
             @Override
             public void componentResized(ComponentEvent e) {
                 int newHeight = jTable.getHeight() / jTable.getRowCount();

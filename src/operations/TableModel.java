@@ -35,7 +35,7 @@ public class TableModel extends AbstractTableModel {
                 if (i == 0 || j == 0 || i == size - 1 || j == size - 1)
                     matrix[i][j] = 0; //paint blue
                 else {
-                    int rand = random.nextInt(2) + 1;
+                    int rand = random.nextInt(5) + 1;
                     if (counter == counterMax)
                         matrix[i][j] = 1;
                     else if (rand == 1) {
@@ -53,15 +53,5 @@ public class TableModel extends AbstractTableModel {
 //                System.out.print(anInt + " ");
 //            System.out.println();
 //        }
-    }
-
-    public void drawMap() {
-        for (int i = 0; i < items.length; i++) {
-            for (int j = 0; j < items.length; j++) {
-                if (i == 0 || j == 0) {
-                    items[i][j] = 0; //paint blue
-                }
-            }
-        }
     }
 }
