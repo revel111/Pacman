@@ -33,7 +33,7 @@ public class TableModel extends AbstractTableModel {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (i == 0 || j == 0 || i == size - 1 || j == size - 1)
-                    matrix[i][j] = 0; //paint blue
+                    matrix[i][j] = 0;
                 else {
                     int rand = random.nextInt(5) + 1;
                     if (counter == counterMax)

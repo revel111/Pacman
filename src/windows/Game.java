@@ -15,7 +15,7 @@ import operations.TableModel;
 public class Game extends JFrame {
     public Game(int size) {
         JFrame jframe = new JFrame("Pacman");
-        Image frameImage = new ImageIcon("src/images/icon.png").getImage();
+        Image frameImage = new ImageIcon("src/images/icon.png").getImage();//taskbar icon
         jframe.setIconImage(frameImage);
         jframe.pack();
         jframe.setSize(1200, 750);
@@ -41,7 +41,7 @@ public class Game extends JFrame {
                     setBorder(BorderFactory.createLineBorder(new Color(0, 0, 185), 1));
                 } else if (value.toString().equals("1")) {
                     setBackground(Color.BLACK);
-                    JPanel dotPanel = new JPanel() {
+                    return new JPanel() {
                         @Override
                         protected void paintComponent(Graphics g) {
                             super.paintComponent(g);
@@ -61,7 +61,6 @@ public class Game extends JFrame {
                             g2d.dispose();
                         }
                     };
-                    return dotPanel;
                 } else
                     setBackground(Color.BLACK);
 
@@ -81,7 +80,7 @@ public class Game extends JFrame {
             }
         });
 
-        KeyStroke ctrlShiftQ = KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK);
+        KeyStroke ctrlShiftQ = KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK);//shortcut to close window
         jframe.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(ctrlShiftQ, "closeWindow");
         jframe.getRootPane().getActionMap().put("closeWindow", new AbstractAction() {
             @Override

@@ -7,14 +7,12 @@ import java.awt.event.*;
 public class MainMenu extends JFrame {
     public MainMenu() {
         JFrame jframe = new JFrame("Pacman");
-//        jframe.setLayout(new BorderLayout()); //idk for what
 
         JLabel title = new JLabel("Pacman Game", JLabel.CENTER);
         title.setFont(new Font("OCR A Extended", Font.PLAIN, 70));
         title.setForeground(Color.YELLOW);
         title.setBackground(Color.BLACK);
         title.setOpaque(true);
-        title.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));// ne obyaz
         jframe.add(title, BorderLayout.NORTH);
 
         //add background
@@ -107,7 +105,7 @@ public class MainMenu extends JFrame {
             }
         });
 
-        KeyStroke ctrlShiftQ = KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK);
+        KeyStroke ctrlShiftQ = KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK);//shortcut to close window
         jframe.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(ctrlShiftQ, "closeWindow");
         jframe.getRootPane().getActionMap().put("closeWindow", new AbstractAction() {
             @Override
