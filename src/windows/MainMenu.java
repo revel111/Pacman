@@ -25,29 +25,9 @@ public class MainMenu extends JFrame {
         gbc.weighty = 1.0;
         gbc.insets = new java.awt.Insets(10, 20, 10, 20);
 
-        JButton newGame = new JButton("New Game");
-        JButton highScores = new JButton("High Scores");
-        JButton exit = new JButton("Exit");
-
-        newGame.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
-        highScores.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
-        exit.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
-
-        newGame.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        highScores.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        exit.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-
-        newGame.setForeground(Color.YELLOW);
-        highScores.setForeground(Color.YELLOW);
-        exit.setForeground(Color.YELLOW);
-
-        newGame.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
-        highScores.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
-        exit.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
-
-        newGame.setBackground(Color.BLACK);
-        highScores.setBackground(Color.BLACK);
-        exit.setBackground(Color.BLACK);
+        JButton newGame = createButton("New Game");
+        JButton highScores = createButton("High Scores");
+        JButton exit = createButton("Exit");
 
         gbc.gridx = 0;
         buttons.add(newGame, gbc);
@@ -59,16 +39,25 @@ public class MainMenu extends JFrame {
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { // start game
-                String valueStr = JOptionPane.showInputDialog(null, "Enter a value from 10 to 100:", "Input Value", JOptionPane.PLAIN_MESSAGE);
-                int value;
+                String valueStr = JOptionPane.showInputDialog(null, "Enter a height:", "Input Value", JOptionPane.PLAIN_MESSAGE);
+                int height;
+                int width;
                 try {
-                    value = Integer.parseInt(valueStr);
+                    height = Integer.parseInt(valueStr);
                 } catch (NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                if (value < 10 || value > 100) {
+                valueStr = JOptionPane.showInputDialog(null, "Enter a width:", "Input Value", JOptionPane.PLAIN_MESSAGE);
+                try {
+                    width = Integer.parseInt(valueStr);
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (height < 10 || height > 100 || width < 10 || width > 100) {
                     JOptionPane.showMessageDialog(null, "Invalid value entered. Please enter a value from 10 to 100.", "Error", JOptionPane.ERROR_MESSAGE);
                     actionPerformed(e);
                     return;
@@ -82,26 +71,20 @@ public class MainMenu extends JFrame {
 //                }
                 //kill main menu
                 jframe.dispose();
-                SwingUtilities.invokeLater(() -> new Game(value));
+                SwingUtilities.invokeLater(() -> new Game(height, width));
             }
         });
 
-        highScores.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {  //high scores
+        highScores.addActionListener(e -> {  //high scores
+            jframe.dispose();
+            SwingUtilities.invokeLater(Scores::new);
+        });
+
+        exit.addActionListener(e -> {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to exit?", "Warning", JOptionPane.OK_CANCEL_OPTION, dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
                 jframe.dispose();
-                SwingUtilities.invokeLater(Scores::new);
-            }
-        });
-
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int dialogButton = JOptionPane.YES_NO_OPTION;
-                int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to exit?", "Warning", JOptionPane.OK_CANCEL_OPTION, dialogButton);
-                if (dialogResult == JOptionPane.YES_OPTION) {
-                    jframe.dispose();
-                }
             }
         });
 
@@ -122,5 +105,17 @@ public class MainMenu extends JFrame {
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
+    }
+
+    public static JButton createButton(String name) {
+        JButton button = new JButton(name);
+
+        button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        button.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
+        button.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
+        button.setForeground(Color.YELLOW);
+        button.setBackground(Color.BLACK);
+
+        return button;
     }
 }

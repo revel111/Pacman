@@ -13,9 +13,9 @@ import java.awt.image.BufferedImage;
 import operations.TableModel;
 
 public class Game extends JFrame {
-    public Game(int size) {
+    public Game(int height, int width) {
         JFrame jframe = new JFrame("Pacman");
-        Image frameImage = new ImageIcon("src/images/icon.png").getImage();//taskbar icon
+        Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
         jframe.setIconImage(frameImage);
         jframe.pack();
         jframe.setSize(1200, 750);
@@ -24,17 +24,17 @@ public class Game extends JFrame {
         jframe.setVisible(true);
 
         TableModel tableModel = new TableModel(null);
-        tableModel.generateMap(size);
+        tableModel.generateMap(height, width);
         JTable jTable = new JTable(tableModel);
 
-        jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {//draw map
+        jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() { //draw map
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-                ((JLabel) c).setText(null);//no text
-                table.setShowGrid(false);//no grid lines
-                table.setIntercellSpacing(new Dimension(0, 0));//no grid lines
+                ((JLabel) c).setText(null); //no text
+                table.setShowGrid(false); //no grid lines
+                table.setIntercellSpacing(new Dimension(0, 0)); //no grid lines
 
                 if (value.toString().equals("0")) {
                     setBackground(new Color(0, 0, 47));
@@ -47,22 +47,23 @@ public class Game extends JFrame {
                             super.paintComponent(g);
                             Graphics2D g2d = (Graphics2D) g.create();
 
-                            // Fill the background with black
+                            //fill the background with black
                             g2d.setColor(Color.BLACK);
                             g2d.fillRect(0, 0, getWidth(), getHeight());
 
-                            // Draw the yellow dot
+                            //draw the yellow dot
                             g2d.setColor(Color.YELLOW);
                             int centerX = getWidth() / 2;
                             int centerY = getHeight() / 2;
                             int dotX = centerX - (3);
                             int dotY = centerY - (3);
-                            g2d.fillOval(dotX, dotY, 3, 3);
+                            g2d.fillOval(dotX, dotY, 6, 6);
                             g2d.dispose();
                         }
                     };
-                } else
-                    setBackground(Color.BLACK);
+                }
+//                else
+//                    setBackground(Color.BLACK);
 
                 return c;
             }
@@ -72,11 +73,9 @@ public class Game extends JFrame {
         jTable.addComponentListener(new ComponentAdapter() { // resize-able
             @Override
             public void componentResized(ComponentEvent e) {
-                int newHeight = jTable.getHeight() / jTable.getRowCount();
-                int newWidth = jTable.getWidth() / jTable.getColumnCount();
-                jTable.setRowHeight(newHeight);
+                jTable.setRowHeight(jTable.getHeight() / jTable.getRowCount());
                 for (int i = 0; i < jTable.getColumnCount(); i++)
-                    jTable.getColumnModel().getColumn(i).setPreferredWidth(newWidth);
+                    jTable.getColumnModel().getColumn(i).setPreferredWidth(jTable.getWidth() / jTable.getColumnCount());
             }
         });
 

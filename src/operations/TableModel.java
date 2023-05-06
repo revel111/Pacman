@@ -17,7 +17,7 @@ public class TableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return items.length;
+        return items[0].length;
     }
 
     @Override
@@ -25,14 +25,14 @@ public class TableModel extends AbstractTableModel {
         return items[rowIndex][columnIndex];
     }
 
-    public void generateMap(int size) {
+    public void generateMap(int height, int width) {
         Random random = new Random();
-        int[][] matrix = new int[size][size];
-        int counterMax = size * size / 5;
+        int[][] matrix = new int[height][width];
+        int counterMax = width * height / 5;
         int counter = 0;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (i == 0 || j == 0 || i == size - 1 || j == size - 1)
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
                     matrix[i][j] = 0;
                 else {
                     int rand = random.nextInt(5) + 1;

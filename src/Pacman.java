@@ -1,7 +1,10 @@
+import javax.swing.*;
+
 public class Pacman {
     private int hp = 3;
     private int speed = 10;
     private int score = 0;
+
     public int getHp() {
         return hp;
     }
@@ -27,4 +30,5 @@ public class Pacman {
     }
 
     public Pacman() {}
+
 }
