@@ -30,13 +30,16 @@ public class TableModel extends AbstractTableModel {
         int[][] matrix = new int[height][width];
         int counterMax = width * height / 5;
         int counter = 0;
+        matrix[height / 2][width / 2] = 2;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
                     matrix[i][j] = 0;
                 else {
                     int rand = random.nextInt(5) + 1;
-                    if (counter == counterMax)
+                    if (matrix[i][j] == 2)
+                        continue;
+                    else if (counter == counterMax)
                         matrix[i][j] = 1;
                     else if (rand == 1) {
                         matrix[i][j] = 0;
@@ -47,7 +50,7 @@ public class TableModel extends AbstractTableModel {
             }
         }
         this.items = matrix;
-//
+
 //        for (int[] ints : matrix) {
 //            for (int anInt : ints)
 //                System.out.print(anInt + " ");

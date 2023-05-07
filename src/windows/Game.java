@@ -3,16 +3,15 @@ package windows;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-
+import java.awt.event.*;
 
 import operations.TableModel;
+import customVariables.variables.Pacman;
 
-public class Game extends JFrame {
+public class Game extends JFrame implements KeyListener {
+    private JLabel imageLabel = new JLabel();
+    Pacman pacman = new Pacman(imageLabel);
+
     public Game(int height, int width) {
         JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
@@ -22,6 +21,8 @@ public class Game extends JFrame {
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
+        jframe.addKeyListener(this);
+        pacman.start();
 
         TableModel tableModel = new TableModel(null);
         tableModel.generateMap(height, width);
@@ -61,6 +62,9 @@ public class Game extends JFrame {
                             g2d.dispose();
                         }
                     };
+                } else if (value.toString().equals("2")) { // pac
+                    setBackground(Color.PINK);
+
                 }
 //                else
 //                    setBackground(Color.BLACK);
@@ -89,5 +93,34 @@ public class Game extends JFrame {
             }
         });
         jframe.add(jTable);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+            pacman.setKeyPressed(KeyEvent.VK_RIGHT);
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+            pacman.setKeyPressed(KeyEvent.VK_LEFT);
+        else if (e.getKeyCode() == KeyEvent.VK_UP)
+            pacman.setKeyPressed(KeyEvent.VK_UP);
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+            pacman.setKeyPressed(KeyEvent.VK_DOWN);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+            pacman.setKeyPressed(KeyEvent.VK_RIGHT);
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+            pacman.setKeyPressed(KeyEvent.VK_LEFT);
+        else if (e.getKeyCode() == KeyEvent.VK_UP)
+            pacman.setKeyPressed(KeyEvent.VK_UP);
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+            pacman.setKeyPressed(KeyEvent.VK_DOWN);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
