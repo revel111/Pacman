@@ -3,13 +3,20 @@ package customVariables.variables;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
-public class Pacman extends Thread {
+public class Pacman extends Thread{
     private int hp = 3;
     private int speed = 4;
     private int score = 0;
     private boolean isFirstImage = true;
     private JLabel jLabel;
     private int keyPressed;
+    private int width;
+    private int height;
+
+//    public Pacman(int width, int height) {
+//        this.width = width;
+//        this.height = height;
+//    }
 
     public int getHp() {
         return hp;
@@ -39,17 +46,31 @@ public class Pacman extends Thread {
         this.keyPressed = keyPressed;
     }
 
+//    @Override
+//    public int getWidth() {
+//        return width;
+//    }
+//
+//    public void setWidth(int width) {
+//        this.width = width;
+//    }
+//
+//    @Override
+//    public int getHeight() {
+//        return height;
+//    }
+//
+//    public void setHeight(int height) {
+//        this.height = height;
+//    }
 
     public JLabel getjLabel() {
         return jLabel;
     }
 
-//    public Pacman(/*int width, int height*/ ) {
-//    }
-
     @Override
     public void run() {
-        while (!isInterrupted()) {
+        while (true) {
             SwingUtilities.invokeLater(() -> {
                 if (keyPressed == KeyEvent.VK_LEFT) {
                     if (isFirstImage)
