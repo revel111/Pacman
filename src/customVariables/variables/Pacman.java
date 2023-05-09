@@ -39,9 +39,13 @@ public class Pacman extends Thread {
         this.keyPressed = keyPressed;
     }
 
-    public Pacman(/*int width, int height*/ JLabel jLabel) {
-        this.jLabel = jLabel;
+
+    public JLabel getjLabel() {
+        return jLabel;
     }
+
+//    public Pacman(/*int width, int height*/ ) {
+//    }
 
     @Override
     public void run() {

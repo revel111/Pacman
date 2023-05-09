@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="Map was created(alpha) again">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="trying to add pacman">
+      <change afterPath="$PROJECT_DIR$/src/operations/CellRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boosts/AddHp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/boosts/AddHp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boosts/AddPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/boosts/AddPoints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boosts/Boost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/boosts/Boost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boosts/Invulnerability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/boosts/Invulnerability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boosts/Speed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/boosts/Speed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/pacRCl.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacRCl.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/pacRO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacRO.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -183,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683387336759</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="trying to add pacman">
+      <created>1683466182131</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1683466182131</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,7 +206,8 @@
     <MESSAGE value="Well, I lied XD Matrix for map was generated" />
     <MESSAGE value="Map was created(alpha)" />
     <MESSAGE value="Map was created(alpha) again" />
-    <option name="LAST_COMMIT_MESSAGE" value="Map was created(alpha) again" />
+    <MESSAGE value="trying to add pacman" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to add pacman" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/GUI_FTS_EN_2223S_PRO2_s28324_INTELLIJ$Presentation.ic" NAME="Presentation Coverage Results" MODIFIED="1683384350495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
