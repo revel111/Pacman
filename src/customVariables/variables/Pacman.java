@@ -1,22 +1,26 @@
 package customVariables.variables;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 
-public class Pacman extends Thread{
+public class Pacman extends JLabel implements Runnable{
     private int hp = 3;
     private int speed = 4;
     private int score = 0;
     private boolean isFirstImage = true;
-    private JLabel jLabel;
     private int keyPressed;
     private int width;
     private int height;
 
-//    public Pacman(int width, int height) {
-//        this.width = width;
-//        this.height = height;
-//    }
+    public Pacman(/*int width, int height*/) {
+//        setIcon(scaleImage(pacIcon, height, width));
+        setOpaque(true);
+//        setBackground(table.getBackground());
+//        setForeground(table.getForeground());
+    }
 
     public int getHp() {
         return hp;
@@ -64,37 +68,34 @@ public class Pacman extends Thread{
 //        this.height = height;
 //    }
 
-    public JLabel getjLabel() {
-        return jLabel;
-    }
-
     @Override
     public void run() {
         while (true) {
             SwingUtilities.invokeLater(() -> {
                 if (keyPressed == KeyEvent.VK_LEFT) {
                     if (isFirstImage)
-                        jLabel.setIcon(new ImageIcon("src/images/pacLCl.png"));
+                        this.setIcon(new ImageIcon("src/pacLCl.png"));
                     else
-                        jLabel.setIcon(new ImageIcon("src/images/pacLO.png"));
+                        this.setIcon(new ImageIcon("src/pacLO.png"));
                     isFirstImage = !isFirstImage;
                 } else if (keyPressed == KeyEvent.VK_RIGHT) {
                     if (isFirstImage)
-                        jLabel.setIcon(new ImageIcon("src/images/pacRCl.png"));
+                        this.setIcon(new ImageIcon("src/pacRCl.png"));
                     else
-                        jLabel.setIcon(new ImageIcon("src/images/pacRO.png"));
+                        this.setIcon(new ImageIcon("src/pacRO.png"));
                     isFirstImage = !isFirstImage;
                 } else if (keyPressed == KeyEvent.VK_DOWN) {
                     if (isFirstImage)
-                        jLabel.setIcon(new ImageIcon("src/images/pacBCl.png"));
+                        this.setIcon(new ImageIcon("src/pacBCl.png"));
                     else
-                        jLabel.setIcon(new ImageIcon("src/images/pacBO.png"));
+                        this.setIcon(new ImageIcon("src/pacBO.png"));
                     isFirstImage = !isFirstImage;
-                } else if (keyPressed == KeyEvent.VK_UP) {
+                }
+                else if (keyPressed == KeyEvent.VK_UP) {
                     if (isFirstImage)
-                        jLabel.setIcon(new ImageIcon("src/images/pacFrCl.png"));
+                        this.setIcon(new ImageIcon("src/pacFrCl.png"));
                     else
-                        jLabel.setIcon(new ImageIcon("src/images/pacFrO.png"));
+                        this.setIcon(new ImageIcon("src/pacFrO.png"));
                     isFirstImage = !isFirstImage;
                 }
             });
