@@ -4,13 +4,16 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import operations.CellRenderer;
+//import operations.CellRenderer;
 import operations.TableModel;
 import customVariables.variables.Pacman;
 
-public class Game extends JFrame implements KeyListener {
+public class Game extends JFrame /*implements KeyListener */{
     Pacman pacman = new Pacman();
+
     public Game(int height, int width) {
         JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
@@ -20,12 +23,13 @@ public class Game extends JFrame implements KeyListener {
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
-        jframe.addKeyListener(this);
+//        jframe.addKeyListener(this);
 //        pacman.start();
-
+        new Thread(pacman).start();
         TableModel tableModel = new TableModel(null);
         tableModel.generateMap(height, width);
         JTable jTable = new JTable(tableModel);
+        jTable.setBackground(Color.red);
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() { //draw map
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -56,23 +60,35 @@ public class Game extends JFrame implements KeyListener {
                             g2d.dispose();
                         }
                     };
-                }  else if (value.toString().equals("2")) { // pac
-                    setBackground(Color.PINK);
-//                    pacman.start();
-
-//                    pacman.setHeight(getHeight());
-//                    pacman.setWidth(getWidth());
-//                    pacman.run();
-//                    return pacman;
-//                    return new Pacman(getWidth(),getHeight());
+                } else if (value.toString().equals("2")) { // pac
+                    ImageIcon pacIcon = (new ImageIcon("src/images/pacBO.png"));
+                    JLabel label = new JLabel();
+                    label.setIcon(scaleImage(pacIcon, table.getRowHeight(), table.getRowHeight()));
+                    label.setOpaque(true);
+                    label.setBackground(table.getBackground());
+                    label.setForeground(table.getForeground());
+                    return label;
                 }
 //                else
 //                    setBackground(Color.BLACK);
 
                 return c;
             }
+            private ImageIcon scaleImage(ImageIcon icon, int width, int height) {
+                Image image = icon.getImage();
+                Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                return new ImageIcon(scaledImage);
+            }
         });
 //        jTable.setDefaultRenderer(Object.class, new CellRenderer());
+
+//        pacman.addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                pacman.
+//            }
+//        });
+
         jTable.addComponentListener(new ComponentAdapter() { // resize-able
             @Override
             public void componentResized(ComponentEvent e) {
@@ -91,35 +107,45 @@ public class Game extends JFrame implements KeyListener {
                 jframe.dispose();
             }
         });
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+                int keyCode = e.getKeyCode();
+                if (keyCode == KeyEvent.VK_RIGHT)
+                    pacman.setKeyPressed(KeyEvent.VK_RIGHT);
+                else if (keyCode == KeyEvent.VK_LEFT)
+                    pacman.setKeyPressed(KeyEvent.VK_LEFT);
+                else if (keyCode == KeyEvent.VK_UP)
+                    pacman.setKeyPressed(KeyEvent.VK_UP);
+                else if (keyCode == KeyEvent.VK_DOWN)
+                    pacman.setKeyPressed(KeyEvent.VK_DOWN);
+            }
+            return false;
+        });
+
+
         jframe.add(jTable);
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            pacman.setKeyPressed(KeyEvent.VK_RIGHT);
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            pacman.setKeyPressed(KeyEvent.VK_LEFT);
-        else if (e.getKeyCode() == KeyEvent.VK_UP)
-            pacman.setKeyPressed(KeyEvent.VK_UP);
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            pacman.setKeyPressed(KeyEvent.VK_DOWN);
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            pacman.setKeyPressed(KeyEvent.VK_RIGHT);
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            pacman.setKeyPressed(KeyEvent.VK_LEFT);
-        else if (e.getKeyCode() == KeyEvent.VK_UP)
-            pacman.setKeyPressed(KeyEvent.VK_UP);
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            pacman.setKeyPressed(KeyEvent.VK_DOWN);
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+//    @Override
+//    public void keyTyped(KeyEvent e) {
+//
+//    }
+//
+//    @Override
+//    public void keyPressed(KeyEvent e) {
+//        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+//            pacman.setKeyPressed(KeyEvent.VK_RIGHT);
+//        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+//            pacman.setKeyPressed(KeyEvent.VK_LEFT);
+//        else if (e.getKeyCode() == KeyEvent.VK_UP)
+//            pacman.setKeyPressed(KeyEvent.VK_UP);
+//        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+//            pacman.setKeyPressed(KeyEvent.VK_DOWN);
+//        System.out.println("fuuf");
+//    }
+//
+//    @Override
+//    public void keyReleased(KeyEvent e) {
+//
+//    }
 }
