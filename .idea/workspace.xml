@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="trying to add pacman">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
-    </list>
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="trying to add pacman" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683659219848</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="trying to add pacman">
+      <created>1683669958587</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1683669958587</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
