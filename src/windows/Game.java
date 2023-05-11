@@ -11,8 +11,9 @@ import java.util.Map;
 import operations.TableModel;
 import customVariables.variables.Pacman;
 
-public class Game extends JFrame /*implements KeyListener */{
-    Pacman pacman = new Pacman();
+public class Game extends JFrame implements KeyListener {
+    //    Pacman pacman = new Pacman();
+    TableModel tableModel = new TableModel(null);
 
     public Game(int height, int width) {
         JFrame jframe = new JFrame("Pacman");
@@ -23,72 +24,89 @@ public class Game extends JFrame /*implements KeyListener */{
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
-//        jframe.addKeyListener(this);
 //        pacman.start();
-        new Thread(pacman).start();
-        TableModel tableModel = new TableModel(null);
+//        new Thread(pacman).start();
         tableModel.generateMap(height, width);
         JTable jTable = new JTable(tableModel);
         jTable.setBackground(Color.red);
-        jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() { //draw map
+        jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 ((JLabel) c).setText(null); //no text
                 table.setShowGrid(false); //no grid lines
                 table.setIntercellSpacing(new Dimension(0, 0)); //no grid lines
-                if (value.toString().equals("0")) {
-                    setBackground(new Color(0, 0, 47));
-                    setBorder(BorderFactory.createLineBorder(new Color(0, 0, 185), 1));
-                } else if (value.toString().equals("1")) {
-                    setBackground(Color.BLACK);
-                    return new JPanel() {
-                        @Override
-                        protected void paintComponent(Graphics g) {
-                            super.paintComponent(g);
-                            Graphics2D g2d = (Graphics2D) g.create();
-                            //fill the background with black
-                            g2d.setColor(Color.BLACK);
-                            g2d.fillRect(0, 0, getWidth(), getHeight());
-                            //draw the yellow dot
-                            g2d.setColor(Color.YELLOW);
-                            int centerX = getWidth() / 2;
-                            int centerY = getHeight() / 2;
-                            int dotX = centerX - (3);
-                            int dotY = centerY - (3);
-                            g2d.fillOval(dotX, dotY, 6, 6);
-                            g2d.dispose();
-                        }
-                    };
-                } else if (value.toString().equals("2")) { // pac
-                    ImageIcon pacIcon = (new ImageIcon("src/images/pacBO.png"));
-                    JLabel label = new JLabel();
-                    label.setIcon(scaleImage(pacIcon, table.getRowHeight(), table.getRowHeight()));
-                    label.setOpaque(true);
-                    label.setBackground(table.getBackground());
-                    label.setForeground(table.getForeground());
-                    return label;
+                JLabel label = new JLabel();
+
+                if (value instanceof ImageIcon) {
+                    ImageIcon imageIcon = (ImageIcon) value;
+
+                    Image originalImage = imageIcon.getImage();
+                    Image scaledImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+//                    label.setIcon(new ImageIcon(scaledImage));
+                    label.setIcon(imageIcon);
+//                    label.setHorizontalAlignment(SwingConstants.CENTER);
+//                    label.setVerticalAlignment(SwingConstants.CENTER);
                 }
+                return label;
+//                if (value.toString().equals("0")) {
+//                    setBackground(new Color(0, 0, 47));
+//                    setBorder(BorderFactory.createLineBorder(new Color(0, 0, 185), 1));
+//                } else if (value.toString().equals("1")) {
+//                    setBackground(Color.BLACK);
+//                    return new JPanel() {
+//                        @Override
+//                        protected void paintComponent(Graphics g) {
+//                            super.paintComponent(g);
+//                            Graphics2D g2d = (Graphics2D) g.create();
+//                            //fill the background with black
+//                            g2d.setColor(Color.BLACK);
+//                            g2d.fillRect(0, 0, getWidth(), getHeight());
+//                            //draw the yellow dot
+//                            g2d.setColor(Color.YELLOW);
+//                            int centerX = getWidth() / 2;
+//                            int centerY = getHeight() / 2;
+//                            int dotX = centerX - (3);
+//                            int dotY = centerY - (3);
+//                            g2d.fillOval(dotX, dotY, 6, 6);
+//                            g2d.dispose();
+//                        }
+//                    };
+//                } else if (value.toString().equals("2")) { // pac
+//                    if (pacman.getKeyPressed() == KeyEvent.VK_RIGHT) {
+//                        ImageIcon pacIcon = (new ImageIcon("src/images/pacBO.png"));
+//                        JLabel label = new JLabel();
+//                        label.setIcon(scaleImage(pacIcon, table.getRowHeight(), table.getRowHeight()));
+//                        label.setOpaque(true);
+//                        label.setBackground(table.getBackground());
+//                        label.setForeground(table.getForeground());
+//                        return label;
+//                    } else if (pacman.getKeyPressed() == KeyEvent.VK_LEFT) {
+//                        ImageIcon pacIcon = (new ImageIcon("src/images/pacFrO.png"));
+//                        JLabel label = new JLabel();
+//                        label.setIcon(scaleImage(pacIcon, table.getRowHeight(), table.getRowHeight()));
+//                        label.setOpaque(true);
+//                        label.setBackground(table.getBackground());
+//                        label.setForeground(table.getForeground());
+//                        return label;
+//                    }
+//                }
 //                else
 //                    setBackground(Color.BLACK);
 
-                return c;
+//                return c = table.getValueAt(row,column);
             }
-            private ImageIcon scaleImage(ImageIcon icon, int width, int height) {
-                Image image = icon.getImage();
-                Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-                return new ImageIcon(scaledImage);
-            }
-        });
-//        jTable.setDefaultRenderer(Object.class, new CellRenderer());
 
-//        pacman.addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentResized(ComponentEvent e) {
-//                pacman.
+//            private ImageIcon scaleIcon(ImageIcon originalIcon) {
+//                // Get the current size of the cell renderer component (e.g., JTable cell)
+//                int width = getWidth();
+//                int height = getHeight();
+//
+//                // Scale the original icon to fit the cell size while preserving the aspect ratio
+//                Image image = originalIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+//                return new ImageIcon(image);
 //            }
-//        });
-
+        });
         jTable.addComponentListener(new ComponentAdapter() { // resize-able
             @Override
             public void componentResized(ComponentEvent e) {
@@ -107,45 +125,59 @@ public class Game extends JFrame /*implements KeyListener */{
                 jframe.dispose();
             }
         });
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
-            if (e.getID() == KeyEvent.KEY_PRESSED) {
-                int keyCode = e.getKeyCode();
-                if (keyCode == KeyEvent.VK_RIGHT)
-                    pacman.setKeyPressed(KeyEvent.VK_RIGHT);
-                else if (keyCode == KeyEvent.VK_LEFT)
-                    pacman.setKeyPressed(KeyEvent.VK_LEFT);
-                else if (keyCode == KeyEvent.VK_UP)
-                    pacman.setKeyPressed(KeyEvent.VK_UP);
-                else if (keyCode == KeyEvent.VK_DOWN)
-                    pacman.setKeyPressed(KeyEvent.VK_DOWN);
-            }
-            return false;
-        });
+//        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
+//            if (e.getID() == KeyEvent.KEY_PRESSED) {
+//                int keyCode = e.getKeyCode();
+//                if (keyCode == KeyEvent.VK_RIGHT) {
+//                    pacman.setKeyPressed(KeyEvent.VK_RIGHT);
+//                    System.out.println("fff");
+//                } else if (keyCode == KeyEvent.VK_LEFT)
+//                    pacman.setKeyPressed(KeyEvent.VK_LEFT);
+//                else if (keyCode == KeyEvent.VK_UP)
+//                    pacman.setKeyPressed(KeyEvent.VK_UP);
+//                else if (keyCode == KeyEvent.VK_DOWN)
+//                    pacman.setKeyPressed(KeyEvent.VK_DOWN);
+//            }
+//            return false;
+//        });
+        JPanel hpScorePanel = new JPanel();
+        hpScorePanel.setBackground(Color.BLACK);
+        hpScorePanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
+        JPanel panelTable = new JPanel();
+        panelTable.setLayout(new BorderLayout());
+        panelTable.add(jTable, BorderLayout.CENTER);
 
-        jframe.add(jTable);
+        JPanel parentPanel = new JPanel();
+        parentPanel.setLayout(new BorderLayout());
+        parentPanel.add(panelTable, BorderLayout.CENTER);
+        parentPanel.add(hpScorePanel, BorderLayout.SOUTH);
+
+        jframe.add(parentPanel, BorderLayout.CENTER);
+        parentPanel.setFocusable(true);
+        parentPanel.requestFocusInWindow();
+        parentPanel.addKeyListener(this);
     }
 
-//    @Override
-//    public void keyTyped(KeyEvent e) {
-//
-//    }
-//
-//    @Override
-//    public void keyPressed(KeyEvent e) {
-//        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-//            pacman.setKeyPressed(KeyEvent.VK_RIGHT);
-//        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-//            pacman.setKeyPressed(KeyEvent.VK_LEFT);
-//        else if (e.getKeyCode() == KeyEvent.VK_UP)
-//            pacman.setKeyPressed(KeyEvent.VK_UP);
-//        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-//            pacman.setKeyPressed(KeyEvent.VK_DOWN);
-//        System.out.println("fuuf");
-//    }
-//
-//    @Override
-//    public void keyReleased(KeyEvent e) {
-//
-//    }
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+            tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+            tableModel.setKeyPressed(KeyEvent.VK_LEFT);
+        else if (e.getKeyCode() == KeyEvent.VK_UP)
+            tableModel.setKeyPressed(KeyEvent.VK_UP);
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+            tableModel.setKeyPressed(KeyEvent.VK_DOWN);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
