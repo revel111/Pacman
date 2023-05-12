@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="i achieved some result" />
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="just to save">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/windows/ScorePanel.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,14 +206,21 @@
       <option name="project" value="LOCAL" />
       <updated>1683820067932</updated>
     </task>
-    <task id="LOCAL-00019" summary="i achieved some result">
-      <created>1683869660045</created>
+    <task id="LOCAL-00019" summary="movement">
+      <created>1683882676356</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1683869660045</updated>
+      <updated>1683882676356</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="just to save">
+      <created>1683899292870</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683899292870</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,18 +246,42 @@
     <MESSAGE value="Map was created(alpha) again" />
     <MESSAGE value="trying to add pacman" />
     <MESSAGE value="i achieved some result" />
-    <option name="LAST_COMMIT_MESSAGE" value="i achieved some result" />
+    <MESSAGE value="movement" />
+    <MESSAGE value="just save" />
+    <MESSAGE value="just to save" />
+    <option name="LAST_COMMIT_MESSAGE" value="just to save" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/windows/Game.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="18" />
+          <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="tableModel.pacman" />
+        <watch expression="((TableModel)this).pacman" custom="operations.TableModel" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/GUI_FTS_EN_2223S_PRO2_s28324_INTELLIJ$Presentation.ic" NAME="Presentation Coverage Results" MODIFIED="1683384350495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
