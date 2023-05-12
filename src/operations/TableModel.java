@@ -11,7 +11,6 @@ import java.util.Random;
 public class TableModel extends AbstractTableModel {
     private int[][] items;
     private Pacman pacman = new Pacman();
-    private JLabel score = new JLabel("Score: " + pacman.getScore());
 
     public TableModel(int[][] items) {
 //        new Thread(() -> {
@@ -47,22 +46,13 @@ public class TableModel extends AbstractTableModel {
         this.pacman = pacman;
     }
 
-    public JLabel getScore() {
-        return score;
-    }
-
-    public void setScore(JLabel score) {
-        this.score = score;
-    }
-
     public void moveLeftPac() {
         if (items[getPacman().getI()][getPacman().getJ() - 1] != 0) {//wall
             items[getPacman().getI()][getPacman().getJ()] = 3;//black
-            if (items[getPacman().getI()][getPacman().getJ() - 1] == 1) {//dot
+            if (items[getPacman().getI()][getPacman().getJ() - 1] == 1) //dot
                 getPacman().setScore(getPacman().getScore() + 10);
-                score.setText("Score" + pacman.getScore());
-                score.repaint();
-            }
+            else if (items[getPacman().getI()][getPacman().getJ() - 1] == 4)
+                getPacman().setHp(getPacman().getHp() - 1);
             items[getPacman().getI()][getPacman().getJ() - 1] = 2;//pack
             getPacman().setJ(getPacman().getJ() - 1);
         }
@@ -73,6 +63,8 @@ public class TableModel extends AbstractTableModel {
             items[getPacman().getI()][getPacman().getJ()] = 3;
             if (items[getPacman().getI()][getPacman().getJ() + 1] == 1)
                 getPacman().setScore(getPacman().getScore() + 10);
+            else if (items[getPacman().getI()][getPacman().getJ() + 1] == 4)
+                getPacman().setHp(getPacman().getHp() - 1);
             items[getPacman().getI()][getPacman().getJ() + 1] = 2;
             getPacman().setJ(getPacman().getJ() + 1);
         }
@@ -81,10 +73,10 @@ public class TableModel extends AbstractTableModel {
     public void moveUpPac() {
         if (items[getPacman().getI() - 1][getPacman().getJ()] != 0) {
             items[getPacman().getI()][getPacman().getJ()] = 3;
-            if (items[getPacman().getI() - 1][getPacman().getJ()] == 1) {
+            if (items[getPacman().getI() - 1][getPacman().getJ()] == 1)
                 getPacman().setScore(getPacman().getScore() + 10);
-//                System.out.println("shit was collected");
-            }
+            else if (items[getPacman().getI() - 1][getPacman().getJ()] == 4)
+                getPacman().setHp(getPacman().getHp() - 1);
             items[getPacman().getI() - 1][getPacman().getJ()] = 2;
             getPacman().setI(getPacman().getI() - 1);
         }
@@ -95,6 +87,8 @@ public class TableModel extends AbstractTableModel {
             items[getPacman().getI()][getPacman().getJ()] = 3;
             if (items[getPacman().getI() + 1][getPacman().getJ()] == 1)
                 getPacman().setScore(getPacman().getScore() + 10);
+            else if (items[getPacman().getI() + 1][getPacman().getJ()] == 4)
+                getPacman().setHp(getPacman().getHp() - 1);
             items[getPacman().getI() + 1][getPacman().getJ()] = 2;
             getPacman().setI(getPacman().getI() + 1);
         }
@@ -153,9 +147,14 @@ public class TableModel extends AbstractTableModel {
         int[][] matrix = new int[height][width];
         int counterMax = width * height / 5;
         int counter = 0;
+        int ghostMax = 3;
+        int ghostCounter = 0;
         pacman.setI(height / 2);
         pacman.setJ(width / 2);
+        pacman.setStartI(height / 2);
+        pacman.setStartJ(width / 2);
         matrix[height / 2][width / 2] = 2;
+        matrix[height / 3][width / 3] = 4;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
@@ -164,12 +163,19 @@ public class TableModel extends AbstractTableModel {
                     int rand = random.nextInt(5) + 1;
                     if (matrix[i][j] == 2)
                         continue;
+                    else if (matrix[i][j] == 4)
+                        continue;
                     else if (counter == counterMax)
+                        matrix[i][j] = 1;
+                    else if (ghostCounter == ghostMax)
                         matrix[i][j] = 1;
                     else if (rand == 1) {
                         matrix[i][j] = 0;
                         counter++;
-                    } else
+                    } /*else if (matrix[i][j] == 4) {
+                        matrix[i][j] = 0;
+                        counter++;
+                    }*/ else
                         matrix[i][j] = 1;
                 }
             }

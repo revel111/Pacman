@@ -15,8 +15,6 @@ public class MainMenu extends JFrame {
         title.setOpaque(true);
         jframe.add(title, BorderLayout.NORTH);
 
-        //add background
-
         JPanel buttons = new JPanel(new GridBagLayout());
         buttons.setBackground(Color.BLACK);
         GridBagConstraints gbc = new GridBagConstraints();

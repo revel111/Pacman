@@ -9,9 +9,10 @@ import operations.TableModel;
 import customVariables.variables.Pacman;
 
 public class Game extends JFrame implements KeyListener {
-    //    Pacman pacman = new Pacman();
     private final TableModel tableModel = new TableModel(null);
-    private JLabel scoreLabel = new JLabel("Score: " + /*counter*/tableModel.getPacman().getScore());
+    private final JLabel scoreLabel = new JLabel("Score: " + tableModel.getPacman().getScore());
+    private final JLabel hpLabel = new JLabel("Health: " + tableModel.getPacman().getHp());
+
     public Game(int height, int width) {
         JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
@@ -21,18 +22,24 @@ public class Game extends JFrame implements KeyListener {
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
-//        pacman.start();
+
         tableModel.generateMap(height, width);
         JTable jTable = new JTable(tableModel);
         jTable.setBackground(Color.BLACK);
 
-//        tableModel.setScore(score);
-
         JPanel hpScorePanel = new JPanel();
         hpScorePanel.setBackground(Color.BLACK);
         hpScorePanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
-//        hpScorePanel.add(new JLabel("Score: " + tableModel.getPacman().getScore()), BorderLayout.WEST);
-        hpScorePanel.add(scoreLabel);
+
+        scoreLabel.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
+        scoreLabel.setForeground(Color.YELLOW);
+
+        hpLabel.setIcon(new ImageIcon("src/images/heart.png"));
+        hpLabel.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
+        hpLabel.setForeground(Color.YELLOW);
+
+        hpScorePanel.add(scoreLabel, new FlowLayout(FlowLayout.LEFT));
+        hpScorePanel.add(hpLabel, new FlowLayout(FlowLayout.RIGHT));
         JPanel panelTable = new JPanel();
         panelTable.setLayout(new BorderLayout());
         panelTable.add(jTable, BorderLayout.CENTER);
@@ -59,8 +66,8 @@ public class Game extends JFrame implements KeyListener {
                 if (value instanceof ImageIcon) {
                     ImageIcon imageIcon = (ImageIcon) value;
 
-                    Image originalImage = imageIcon.getImage();
-                    Image scaledImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+//                    Image originalImage = imageIcon.getImage();
+//                    Image scaledImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 //                    label.setIcon(new ImageIcon(scaledImage));
                     label.setIcon(imageIcon);
 //                    label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -127,16 +134,6 @@ public class Game extends JFrame implements KeyListener {
 
 //                return c = table.getValueAt(row,column);
             }
-
-//            private ImageIcon scaleIcon(ImageIcon originalIcon) {
-//                // Get the current size of the cell renderer component (e.g., JTable cell)
-//                int width = getWidth();
-//                int height = getHeight();
-//
-//                // Scale the original icon to fit the cell size while preserving the aspect ratio
-//                Image image = originalIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-//                return new ImageIcon(image);
-//            }
         });
         jTable.addComponentListener(new ComponentAdapter() { // resize-able
             @Override
@@ -191,7 +188,9 @@ public class Game extends JFrame implements KeyListener {
             tableModel.moveDownPac();
         }
         scoreLabel.setText("Score: " + tableModel.getPacman().getScore());
+        hpLabel.setText("Health: " + tableModel.getPacman().getHp());
         scoreLabel.repaint();
+        hpLabel.repaint();
 //        tableModel.fireTableDataChanged();
     }
 

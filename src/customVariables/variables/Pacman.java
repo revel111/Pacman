@@ -16,6 +16,9 @@ public class Pacman extends JLabel implements Runnable {
     private int i;
     private int j;
 
+    private int startI;
+    private int startJ;
+
     private TableModel tableModel;
 
     public Pacman() {
@@ -58,6 +61,22 @@ public class Pacman extends JLabel implements Runnable {
 
     public void setJ(int j) {
         this.j = j;
+    }
+
+    public int getStartI() {
+        return startI;
+    }
+
+    public void setStartI(int startI) {
+        this.startI = startI;
+    }
+
+    public int getStartJ() {
+        return startJ;
+    }
+
+    public void setStartJ(int startJ) {
+        this.startJ = startJ;
     }
 
     public void setKeyPressed(int keyPressed) {
