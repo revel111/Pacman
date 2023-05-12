@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="yeah still trying">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="movement">
+      <change afterPath="$PROJECT_DIR$/src/windows/ScorePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pacBCl.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacBCl.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pacBO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacBO.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pacFrCl.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacFrCl.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pacFrO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacFrO.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pacLCl.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacLCl.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pacLO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacLO.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pacRCl.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacRCl.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/pacRO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/pacRO.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
     </list>
@@ -205,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683820067932</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="movement">
+      <created>1683882676356</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1683882676356</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,25 +246,38 @@
     <MESSAGE value="Map was created(alpha) again" />
     <MESSAGE value="trying to add pacman" />
     <MESSAGE value="i achieved some result" />
-    <option name="LAST_COMMIT_MESSAGE" value="i achieved some result" />
+    <MESSAGE value="movement" />
+    <option name="LAST_COMMIT_MESSAGE" value="movement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
-          <line>74</line>
-          <properties class="operations.TableModel" method="moveDownPac">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="32" />
+          <line>86</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="tableModel.pacman" />
+        <watch expression="((TableModel)this).pacman" custom="operations.TableModel" />
       </configuration>
     </watches-manager>
   </component>

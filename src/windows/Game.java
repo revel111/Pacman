@@ -13,7 +13,6 @@ import customVariables.variables.Pacman;
 public class Game extends JFrame implements KeyListener {
     //    Pacman pacman = new Pacman();
     private final TableModel tableModel = new TableModel(null);
-
     public Game(int height, int width) {
         JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
@@ -26,11 +25,15 @@ public class Game extends JFrame implements KeyListener {
 //        pacman.start();
         tableModel.generateMap(height, width);
         JTable jTable = new JTable(tableModel);
-        jTable.setBackground(Color.red);
+        jTable.setBackground(Color.BLACK);
+
+//        JLabel score = new JLabel("Score: " + tableModel.getPacman().getScore());
+//        tableModel.setScore(score);
 
         JPanel hpScorePanel = new JPanel();
         hpScorePanel.setBackground(Color.BLACK);
         hpScorePanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        hpScorePanel.add(new JLabel("Score: " + tableModel.getPacman().getScore()), BorderLayout.WEST);
 
         JPanel panelTable = new JPanel();
         panelTable.setLayout(new BorderLayout());
@@ -72,6 +75,10 @@ public class Game extends JFrame implements KeyListener {
 //                    tableModel.setPacman(pacman);
                     panelTable.repaint();
                     return tableModel.getPacman();
+                } else if (value instanceof JPanel panel) {
+
+                    panelTable.repaint();
+                    return panel;
                 }
                 panelTable.repaint();
                 return label;
@@ -185,6 +192,7 @@ public class Game extends JFrame implements KeyListener {
 //            tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
             tableModel.moveRightPac();
+
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 //            tableModel.setKeyPressed(KeyEvent.VK_LEFT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);

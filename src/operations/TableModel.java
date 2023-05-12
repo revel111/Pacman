@@ -11,7 +11,7 @@ public class TableModel extends AbstractTableModel {
     private int[][] items;
     private int keyPressed;
     private Pacman pacman = new Pacman();
-
+    private JLabel score = new JLabel();
     public TableModel(int[][] items) {
         this.items = items;
     }
@@ -42,43 +42,51 @@ public class TableModel extends AbstractTableModel {
         this.pacman = pacman;
     }
 
+    public JLabel getScore() {
+        return score;
+    }
+
+    public void setScore(JLabel score) {
+        this.score = score;
+    }
+
     public void moveLeftPac() {
-        if (items[getPacman().getI() - 1][getPacman().getJ()] != 0) {
-            items[getPacman().getI()][getPacman().getJ()] = 3;
-            items[getPacman().getI() - 1][getPacman().getJ()] = 2;
-            getPacman().setI(getPacman().getI() - 1);
-            if (items[getPacman().getI() - 1][getPacman().getJ()] == 1)
+        if (items[getPacman().getI()][getPacman().getJ() - 1] != 0) {//wall
+            items[getPacman().getI()][getPacman().getJ()] = 3;//black
+            if (items[getPacman().getI()][getPacman().getJ() - 1] == 1)//dot
                 getPacman().setScore(getPacman().getScore() + 10);
+            items[getPacman().getI()][getPacman().getJ() - 1] = 2;//pack
+            getPacman().setJ(getPacman().getJ() - 1);
         }
     }
 
     public void moveRightPac() {
-        if (items[getPacman().getI() + 1][getPacman().getJ()] != 0) {
+        if (items[getPacman().getI()][getPacman().getJ() + 1] != 0) {
             items[getPacman().getI()][getPacman().getJ()] = 3;
-            items[getPacman().getI() + 1][getPacman().getJ()] = 2;
-            getPacman().setI(getPacman().getI() + 1);
-            if (items[getPacman().getI() + 1][getPacman().getJ()] == 1)
+            if (items[getPacman().getI()][getPacman().getJ() + 1] == 1)
                 getPacman().setScore(getPacman().getScore() + 10);
+            items[getPacman().getI()][getPacman().getJ() + 1] = 2;
+            getPacman().setJ(getPacman().getJ() + 1);
         }
     }
 
     public void moveUpPac() {
-        if (items[getPacman().getI()][getPacman().getJ() + 1] != 0) {
+        if (items[getPacman().getI() - 1][getPacman().getJ()] != 0) {
             items[getPacman().getI()][getPacman().getJ()] = 3;
-            items[getPacman().getI()][getPacman().getJ() + 1] = 2;
-            getPacman().setJ(getPacman().getJ() + 1);
-            if (items[getPacman().getI()][getPacman().getJ() + 1] == 1)
+            if (items[getPacman().getI() - 1][getPacman().getJ()] == 1)
                 getPacman().setScore(getPacman().getScore() + 10);
+            items[getPacman().getI() - 1][getPacman().getJ()] = 2;
+            getPacman().setI(getPacman().getI() - 1);
         }
     }
 
     public void moveDownPac() {
-        if (items[getPacman().getI()][getPacman().getJ() - 1] != 0) {
+        if (items[getPacman().getI() + 1][getPacman().getJ()] != 0) {
             items[getPacman().getI()][getPacman().getJ()] = 3;
-            items[getPacman().getI()][getPacman().getJ() - 1] = 2;
-            getPacman().setJ(getPacman().getJ() - 1);
-            if (items[getPacman().getI()][getPacman().getJ() - 1] == 1)
+            if (items[getPacman().getI() + 1][getPacman().getJ()] == 1)
                 getPacman().setScore(getPacman().getScore() + 10);
+            items[getPacman().getI() + 1][getPacman().getJ()] = 2;
+            getPacman().setI(getPacman().getI() + 1);
         }
     }
 
@@ -99,9 +107,9 @@ public class TableModel extends AbstractTableModel {
             fireTableCellUpdated(rowIndex, columnIndex);
             return dot;
         } else if (items[rowIndex][columnIndex] == 2) {
-            ImageIcon pac = (new ImageIcon("src/images/pacBCl.png"));
+            ImageIcon pac = (new ImageIcon("src/images/pacRO.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
-            return pacman;
+            return pac;
         } else if (items[rowIndex][columnIndex] == 3) {
             ImageIcon dot = (new ImageIcon("src/images/black.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
