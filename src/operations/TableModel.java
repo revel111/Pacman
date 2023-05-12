@@ -1,5 +1,6 @@
 package operations;
 
+import customVariables.variables.Pacman;
 import windows.Game;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.util.Random;
 public class TableModel extends AbstractTableModel {
     private int[][] items;
     private int keyPressed;
+    private Pacman pacman = new Pacman();
 
     public TableModel(int[][] items) {
         this.items = items;
@@ -24,7 +26,6 @@ public class TableModel extends AbstractTableModel {
         return items[0].length;
     }
 
-
     public int getKeyPressed() {
         return keyPressed;
     }
@@ -33,15 +34,23 @@ public class TableModel extends AbstractTableModel {
         this.keyPressed = keyPressed;
     }
 
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        
+    public Pacman getPacman() {
+        return pacman;
+    }
+
+    public void setPacman(Pacman pacman) {
+        this.pacman = pacman;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-//        return items[rowIndex][columnIndex];
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+//            if()
+    }
 
+
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
         if (items[rowIndex][columnIndex] == 0) {
             ImageIcon pacIcon = (new ImageIcon("src/images/wall.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
@@ -51,13 +60,14 @@ public class TableModel extends AbstractTableModel {
             fireTableCellUpdated(rowIndex, columnIndex);
             return dot;
         } else if (items[rowIndex][columnIndex] == 2) {
-            ImageIcon dot = (new ImageIcon("src/images/pacBCl.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return dot;
+//            ImageIcon dot = (new ImageIcon("src/images/pacBCl.png"));
+//            fireTableCellUpdated(rowIndex, columnIndex);
+            return pacman;
         } else if (items[rowIndex][columnIndex] == 3) {
             ImageIcon dot = (new ImageIcon("src/images/pacBCl.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return dot;
+        }
 //        } else if (items[rowIndex][columnIndex] == 4) {
 //            ImageIcon pac2 = (new ImageIcon("src/images/pacBO.png"));
 //            fireTableCellUpdated(rowIndex, columnIndex);
@@ -85,7 +95,6 @@ public class TableModel extends AbstractTableModel {
 //            };
 //        }
 //
-        }
         return null;
     }
 
@@ -94,6 +103,8 @@ public class TableModel extends AbstractTableModel {
         int[][] matrix = new int[height][width];
         int counterMax = width * height / 5;
         int counter = 0;
+        pacman.setI(height / 2);
+        pacman.setJ(width / 2);
         matrix[height / 2][width / 2] = 2;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {

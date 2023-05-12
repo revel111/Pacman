@@ -13,7 +13,7 @@ import customVariables.variables.Pacman;
 
 public class Game extends JFrame implements KeyListener {
     //    Pacman pacman = new Pacman();
-    TableModel tableModel = new TableModel(null);
+    private final TableModel tableModel = new TableModel(null);
 
     public Game(int height, int width) {
         JFrame jframe = new JFrame("Pacman");
@@ -25,7 +25,6 @@ public class Game extends JFrame implements KeyListener {
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
 //        pacman.start();
-//        new Thread(pacman).start();
         tableModel.generateMap(height, width);
         JTable jTable = new JTable(tableModel);
         jTable.setBackground(Color.red);
@@ -47,6 +46,10 @@ public class Game extends JFrame implements KeyListener {
                     label.setIcon(imageIcon);
 //                    label.setHorizontalAlignment(SwingConstants.CENTER);
 //                    label.setVerticalAlignment(SwingConstants.CENTER);
+                }
+                else if(value instanceof JLabel) {
+                    label = (JLabel) value;
+                    label.setHorizontalAlignment(SwingConstants.CENTER);
                 }
                 return label;
 //                if (value.toString().equals("0")) {
@@ -157,6 +160,7 @@ public class Game extends JFrame implements KeyListener {
         parentPanel.setFocusable(true);
         parentPanel.requestFocusInWindow();
         parentPanel.addKeyListener(this);
+        new Thread(tableModel.getPacman()).start();
     }
 
     @Override
@@ -166,14 +170,18 @@ public class Game extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
+            tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
+        }
         else if (e.getKeyCode() == KeyEvent.VK_LEFT)
             tableModel.setKeyPressed(KeyEvent.VK_LEFT);
         else if (e.getKeyCode() == KeyEvent.VK_UP)
             tableModel.setKeyPressed(KeyEvent.VK_UP);
         else if (e.getKeyCode() == KeyEvent.VK_DOWN)
             tableModel.setKeyPressed(KeyEvent.VK_DOWN);
+
+        tableModel.fireTableDataChanged();
     }
 
     @Override
