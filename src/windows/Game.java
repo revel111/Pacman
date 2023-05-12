@@ -7,7 +7,6 @@ import java.awt.event.*;
 import java.util.HashMap;
 import java.util.Map;
 
-//import operations.CellRenderer;
 import operations.TableModel;
 import customVariables.variables.Pacman;
 
@@ -28,6 +27,25 @@ public class Game extends JFrame implements KeyListener {
         tableModel.generateMap(height, width);
         JTable jTable = new JTable(tableModel);
         jTable.setBackground(Color.red);
+
+        JPanel hpScorePanel = new JPanel();
+        hpScorePanel.setBackground(Color.BLACK);
+        hpScorePanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+
+        JPanel panelTable = new JPanel();
+        panelTable.setLayout(new BorderLayout());
+        panelTable.add(jTable, BorderLayout.CENTER);
+
+        JPanel parentPanel = new JPanel();
+        parentPanel.setLayout(new BorderLayout());
+        parentPanel.add(panelTable, BorderLayout.CENTER);
+        parentPanel.add(hpScorePanel, BorderLayout.SOUTH);
+
+        jframe.add(parentPanel, BorderLayout.CENTER);
+        parentPanel.setFocusable(true);
+        parentPanel.requestFocusInWindow();
+        parentPanel.addKeyListener(this);
+
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -46,11 +64,16 @@ public class Game extends JFrame implements KeyListener {
                     label.setIcon(imageIcon);
 //                    label.setHorizontalAlignment(SwingConstants.CENTER);
 //                    label.setVerticalAlignment(SwingConstants.CENTER);
+                } else if (value instanceof Pacman) {
+//                    label = (JLabel) value;
+//                Pacman pacman;
+//                    Pacman pacman = (Pacman) value;
+//                    label.setHorizontalAlignment(SwingConstants.CENTER);
+//                    tableModel.setPacman(pacman);
+                    panelTable.repaint();
+                    return tableModel.getPacman();
                 }
-                else if(value instanceof JLabel) {
-                    label = (JLabel) value;
-                    label.setHorizontalAlignment(SwingConstants.CENTER);
-                }
+                panelTable.repaint();
                 return label;
 //                if (value.toString().equals("0")) {
 //                    setBackground(new Color(0, 0, 47));
@@ -143,24 +166,12 @@ public class Game extends JFrame implements KeyListener {
 //            }
 //            return false;
 //        });
-        JPanel hpScorePanel = new JPanel();
-        hpScorePanel.setBackground(Color.BLACK);
-        hpScorePanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+//        Thread thread = new Thread(() -> {
+//            tableModel.getPacman().run();
+//        });
+//        thread.start();
 
-        JPanel panelTable = new JPanel();
-        panelTable.setLayout(new BorderLayout());
-        panelTable.add(jTable, BorderLayout.CENTER);
-
-        JPanel parentPanel = new JPanel();
-        parentPanel.setLayout(new BorderLayout());
-        parentPanel.add(panelTable, BorderLayout.CENTER);
-        parentPanel.add(hpScorePanel, BorderLayout.SOUTH);
-
-        jframe.add(parentPanel, BorderLayout.CENTER);
-        parentPanel.setFocusable(true);
-        parentPanel.requestFocusInWindow();
-        parentPanel.addKeyListener(this);
-        new Thread(tableModel.getPacman()).start();
+//        new Thread(tableModel.getPacman()).run();
     }
 
     @Override
@@ -171,15 +182,22 @@ public class Game extends JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
+//            tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
+            tableModel.moveRightPac();
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+//            tableModel.setKeyPressed(KeyEvent.VK_LEFT);
+            tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);
+            tableModel.moveLeftPac();
+        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+//            tableModel.setKeyPressed(KeyEvent.VK_UP);
+            tableModel.getPacman().setKeyPressed(KeyEvent.VK_UP);
+            tableModel.moveUpPac();
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+//            tableModel.setKeyPressed(KeyEvent.VK_DOWN);
+            tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
+            tableModel.moveDownPac();
         }
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            tableModel.setKeyPressed(KeyEvent.VK_LEFT);
-        else if (e.getKeyCode() == KeyEvent.VK_UP)
-            tableModel.setKeyPressed(KeyEvent.VK_UP);
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            tableModel.setKeyPressed(KeyEvent.VK_DOWN);
 
         tableModel.fireTableDataChanged();
     }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="i achieved some result">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="yeah still trying">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
@@ -236,13 +236,22 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/windows/Game.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="18" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/operations/TableModel.java</url>
+          <line>74</line>
+          <properties class="operations.TableModel" method="moveDownPac">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="tableModel.pacman" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/GUI_FTS_EN_2223S_PRO2_s28324_INTELLIJ$Presentation.ic" NAME="Presentation Coverage Results" MODIFIED="1683384350495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

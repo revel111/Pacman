@@ -42,37 +42,75 @@ public class TableModel extends AbstractTableModel {
         this.pacman = pacman;
     }
 
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-//            if()
+    public void moveLeftPac() {
+        if (items[getPacman().getI() - 1][getPacman().getJ()] != 0) {
+            items[getPacman().getI()][getPacman().getJ()] = 3;
+            items[getPacman().getI() - 1][getPacman().getJ()] = 2;
+            getPacman().setI(getPacman().getI() - 1);
+            if (items[getPacman().getI() - 1][getPacman().getJ()] == 1)
+                getPacman().setScore(getPacman().getScore() + 10);
+        }
     }
 
+    public void moveRightPac() {
+        if (items[getPacman().getI() + 1][getPacman().getJ()] != 0) {
+            items[getPacman().getI()][getPacman().getJ()] = 3;
+            items[getPacman().getI() + 1][getPacman().getJ()] = 2;
+            getPacman().setI(getPacman().getI() + 1);
+            if (items[getPacman().getI() + 1][getPacman().getJ()] == 1)
+                getPacman().setScore(getPacman().getScore() + 10);
+        }
+    }
+
+    public void moveUpPac() {
+        if (items[getPacman().getI()][getPacman().getJ() + 1] != 0) {
+            items[getPacman().getI()][getPacman().getJ()] = 3;
+            items[getPacman().getI()][getPacman().getJ() + 1] = 2;
+            getPacman().setJ(getPacman().getJ() + 1);
+            if (items[getPacman().getI()][getPacman().getJ() + 1] == 1)
+                getPacman().setScore(getPacman().getScore() + 10);
+        }
+    }
+
+    public void moveDownPac() {
+        if (items[getPacman().getI()][getPacman().getJ() - 1] != 0) {
+            items[getPacman().getI()][getPacman().getJ()] = 3;
+            items[getPacman().getI()][getPacman().getJ() - 1] = 2;
+            getPacman().setJ(getPacman().getJ() - 1);
+            if (items[getPacman().getI()][getPacman().getJ() - 1] == 1)
+                getPacman().setScore(getPacman().getScore() + 10);
+        }
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+//        if ()
+    }
 
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (items[rowIndex][columnIndex] == 0) {
-            ImageIcon pacIcon = (new ImageIcon("src/images/wall.png"));
+            ImageIcon wall = (new ImageIcon("src/images/wall.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
-            return pacIcon;
+            return wall;
         } else if (items[rowIndex][columnIndex] == 1) {
             ImageIcon dot = (new ImageIcon("src/images/dot.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return dot;
         } else if (items[rowIndex][columnIndex] == 2) {
-//            ImageIcon dot = (new ImageIcon("src/images/pacBCl.png"));
-//            fireTableCellUpdated(rowIndex, columnIndex);
+            ImageIcon pac = (new ImageIcon("src/images/pacBCl.png"));
+            fireTableCellUpdated(rowIndex, columnIndex);
             return pacman;
         } else if (items[rowIndex][columnIndex] == 3) {
-            ImageIcon dot = (new ImageIcon("src/images/pacBCl.png"));
+            ImageIcon dot = (new ImageIcon("src/images/black.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return dot;
+        } else if (items[rowIndex][columnIndex] == 4) {
+            ImageIcon ghost = (new ImageIcon("src/images/ghost.png"));
+            fireTableCellUpdated(rowIndex, columnIndex);
+            return ghost;
         }
-//        } else if (items[rowIndex][columnIndex] == 4) {
-//            ImageIcon pac2 = (new ImageIcon("src/images/pacBO.png"));
-//            fireTableCellUpdated(rowIndex, columnIndex);
-//            return pac2;
-//        }
 //        if(items[rowIndex][columnIndex] == 1) {
 //            fireTableCellUpdated(rowIndex,columnIndex);
 //            return new JPanel() {

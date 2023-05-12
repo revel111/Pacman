@@ -119,6 +119,7 @@ public class Pacman extends JLabel implements Runnable {
                         this.setIcon(new ImageIcon("src/pacFrO.png"));
                     isFirstImage = !isFirstImage;
                 }
+                this.repaint();
             });
 
             try {
