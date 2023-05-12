@@ -5,14 +5,27 @@ import windows.Game;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class TableModel extends AbstractTableModel {
     private int[][] items;
-    private int keyPressed;
     private Pacman pacman = new Pacman();
-    private JLabel score = new JLabel();
+    private JLabel score = new JLabel("Score: " + pacman.getScore());
+
     public TableModel(int[][] items) {
+//        new Thread(() -> {
+//            while (true) {
+//                if (pacman.getKeyPressed() == KeyEvent.VK_RIGHT)
+//                    this.moveRightPac();
+//                else if (pacman.getKeyPressed() == KeyEvent.VK_LEFT)
+//                    this.moveLeftPac();
+//                else if (pacman.getKeyPressed() == KeyEvent.VK_UP)
+//                    this.moveUpPac();
+//                else if (pacman.getKeyPressed() == KeyEvent.VK_DOWN)
+//                    this.moveDownPac();
+//            }
+//        }).start();
         this.items = items;
     }
 
@@ -24,14 +37,6 @@ public class TableModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
         return items[0].length;
-    }
-
-    public int getKeyPressed() {
-        return keyPressed;
-    }
-
-    public void setKeyPressed(int keyPressed) {
-        this.keyPressed = keyPressed;
     }
 
     public Pacman getPacman() {
@@ -53,8 +58,11 @@ public class TableModel extends AbstractTableModel {
     public void moveLeftPac() {
         if (items[getPacman().getI()][getPacman().getJ() - 1] != 0) {//wall
             items[getPacman().getI()][getPacman().getJ()] = 3;//black
-            if (items[getPacman().getI()][getPacman().getJ() - 1] == 1)//dot
+            if (items[getPacman().getI()][getPacman().getJ() - 1] == 1) {//dot
                 getPacman().setScore(getPacman().getScore() + 10);
+                score.setText("Score" + pacman.getScore());
+                score.repaint();
+            }
             items[getPacman().getI()][getPacman().getJ() - 1] = 2;//pack
             getPacman().setJ(getPacman().getJ() - 1);
         }
@@ -73,8 +81,10 @@ public class TableModel extends AbstractTableModel {
     public void moveUpPac() {
         if (items[getPacman().getI() - 1][getPacman().getJ()] != 0) {
             items[getPacman().getI()][getPacman().getJ()] = 3;
-            if (items[getPacman().getI() - 1][getPacman().getJ()] == 1)
+            if (items[getPacman().getI() - 1][getPacman().getJ()] == 1) {
                 getPacman().setScore(getPacman().getScore() + 10);
+//                System.out.println("shit was collected");
+            }
             items[getPacman().getI() - 1][getPacman().getJ()] = 2;
             getPacman().setI(getPacman().getI() - 1);
         }
@@ -89,12 +99,6 @@ public class TableModel extends AbstractTableModel {
             getPacman().setI(getPacman().getI() + 1);
         }
     }
-
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-//        if ()
-    }
-
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -171,11 +175,5 @@ public class TableModel extends AbstractTableModel {
             }
         }
         this.items = matrix;
-
-//        for (int[] ints : matrix) {
-//            for (int anInt : ints)
-//                System.out.print(anInt + " ");
-//            System.out.println();
-//        }
     }
 }

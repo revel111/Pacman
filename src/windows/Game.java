@@ -4,8 +4,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.HashMap;
-import java.util.Map;
 
 import operations.TableModel;
 import customVariables.variables.Pacman;
@@ -27,7 +25,6 @@ public class Game extends JFrame implements KeyListener {
         JTable jTable = new JTable(tableModel);
         jTable.setBackground(Color.BLACK);
 
-//        JLabel score = new JLabel("Score: " + tableModel.getPacman().getScore());
 //        tableModel.setScore(score);
 
         JPanel hpScorePanel = new JPanel();
@@ -158,27 +155,14 @@ public class Game extends JFrame implements KeyListener {
                 jframe.dispose();
             }
         });
-//        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
-//            if (e.getID() == KeyEvent.KEY_PRESSED) {
-//                int keyCode = e.getKeyCode();
-//                if (keyCode == KeyEvent.VK_RIGHT) {
-//                    pacman.setKeyPressed(KeyEvent.VK_RIGHT);
-//                    System.out.println("fff");
-//                } else if (keyCode == KeyEvent.VK_LEFT)
-//                    pacman.setKeyPressed(KeyEvent.VK_LEFT);
-//                else if (keyCode == KeyEvent.VK_UP)
-//                    pacman.setKeyPressed(KeyEvent.VK_UP);
-//                else if (keyCode == KeyEvent.VK_DOWN)
-//                    pacman.setKeyPressed(KeyEvent.VK_DOWN);
-//            }
-//            return false;
-//        });
 //        Thread thread = new Thread(() -> {
 //            tableModel.getPacman().run();
 //        });
 //        thread.start();
 
 //        new Thread(tableModel.getPacman()).run();
+//        new Thread(scoreLable).start();
+//        new Thread(tableModel.getPacman()).start();
     }
 
     @Override
@@ -192,7 +176,6 @@ public class Game extends JFrame implements KeyListener {
 //            tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
             tableModel.moveRightPac();
-
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 //            tableModel.setKeyPressed(KeyEvent.VK_LEFT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);
@@ -206,7 +189,7 @@ public class Game extends JFrame implements KeyListener {
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
             tableModel.moveDownPac();
         }
-
+//        score.repaint();
         tableModel.fireTableDataChanged();
     }
 
