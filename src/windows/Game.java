@@ -11,6 +11,7 @@ import customVariables.variables.Pacman;
 public class Game extends JFrame implements KeyListener {
     //    Pacman pacman = new Pacman();
     private final TableModel tableModel = new TableModel(null);
+    private JLabel scoreLabel = new JLabel("Score: " + /*counter*/tableModel.getPacman().getScore());
     public Game(int height, int width) {
         JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
@@ -30,8 +31,8 @@ public class Game extends JFrame implements KeyListener {
         JPanel hpScorePanel = new JPanel();
         hpScorePanel.setBackground(Color.BLACK);
         hpScorePanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
-        hpScorePanel.add(new JLabel("Score: " + tableModel.getPacman().getScore()), BorderLayout.WEST);
-
+//        hpScorePanel.add(new JLabel("Score: " + tableModel.getPacman().getScore()), BorderLayout.WEST);
+        hpScorePanel.add(scoreLabel);
         JPanel panelTable = new JPanel();
         panelTable.setLayout(new BorderLayout());
         panelTable.add(jTable, BorderLayout.CENTER);
@@ -189,8 +190,9 @@ public class Game extends JFrame implements KeyListener {
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
             tableModel.moveDownPac();
         }
-//        score.repaint();
-        tableModel.fireTableDataChanged();
+        scoreLabel.setText("Score: " + tableModel.getPacman().getScore());
+        scoreLabel.repaint();
+//        tableModel.fireTableDataChanged();
     }
 
     @Override
