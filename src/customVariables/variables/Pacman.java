@@ -9,7 +9,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 
 public class Pacman extends JLabel implements Runnable {
-    private int hp = 3;
+    private int hp = 1;
     private int score = 0;
     private boolean mouth = true;
     private int keyPressed;

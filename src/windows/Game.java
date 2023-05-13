@@ -151,8 +151,6 @@ public class Game extends JFrame implements KeyListener {
                 jframe.dispose();
             }
         });
-
-        new Thread(tableModel::checkIfVictory).start();
     }
 
     @Override
@@ -163,32 +161,23 @@ public class Game extends JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-//            tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
-//            tableModel.moveRightPac();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-//            tableModel.setKeyPressed(KeyEvent.VK_LEFT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);
-//            tableModel.moveLeftPac();
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-//            tableModel.setKeyPressed(KeyEvent.VK_UP);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_UP);
-//            tableModel.moveUpPac();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-//            tableModel.setKeyPressed(KeyEvent.VK_DOWN);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
-//            tableModel.moveDownPac();
         }
         scoreLabel.setText("Score: " + tableModel.getPacman().getScore());
         hpLabel.setText("Health: " + tableModel.getPacman().getHp());
         scoreLabel.repaint();
         hpLabel.repaint();
 
-//        tableModel.checkIfVictory();
-
         if (!tableModel.isInGame()) {
+            this.dispose();
+            SwingUtilities.invokeLater(MainMenu::new);
             System.exit(100);
-//            SwingUtilities.invokeLater(MainMenu::new);
         }
 //        tableModel.fireTableDataChanged();
     }

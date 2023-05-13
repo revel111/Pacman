@@ -12,11 +12,13 @@ public class TableModel extends AbstractTableModel {
     private int[][] items;
     private Pacman pacman = new Pacman();
     boolean inGame = true;
+//    protected Thread threadPac = new Thread();
 
     public TableModel(int[][] items) {
 //        new Thread(() -> pacman.move()).start();
         this.items = items;
         new Thread(this::movePac).start();
+//        new Thread(this::trackChanges).start();
 //        new Thread(this::checkIfVictory).start();
     }
 
@@ -51,9 +53,9 @@ public class TableModel extends AbstractTableModel {
             items[getPacman().getI()][getPacman().getJ()] = 3;//black
             if (items[getPacman().getI()][getPacman().getJ() - 1] == 1) //dot
                 getPacman().setScore(getPacman().getScore() + 10);
-            else if (items[getPacman().getI()][getPacman().getJ() - 1] == 4)
+            else if (items[getPacman().getI()][getPacman().getJ() - 1] == 4) {
                 getPacman().setHp(getPacman().getHp() - 1);
-            items[getPacman().getI()][getPacman().getJ() - 1] = 2;//pack
+            }
             getPacman().setJ(getPacman().getJ() - 1);
         }
     }
@@ -63,9 +65,9 @@ public class TableModel extends AbstractTableModel {
             items[getPacman().getI()][getPacman().getJ()] = 3;
             if (items[getPacman().getI()][getPacman().getJ() + 1] == 1)
                 getPacman().setScore(getPacman().getScore() + 10);
-            else if (items[getPacman().getI()][getPacman().getJ() + 1] == 4)
+            else if (items[getPacman().getI()][getPacman().getJ() + 1] == 4) {
                 getPacman().setHp(getPacman().getHp() - 1);
-            items[getPacman().getI()][getPacman().getJ() + 1] = 2;
+            }
             getPacman().setJ(getPacman().getJ() + 1);
         }
     }
@@ -75,9 +77,9 @@ public class TableModel extends AbstractTableModel {
             items[getPacman().getI()][getPacman().getJ()] = 3;
             if (items[getPacman().getI() - 1][getPacman().getJ()] == 1)
                 getPacman().setScore(getPacman().getScore() + 10);
-            else if (items[getPacman().getI() - 1][getPacman().getJ()] == 4)
+            else if (items[getPacman().getI() - 1][getPacman().getJ()] == 4) {
                 getPacman().setHp(getPacman().getHp() - 1);
-            items[getPacman().getI() - 1][getPacman().getJ()] = 2;
+            }
             getPacman().setI(getPacman().getI() - 1);
         }
     }
@@ -90,55 +92,50 @@ public class TableModel extends AbstractTableModel {
             else if (items[getPacman().getI() + 1][getPacman().getJ()] == 4) {
                 getPacman().setHp(getPacman().getHp() - 1);
             }
-            items[getPacman().getI() + 1][getPacman().getJ()] = 2;
             getPacman().setI(getPacman().getI() + 1);
         }
     }
 
     public void movePac() {
-        while (true) {
+        while (inGame) {
+            if (getPacman().getHp() == 0)
+                inGame = false;
             if (getPacman().getKeyPressed() == KeyEvent.VK_LEFT) {
                 moveLeftPac();
                 if (getPacman().isMouth())
                     items[getPacman().getI()][getPacman().getJ()] = 9;
-//                jLabel.setIcon(new ImageIcon("src/pacLCl.png"));
                 else
                     items[getPacman().getI()][getPacman().getJ()] = 10;
-//                jLabel.setIcon(new ImageIcon("src/pacLO.png"));
                 getPacman().setMouth(!getPacman().isMouth());
             } else if (getPacman().getKeyPressed() == KeyEvent.VK_RIGHT) {
                 moveRightPac();
                 if (getPacman().isMouth())
                     items[getPacman().getI()][getPacman().getJ()] = 11;
-//                jLabel.setIcon(new ImageIcon("src/pacRCl.png"));
                 else
                     items[getPacman().getI()][getPacman().getJ()] = 2;
-//                jLabel.setIcon(new ImageIcon("src/pacRO.png"));
                 getPacman().setMouth(!getPacman().isMouth());
             } else if (getPacman().getKeyPressed() == KeyEvent.VK_DOWN) {
                 moveDownPac();
                 if (getPacman().isMouth())
                     items[getPacman().getI()][getPacman().getJ()] = 5;
-//                jLabel.setIcon(new ImageIcon("src/pacBCl.png"));
                 else
                     items[getPacman().getI()][getPacman().getJ()] = 6;
-//                jLabel.setIcon(new ImageIcon("src/pacBO.png"));
                 getPacman().setMouth(!getPacman().isMouth());
             } else if (getPacman().getKeyPressed() == KeyEvent.VK_UP) {
                 moveUpPac();
                 if (getPacman().isMouth())
                     items[getPacman().getI()][getPacman().getJ()] = 7;
-//                jLabel.setIcon(new ImageIcon("src/pacFrCl.png"));
                 else
                     items[getPacman().getI()][getPacman().getJ()] = 8;
-//                jLabel.setIcon(new ImageIcon("src/pacFrO.png"));
                 getPacman().setMouth(!getPacman().isMouth());
             }
+
             try {
-                Thread.sleep(200);
+                Thread.sleep(400);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            checkIfVictory();
         }
     }
 
@@ -264,7 +261,7 @@ public class TableModel extends AbstractTableModel {
                         counter++;
                     } /*else if (matrix[i][j] == 4) {
                         matrix[i][j] = 0;
-                        counter++;
+                        ghostCounter++;
                     }*/ else
                         matrix[i][j] = 1;
                 }
@@ -272,4 +269,5 @@ public class TableModel extends AbstractTableModel {
         }
         this.items = matrix;
     }
+
 }
