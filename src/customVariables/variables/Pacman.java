@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 public class Pacman extends JLabel implements Runnable {
     private int hp = 3;
     private int score = 0;
-    private boolean isFirstImage = true;
+    private boolean mouth = true;
     private int keyPressed;
     private int i;
     private int j;
@@ -29,6 +29,14 @@ public class Pacman extends JLabel implements Runnable {
 //        setForeground(table.getForeground());
 //        setVisible(true);
         setBackground(Color.YELLOW);
+    }
+
+    public boolean isMouth() {
+        return mouth;
+    }
+
+    public void setMouth(boolean mouth) {
+        this.mouth = mouth;
     }
 
     public int getHp() {
@@ -87,8 +95,20 @@ public class Pacman extends JLabel implements Runnable {
         return keyPressed;
     }
 
-    public void move() {
-    }
+//    public void move() {
+//        while (true){
+//            // if direction(right) -> movePacRight()
+//            if(keyPressed == KeyEvent.VK_RIGHT) {
+//
+//            }
+//
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
 
     @Override
     public void run() {

@@ -67,11 +67,9 @@ public class Game extends JFrame implements KeyListener {
                     ImageIcon imageIcon = (ImageIcon) value;
 
 //                    Image originalImage = imageIcon.getImage();
-//                    Image scaledImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+//                    Image scaledImage = originalImage.getScaledInstance(83, 51, Image.SCALE_SMOOTH);
 //                    label.setIcon(new ImageIcon(scaledImage));
                     label.setIcon(imageIcon);
-//                    label.setHorizontalAlignment(SwingConstants.CENTER);
-//                    label.setVerticalAlignment(SwingConstants.CENTER);
                 } else if (value instanceof Pacman) {
 //                    label = (JLabel) value;
 //                Pacman pacman;
@@ -153,14 +151,8 @@ public class Game extends JFrame implements KeyListener {
                 jframe.dispose();
             }
         });
-//        Thread thread = new Thread(() -> {
-//            tableModel.getPacman().run();
-//        });
-//        thread.start();
 
-//        new Thread(tableModel.getPacman()).run();
-//        new Thread(scoreLable).start();
-//        new Thread(tableModel.getPacman()).start();
+        new Thread(tableModel::checkIfVictory).start();
     }
 
     @Override
@@ -173,24 +165,31 @@ public class Game extends JFrame implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 //            tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
-            tableModel.moveRightPac();
+//            tableModel.moveRightPac();
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 //            tableModel.setKeyPressed(KeyEvent.VK_LEFT);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);
-            tableModel.moveLeftPac();
+//            tableModel.moveLeftPac();
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
 //            tableModel.setKeyPressed(KeyEvent.VK_UP);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_UP);
-            tableModel.moveUpPac();
+//            tableModel.moveUpPac();
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 //            tableModel.setKeyPressed(KeyEvent.VK_DOWN);
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
-            tableModel.moveDownPac();
+//            tableModel.moveDownPac();
         }
         scoreLabel.setText("Score: " + tableModel.getPacman().getScore());
         hpLabel.setText("Health: " + tableModel.getPacman().getHp());
         scoreLabel.repaint();
         hpLabel.repaint();
+
+//        tableModel.checkIfVictory();
+
+        if (!tableModel.isInGame()) {
+            System.exit(100);
+//            SwingUtilities.invokeLater(MainMenu::new);
+        }
 //        tableModel.fireTableDataChanged();
     }
 
