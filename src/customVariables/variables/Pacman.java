@@ -94,51 +94,64 @@ public class Pacman extends JLabel implements Runnable {
         return keyPressed;
     }
 
-    public void moveLeftPac() {
-        if (tableModel.getItems()[i][j - 1] != 0) {//wall
-            tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i][j - 1] == 1) //dot
-                score += 10;
-            else if (tableModel.getItems()[i][j - 1] == 4) {
-                hp -= 1;
-            }
-            j -= 1;
-        }
-    }
+//    public void moveLeftPac() {
+//        if (tableModel.getItems()[i][j - 1] != 0) {//wall
+//            tableModel.getItems()[i][j] = 3;//black
+//            if (tableModel.getItems()[i][j - 1] == 1) //dot
+//                score += 10;
+//            else if (tableModel.getItems()[i][j - 1] == 4) {
+//                hp -= 1;
+//            }
+//            j -= 1;
+//        }
+//    }
+//
+//    public void moveRightPac() {
+//        if (tableModel.getItems()[i][j + 1] != 0) {//wall
+//            tableModel.getItems()[i][j] = 3;//black
+//            if (tableModel.getItems()[i][j + 1] == 1) //dot
+//                score += 10;
+//            else if (tableModel.getItems()[i][j + 1] == 4) {
+//                hp -= 1;
+//            }
+//            j += 1;
+//        }
+//    }
+//
+//    public void moveUpPac() {
+//        if (tableModel.getItems()[i - 1][j] != 0) {//wall
+//            tableModel.getItems()[i][j] = 3;//black
+//            if (tableModel.getItems()[i - 1][j] == 1) //dot
+//                score += 10;
+//            else if (tableModel.getItems()[i - 1][j] == 4) {
+//                hp -= 1;
+//            }
+//            i -= 1;
+//        }
+//    }
+//
+//    public void moveDownPac() {
+//        if (tableModel.getItems()[i + 1][j] != 0) {//wall
+//            tableModel.getItems()[i][j] = 3;//black
+//            if (tableModel.getItems()[i + 1][j] == 1) //dot
+//                score += 10;
+//            else if (tableModel.getItems()[i + 1][j] == 4) {
+//                hp -= 1;
+//            }
+//            i += 1;
+//        }
+//    }
 
-    public void moveRightPac() {
-        if (tableModel.getItems()[i][j + 1] != 0) {//wall
+    public void movePacCoordinates(int iN,int jN) {
+        if (tableModel.getItems()[i + iN][j + jN] != 0) {//wall
             tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i][j + 1] == 1) //dot
+            if (tableModel.getItems()[i + iN][j + jN] == 1) //dot
                 score += 10;
-            else if (tableModel.getItems()[i][j + 1] == 4) {
+            else if (tableModel.getItems()[i + iN][j + jN] == 4) {
                 hp -= 1;
             }
-            j += 1;
-        }
-    }
-
-    public void moveUpPac() {
-        if (tableModel.getItems()[i - 1][j] != 0) {//wall
-            tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i - 1][j] == 1) //dot
-                score += 10;
-            else if (tableModel.getItems()[i - 1][j] == 4) {
-                hp -= 1;
-            }
-            i -= 1;
-        }
-    }
-
-    public void moveDownPac() {
-        if (tableModel.getItems()[i + 1][j] != 0) {//wall
-            tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i + 1][j] == 1) //dot
-                score += 10;
-            else if (tableModel.getItems()[i + 1][j] == 4) {
-                hp -= 1;
-            }
-            i += 1;
+            i += iN;
+            j += jN;
         }
     }
 
@@ -147,28 +160,32 @@ public class Pacman extends JLabel implements Runnable {
             if (hp == 0)
                 tableModel.setInGame(false);
             if (keyPressed == KeyEvent.VK_LEFT) {
-                moveLeftPac();
+//                moveLeftPac();
+                movePacCoordinates(0, -1);
                 if (isMouth())
                     tableModel.getItems()[i][j] = 9;
                 else
                     tableModel.getItems()[i][j] = 10;
                 mouth = !mouth;
             } else if (keyPressed == KeyEvent.VK_RIGHT) {
-                moveRightPac();
+//                moveRightPac();
+                movePacCoordinates(0, 1);
                 if (isMouth())
                     tableModel.getItems()[i][j] = 11;
                 else
                     tableModel.getItems()[i][j] = 2;
                 mouth = !mouth;
             } else if (keyPressed == KeyEvent.VK_DOWN) {
-                moveDownPac();
+//                moveDownPac();
+                movePacCoordinates(1, 0);
                 if (isMouth())
                     tableModel.getItems()[i][j] = 5;
                 else
                     tableModel.getItems()[i][j] = 6;
                 mouth = !mouth;
             } else if (keyPressed == KeyEvent.VK_UP) {
-                moveUpPac();
+//                moveUpPac();
+                movePacCoordinates(-1, 0);
                 if (isMouth())
                     tableModel.getItems()[i][j] = 7;
                 else
