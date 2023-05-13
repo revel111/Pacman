@@ -3,10 +3,7 @@ package customVariables.variables;
 import operations.TableModel;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyEvent;
+
 
 public class Pacman extends JLabel implements Runnable {
     private int hp = 1;
@@ -19,17 +16,7 @@ public class Pacman extends JLabel implements Runnable {
     private int startI;
     private int startJ;
 
-    private TableModel tableModel;
-
-    public Pacman() {
-//        setIcon(scaleImage(pacIcon, height, width));
-        setOpaque(true);
-//        this.tableModel = tableModel;
-//        setBackground(table.getBackground());
-//        setForeground(table.getForeground());
-//        setVisible(true);
-        setBackground(Color.YELLOW);
-    }
+    private int speed = 300;
 
     public boolean isMouth() {
         return mouth;
@@ -49,6 +36,14 @@ public class Pacman extends JLabel implements Runnable {
 
     public int getScore() {
         return score;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public void setScore(int score) {

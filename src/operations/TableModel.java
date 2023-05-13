@@ -1,18 +1,20 @@
 package operations;
 
+import customVariables.variables.Ghost;
 import customVariables.variables.Pacman;
 import windows.Game;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TableModel extends AbstractTableModel {
     private int[][] items;
     private Pacman pacman = new Pacman();
     boolean inGame = true;
-//    protected Thread threadPac = new Thread();
+    private Ghost ghost = new Ghost();
 
     public TableModel(int[][] items) {
 //        new Thread(() -> pacman.move()).start();
@@ -131,12 +133,25 @@ public class TableModel extends AbstractTableModel {
             }
 
             try {
-                Thread.sleep(400);
+                Thread.sleep(pacman.getSpeed());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             checkIfVictory();
         }
+    }
+
+//    public void moveGhostLeft() {
+//        if (items[ghost.getI()][ghost.getJ() - 1] != 0) {//wall
+//            else if (items[ghost.getI()][getPacman().getJ() - 1] == 4) {
+//                getPacman().setHp(getPacman().getHp() - 1);
+//            }
+//            getPacman().setJ(getPacman().getJ() - 1);
+//        }
+//    }
+
+    public void moveGhost() {
+
     }
 
     public void checkIfVictory() {
@@ -240,6 +255,7 @@ public class TableModel extends AbstractTableModel {
         pacman.setJ(width / 2);
         pacman.setStartI(height / 2);
         pacman.setStartJ(width / 2);
+
         matrix[height / 2][width / 2] = 2;
         matrix[height / 3][width / 3] = 4;
         for (int i = 0; i < height; i++) {
