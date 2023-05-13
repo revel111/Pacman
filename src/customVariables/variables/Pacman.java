@@ -16,7 +16,7 @@ public class Pacman extends JLabel implements Runnable {
     private int startI;
     private int startJ;
     private int speed = 300;
-    private TableModel tableModel;
+    private final TableModel tableModel;
 
     public Pacman(TableModel tableModel) {
         this.tableModel = tableModel;
@@ -184,22 +184,6 @@ public class Pacman extends JLabel implements Runnable {
             tableModel.checkIfVictory();
         }
     }
-
-
-//    public void move() {
-//        while (true){
-//            // if direction(right) -> movePacRight()
-//            if(keyPressed == KeyEvent.VK_RIGHT) {
-//
-//            }
-//
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
 
     @Override
     public void run() {

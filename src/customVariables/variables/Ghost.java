@@ -1,13 +1,18 @@
 package customVariables.variables;
 
+import operations.TableModel;
+
+import java.util.Random;
+
 public class Ghost {
     private int i;
     private int j;
     private int startJ;
     private int startI;
+    private final TableModel tableModel;
 
-    public Ghost() {
-
+    public Ghost(TableModel tableModel) {
+        this.tableModel = tableModel;
     }
 
     public int getI() {
@@ -40,5 +45,79 @@ public class Ghost {
 
     public void setStartI(int startI) {
         this.startI = startI;
+    }
+
+    public void moveLeftGhost() {
+        if (tableModel.getItems()[i][j - 1] != 0) {//wall
+            tableModel.getItems()[i][j] = 3;//black
+            if (tableModel.getItems()[i][j - 1] == 4) {
+                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
+                // поставить призраков и пакмана на место
+            }
+//             else if (tableModel.getItems()[i][j - 1] == 1)
+//                tableModel.getItems()[i][j - 1] = 13;
+            j -= 1;
+        }
+    }
+
+    public void moveRightGhost() {
+        if (tableModel.getItems()[i][j + 1] != 0) {//wall
+            tableModel.getItems()[i][j] = 3;//black
+            if (tableModel.getItems()[i][j + 1] == 4) {
+                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
+                // поставить призраков и пакмана на место
+            }
+//             else if (tableModel.getItems()[i][j - 1] == 1)
+//                tableModel.getItems()[i][j - 1] = 13;
+            j += 1;
+        }
+    }
+
+    public void moveUpGhost() {
+        if (tableModel.getItems()[i - 1][j] != 0) {//wall
+            tableModel.getItems()[i][j] = 3;//black
+            if (tableModel.getItems()[i - 1][j] == 4) {
+                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
+                // поставить призраков и пакмана на место
+            }
+//             else if (tableModel.getItems()[i][j - 1] == 1)
+//                tableModel.getItems()[i][j - 1] = 13;
+            i -= 1;
+        }
+    }
+
+    public void moveDownGhost() {
+        if (tableModel.getItems()[i + 1][j] != 0) {//wall
+            tableModel.getItems()[i][j] = 3;//black
+            if (tableModel.getItems()[i + 1][j] == 4) {
+                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
+                // поставить призраков и пакмана на место
+            }
+//             else if (tableModel.getItems()[i][j - 1] == 1)
+//                tableModel.getItems()[i][j - 1] = 13;
+            i += 1;
+        }
+    }
+
+    public void moveGhost() {
+        Random random = new Random();
+        int rand = random.nextInt(4) + 1;
+
+        switch (rand) {
+            case 1:
+                this.moveLeftGhost();
+            case 2:
+                this.moveRightGhost();
+            case 3:
+                this.moveUpGhost();
+            case 4:
+                this.moveDownGhost();
+        }
+
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

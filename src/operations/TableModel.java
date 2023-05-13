@@ -14,12 +14,13 @@ public class TableModel extends AbstractTableModel {
     private int[][] items;
     private Pacman pacman = new Pacman(this);
     boolean inGame = true;
-    private Ghost ghost = new Ghost();
+    private Ghost ghost = new Ghost(this);
 
     public TableModel(int[][] items) {
 //        new Thread(() -> pacman.move()).start();
         this.items = items;
         new Thread(() -> pacman.movePac()).start();
+//        new Thread(() -> ghost.moveGhost()).start();
 //        new Thread(this::trackChanges).start();
 //        new Thread(this::checkIfVictory).start();
     }
@@ -38,10 +39,6 @@ public class TableModel extends AbstractTableModel {
         return pacman;
     }
 
-    public void setPacman(Pacman pacman) {
-        this.pacman = pacman;
-    }
-
     public boolean isInGame() {
         return inGame;
     }
@@ -54,22 +51,7 @@ public class TableModel extends AbstractTableModel {
         return items;
     }
 
-    public void setItems(int[][] items) {
-        this.items = items;
-    }
 
-    //    public void moveGhostLeft() {
-//        if (items[ghost.getI()][ghost.getJ() - 1] != 0) {//wall
-//            else if (items[ghost.getI()][getPacman().getJ() - 1] == 4) {
-//                getPacman().setHp(getPacman().getHp() - 1);
-//            }
-//            getPacman().setJ(getPacman().getJ() - 1);
-//        }
-//    }
-
-    public void moveGhost() {
-
-    }
 
     public void checkIfVictory() {
         for (int[] item : items)
@@ -172,6 +154,9 @@ public class TableModel extends AbstractTableModel {
         pacman.setJ(width / 2);
         pacman.setStartI(height / 2);
         pacman.setStartJ(width / 2);
+
+        ghost.setI(height / 3);
+        ghost.setJ(height / 3);
 
         matrix[height / 2][width / 2] = 2;
         matrix[height / 3][width / 3] = 4;
