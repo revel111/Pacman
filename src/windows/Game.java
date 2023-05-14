@@ -100,11 +100,12 @@ public class Game extends JFrame implements KeyListener {
         new Thread(() -> {
             while (tableModel.isInGame())
                 tableModel.getPacman().movePac();
-//            end();
+            end();
         }).start();
 
         new Thread(() -> {
-
+            while (tableModel.isInGame())
+                tableModel.getGhost().moveGhost();
         }).start();
 
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map

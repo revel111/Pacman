@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 
 public class Pacman extends JLabel {
-    private int hp = 1;
+    private int hp = 2;
     private int score = 0;
     private boolean mouth = true;
     private int keyPressed;
@@ -97,51 +97,51 @@ public class Pacman extends JLabel {
     public void movePacCoordinates(int iN, int jN) {
         if (tableModel.getItems()[i + iN][j + jN] != 0) {//wall
             tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i + iN][j + jN] == 1) //dot
+            if (tableModel.getItems()[i + iN][j + jN] == 1 || tableModel.getItems()[i + iN][j + jN] == 13) //dot
                 score += 10;
-            else if (tableModel.getItems()[i + iN][j + jN] == 4)
+            else if (tableModel.getItems()[i + iN][j + jN] == 4) {
                 hp -= 1;
+//                tableModel.getItems()[startJ][startJ] = 2;
+            }
             i += iN;
             j += jN;
         }
     }
 
     public void movePac() {
-        while (tableModel.isInGame()) {
-            if (keyPressed == KeyEvent.VK_LEFT) {
-                movePacCoordinates(0, -1);
-                if (isMouth())
-                    tableModel.getItems()[i][j] = 9;
-                else
-                    tableModel.getItems()[i][j] = 10;
-                mouth = !mouth;
-            } else if (keyPressed == KeyEvent.VK_RIGHT) {
-                movePacCoordinates(0, 1);
-                if (isMouth())
-                    tableModel.getItems()[i][j] = 11;
-                else
-                    tableModel.getItems()[i][j] = 2;
-                mouth = !mouth;
-            } else if (keyPressed == KeyEvent.VK_DOWN) {
-                movePacCoordinates(1, 0);
-                if (isMouth())
-                    tableModel.getItems()[i][j] = 5;
-                else
-                    tableModel.getItems()[i][j] = 6;
-                mouth = !mouth;
-            } else if (keyPressed == KeyEvent.VK_UP) {
-                movePacCoordinates(-1, 0);
-                if (isMouth())
-                    tableModel.getItems()[i][j] = 7;
-                else
-                    tableModel.getItems()[i][j] = 8;
-                mouth = !mouth;
-            }
-            try {
-                Thread.sleep(tableModel.getPacman().getSpeed());
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        if (keyPressed == KeyEvent.VK_LEFT) {
+            movePacCoordinates(0, -1);
+            if (isMouth())
+                tableModel.getItems()[i][j] = 9;
+            else
+                tableModel.getItems()[i][j] = 10;
+            mouth = !mouth;
+        } else if (keyPressed == KeyEvent.VK_RIGHT) {
+            movePacCoordinates(0, 1);
+            if (isMouth())
+                tableModel.getItems()[i][j] = 11;
+            else
+                tableModel.getItems()[i][j] = 2;
+            mouth = !mouth;
+        } else if (keyPressed == KeyEvent.VK_DOWN) {
+            movePacCoordinates(1, 0);
+            if (isMouth())
+                tableModel.getItems()[i][j] = 5;
+            else
+                tableModel.getItems()[i][j] = 6;
+            mouth = !mouth;
+        } else if (keyPressed == KeyEvent.VK_UP) {
+            movePacCoordinates(-1, 0);
+            if (isMouth())
+                tableModel.getItems()[i][j] = 7;
+            else
+                tableModel.getItems()[i][j] = 8;
+            mouth = !mouth;
+        }
+        try {
+            Thread.sleep(tableModel.getPacman().getSpeed());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

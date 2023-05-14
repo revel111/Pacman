@@ -11,9 +11,9 @@ public class Ghost {
     private int startI;
     private TableModel tableModel;
 
-//    public Ghost(TableModel tableModel) {
-//        this.tableModel = tableModel;
-//    }
+    public Ghost(TableModel tableModel) {
+        this.tableModel = tableModel;
+    }
 
 
     public void setTableModel(TableModel tableModel) {
@@ -52,91 +52,42 @@ public class Ghost {
         this.startI = startI;
     }
 
-//    public void moveLeftGhost() {
-//        if (tableModel.getItems()[i][j - 1] != 0) {//wall
-//            tableModel.getItems()[i][j] = 3;//black
-//            if (tableModel.getItems()[i][j - 1] == 4) {
-//                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-//                // поставить призраков и пакмана на место
-//            }
-////             else if (tableModel.getItems()[i][j - 1] == 1)
-////                tableModel.getItems()[i][j - 1] = 13;
-//            j -= 1;
-//        }
-//    }
-//
-//    public void moveRightGhost() {
-//        if (tableModel.getItems()[i][j + 1] != 0) {//wall
-//            tableModel.getItems()[i][j] = 3;//black
-//            if (tableModel.getItems()[i][j + 1] == 4) {
-//                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-//                // поставить призраков и пакмана на место
-//            }
-////             else if (tableModel.getItems()[i][j - 1] == 1)
-////                tableModel.getItems()[i][j - 1] = 13;
-//            j += 1;
-//        }
-//    }
-//
-//    public void moveUpGhost() {
-//        if (tableModel.getItems()[i - 1][j] != 0) {//wall
-//            tableModel.getItems()[i][j] = 3;//black
-//            if (tableModel.getItems()[i - 1][j] == 4) {
-//                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-//                // поставить призраков и пакмана на место
-//            }
-////             else if (tableModel.getItems()[i][j - 1] == 1)
-////                tableModel.getItems()[i][j - 1] = 13;
-//            i -= 1;
-//        }
-//    }
-//
-//    public void moveDownGhost() {
-//        if (tableModel.getItems()[i + 1][j] != 0) {//wall
-//            tableModel.getItems()[i][j] = 3;//black
-//            if (tableModel.getItems()[i + 1][j] == 4) {
-//                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-//                // поставить призраков и пакмана на место
-//            }
-////             else if (tableModel.getItems()[i][j - 1] == 1)
-////                tableModel.getItems()[i][j - 1] = 13;
-//            i += 1;
-//        }
-//    }
-
     public void moveGhostCoordinates(int iN, int jN) {
-        if (tableModel.getItems()[i + iN][j + jN] != 0) {//wall
-            tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i + iN][j + jN] == 4) {
+        if (tableModel.getItems()[i + iN][j + jN] != 0 /*|| tableModel.getItems()[i + iN][j + jN] != 4*/) {//wall
+            if (tableModel.getItems()[i][j] == 13) {
+                tableModel.getItems()[i][j] = 1;
+            } else
+                tableModel.getItems()[i][j] = 3;
+            if (tableModel.getItems()[i + iN][j + jN] == 5 || tableModel.getItems()[i + iN][j + jN] == 2 || tableModel.getItems()[i + iN][j + jN] == 6 || tableModel.getItems()[i + iN][j + jN] == 7 || tableModel.getItems()[i + iN][j + jN] == 8 || tableModel.getItems()[i + iN][j + jN] == 9 || tableModel.getItems()[i + iN][j + jN] == 10 || tableModel.getItems()[i + iN][j + jN] == 11 || tableModel.getItems()[i + iN][j + jN] == 12) {
                 tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-                // поставить призраков и пакмана на место
+//                tableModel.getItems()[tableModel.getPacman().getStartI()][tableModel.getPacman().getStartJ()] = 2;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 1)
+                tableModel.getItems()[i + iN][j + jN] = 13;
+            else {
+                tableModel.getItems()[i + iN][j + jN] = 4;
             }
-//             else if (tableModel.getItems()[i][j - 1] == 1)
-//                tableModel.getItems()[i][j - 1] = 13;
-            i += 1;
-            j += 1;
+            i += iN;
+            j += jN;
         }
     }
 
     public void moveGhost() {
         Random random = new Random();
-        int rand = random.nextInt(4) + 1;
+        while (tableModel.isInGame()) {
+            int rand = random.nextInt(1, 5);
 
-        switch (rand) {
-            case 1:
-                this.moveGhostCoordinates(0, -1);
-            case 2:
-                this.moveGhostCoordinates(0, 1);
-            case 3:
-                this.moveGhostCoordinates(-1, 0);
-            case 4:
-                this.moveGhostCoordinates(1, 0);
-        }
+            switch (rand) {
+                case 1 -> this.moveGhostCoordinates(0, -1); //left
+                case 2 -> this.moveGhostCoordinates(0, 1);//right
+                case 3 -> this.moveGhostCoordinates(-1, 0);//up
+                case 4 -> this.moveGhostCoordinates(1, 0);//down
+            }
 
-        try {
-            Thread.sleep(400);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

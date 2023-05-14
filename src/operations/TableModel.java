@@ -13,8 +13,8 @@ import java.util.Random;
 public class TableModel extends AbstractTableModel {
     private int[][] items;
     private Pacman pacman = new Pacman(this);
+    private Ghost ghost = new Ghost(this);
     boolean inGame = true;
-    private Ghost ghost = new Ghost();
 
     public TableModel(int[][] items) {
 //        new Thread(() -> pacman.move()).start();
@@ -36,6 +36,10 @@ public class TableModel extends AbstractTableModel {
 
     public Pacman getPacman() {
         return pacman;
+    }
+
+    public Ghost getGhost() {
+        return ghost;
     }
 
     public boolean isInGame() {
@@ -79,7 +83,7 @@ public class TableModel extends AbstractTableModel {
             JLabel jLabel = new JLabel();
             fireTableCellUpdated(rowIndex, columnIndex);
             return jLabel;
-        } else if (items[rowIndex][columnIndex] == 4) {
+        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13) {
             ImageIcon ghost = (new ImageIcon("src/images/ghost.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return ghost;
@@ -157,7 +161,7 @@ public class TableModel extends AbstractTableModel {
         ghost.setJ(height / 3);
 
         matrix[height / 2][width / 2] = 2;
-        matrix[height / 3][width / 3] = 4;
+        matrix[height / 3][width / 3] = 13;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
@@ -166,7 +170,7 @@ public class TableModel extends AbstractTableModel {
                     int rand = random.nextInt(10) + 1;
                     if (matrix[i][j] == 2)
                         continue;
-                    else if (matrix[i][j] == 4)
+                    else if (matrix[i][j] == 13)
                         continue;
                     else if (counter == counterMax)
                         matrix[i][j] = 1;
