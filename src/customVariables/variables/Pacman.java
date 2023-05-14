@@ -101,7 +101,11 @@ public class Pacman extends JLabel {
                 score += 10;
             else if (tableModel.getItems()[i + iN][j + jN] == 4) {
                 hp -= 1;
-//                tableModel.getItems()[startJ][startJ] = 2;
+                tableModel.getItems()[i][j] = 3;
+                i = startI;
+                j = startJ;
+                tableModel.getItems()[startI][startJ] = 2;
+                return;
             }
             i += iN;
             j += jN;

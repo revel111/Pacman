@@ -11,9 +11,9 @@ import customVariables.variables.Pacman;
 public class Game extends JFrame implements KeyListener {
     private final TableModel tableModel = new TableModel(null);
     private int counter = 0;
-
+    private final JPanel panelTable = new JPanel();
+    JFrame jframe = new JFrame("Pacman");
     public Game(int height, int width) {
-        JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
         jframe.setIconImage(frameImage);
         jframe.pack();
@@ -50,7 +50,6 @@ public class Game extends JFrame implements KeyListener {
         hpScorePanel.add(scoreLabel, new FlowLayout(FlowLayout.LEFT));
         hpScorePanel.add(hpLabel, new FlowLayout(FlowLayout.RIGHT));
         hpScorePanel.add(time, new FlowLayout(FlowLayout.CENTER));
-        JPanel panelTable = new JPanel();
         panelTable.setLayout(new BorderLayout());
         panelTable.add(jTable, BorderLayout.CENTER);
 
@@ -156,12 +155,14 @@ public class Game extends JFrame implements KeyListener {
         });
     }
 
-    public static void end() {
-//        String name = JOptionPane.showInputDialog(, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
-//
-//        if (name == null || name.isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
+    public void end() {
+        String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
+
+        if (name == null || name.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        jframe.dispose();
     }
 
     @Override

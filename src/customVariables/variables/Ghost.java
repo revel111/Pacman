@@ -58,9 +58,14 @@ public class Ghost {
                 tableModel.getItems()[i][j] = 1;
             } else
                 tableModel.getItems()[i][j] = 3;
+
             if (tableModel.getItems()[i + iN][j + jN] == 5 || tableModel.getItems()[i + iN][j + jN] == 2 || tableModel.getItems()[i + iN][j + jN] == 6 || tableModel.getItems()[i + iN][j + jN] == 7 || tableModel.getItems()[i + iN][j + jN] == 8 || tableModel.getItems()[i + iN][j + jN] == 9 || tableModel.getItems()[i + iN][j + jN] == 10 || tableModel.getItems()[i + iN][j + jN] == 11 || tableModel.getItems()[i + iN][j + jN] == 12) {
                 tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-//                tableModel.getItems()[tableModel.getPacman().getStartI()][tableModel.getPacman().getStartJ()] = 2;
+                tableModel.getItems()[tableModel.getPacman().getStartI()][tableModel.getPacman().getStartJ()] = 2;
+                i = startI;
+                j = startJ;
+                tableModel.getItems()[tableModel.getPacman().getI()][tableModel.getPacman().getJ()] = 3;
+                return;
             } else if (tableModel.getItems()[i + iN][j + jN] == 1)
                 tableModel.getItems()[i + iN][j + jN] = 13;
             else {
