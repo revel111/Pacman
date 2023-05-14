@@ -75,10 +75,24 @@ public class Game extends JFrame implements KeyListener {
                 counter++;
                 time.setText("Time: " + counter);
                 time.repaint();
+            }
+        }).start();
+
+        new Thread(() -> {
+            while (tableModel.isInGame()) {
                 scoreLabel.setText("Score: " + tableModel.getPacman().getScore());
                 hpLabel.setText("Health: " + tableModel.getPacman().getHp());
                 scoreLabel.repaint();
                 hpLabel.repaint();
+                tableModel.checkIfVictory();
+
+                if (tableModel.getPacman().getHp() == 0)
+                    tableModel.setInGame(false);
+                try {
+                    Thread.sleep(tableModel.getPacman().getSpeed());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }).start();
 

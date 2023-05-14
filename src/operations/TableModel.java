@@ -20,7 +20,7 @@ public class TableModel extends AbstractTableModel {
 //        new Thread(() -> pacman.move()).start();
         this.items = items;
         new Thread(() -> pacman.movePac()).start();
-//        new Thread(() -> ghost.moveGhost()).start();
+        new Thread(() -> ghost.moveGhost()).start();
 //        new Thread(this::trackChanges).start();
 //        new Thread(this::checkIfVictory).start();
     }
@@ -185,6 +185,7 @@ public class TableModel extends AbstractTableModel {
             }
         }
         this.items = matrix;
+        ghost.
     }
 
 }

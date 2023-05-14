@@ -15,6 +15,8 @@ public class Ghost {
         this.tableModel = tableModel;
     }
 
+
+
     public int getI() {
         return i;
     }
