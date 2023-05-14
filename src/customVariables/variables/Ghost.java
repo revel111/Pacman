@@ -47,55 +47,69 @@ public class Ghost {
         this.startI = startI;
     }
 
-    public void moveLeftGhost() {
-        if (tableModel.getItems()[i][j - 1] != 0) {//wall
-            tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i][j - 1] == 4) {
-                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-                // поставить призраков и пакмана на место
-            }
-//             else if (tableModel.getItems()[i][j - 1] == 1)
-//                tableModel.getItems()[i][j - 1] = 13;
-            j -= 1;
-        }
-    }
+//    public void moveLeftGhost() {
+//        if (tableModel.getItems()[i][j - 1] != 0) {//wall
+//            tableModel.getItems()[i][j] = 3;//black
+//            if (tableModel.getItems()[i][j - 1] == 4) {
+//                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
+//                // поставить призраков и пакмана на место
+//            }
+////             else if (tableModel.getItems()[i][j - 1] == 1)
+////                tableModel.getItems()[i][j - 1] = 13;
+//            j -= 1;
+//        }
+//    }
+//
+//    public void moveRightGhost() {
+//        if (tableModel.getItems()[i][j + 1] != 0) {//wall
+//            tableModel.getItems()[i][j] = 3;//black
+//            if (tableModel.getItems()[i][j + 1] == 4) {
+//                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
+//                // поставить призраков и пакмана на место
+//            }
+////             else if (tableModel.getItems()[i][j - 1] == 1)
+////                tableModel.getItems()[i][j - 1] = 13;
+//            j += 1;
+//        }
+//    }
+//
+//    public void moveUpGhost() {
+//        if (tableModel.getItems()[i - 1][j] != 0) {//wall
+//            tableModel.getItems()[i][j] = 3;//black
+//            if (tableModel.getItems()[i - 1][j] == 4) {
+//                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
+//                // поставить призраков и пакмана на место
+//            }
+////             else if (tableModel.getItems()[i][j - 1] == 1)
+////                tableModel.getItems()[i][j - 1] = 13;
+//            i -= 1;
+//        }
+//    }
+//
+//    public void moveDownGhost() {
+//        if (tableModel.getItems()[i + 1][j] != 0) {//wall
+//            tableModel.getItems()[i][j] = 3;//black
+//            if (tableModel.getItems()[i + 1][j] == 4) {
+//                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
+//                // поставить призраков и пакмана на место
+//            }
+////             else if (tableModel.getItems()[i][j - 1] == 1)
+////                tableModel.getItems()[i][j - 1] = 13;
+//            i += 1;
+//        }
+//    }
 
-    public void moveRightGhost() {
-        if (tableModel.getItems()[i][j + 1] != 0) {//wall
+    public void moveGhostCoordinates(int iN, int jN) {
+        if (tableModel.getItems()[i + iN][j + jN] != 0) {//wall
             tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i][j + 1] == 4) {
-                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-                // поставить призраков и пакмана на место
-            }
-//             else if (tableModel.getItems()[i][j - 1] == 1)
-//                tableModel.getItems()[i][j - 1] = 13;
-            j += 1;
-        }
-    }
-
-    public void moveUpGhost() {
-        if (tableModel.getItems()[i - 1][j] != 0) {//wall
-            tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i - 1][j] == 4) {
-                tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-                // поставить призраков и пакмана на место
-            }
-//             else if (tableModel.getItems()[i][j - 1] == 1)
-//                tableModel.getItems()[i][j - 1] = 13;
-            i -= 1;
-        }
-    }
-
-    public void moveDownGhost() {
-        if (tableModel.getItems()[i + 1][j] != 0) {//wall
-            tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i + 1][j] == 4) {
+            if (tableModel.getItems()[i + iN][j + jN] == 4) {
                 tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
                 // поставить призраков и пакмана на место
             }
 //             else if (tableModel.getItems()[i][j - 1] == 1)
 //                tableModel.getItems()[i][j - 1] = 13;
             i += 1;
+            j += 1;
         }
     }
 
@@ -105,13 +119,13 @@ public class Ghost {
 
         switch (rand) {
             case 1:
-                this.moveLeftGhost();
+                this.moveGhostCoordinates(0, -1);
             case 2:
-                this.moveRightGhost();
+                this.moveGhostCoordinates(0, 1);
             case 3:
-                this.moveUpGhost();
+                this.moveGhostCoordinates(-1, 0);
             case 4:
-                this.moveDownGhost();
+                this.moveGhostCoordinates(1, 0);
         }
 
         try {

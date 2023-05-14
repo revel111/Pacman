@@ -61,12 +61,6 @@ public class MainMenu extends JFrame {
                     return;
                 }
 
-//                String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
-//
-//                if (name == null || name.isEmpty()) {
-//                    JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
-//                    return;
-//                }
                 //kill main menu
                 jframe.dispose();
                 SwingUtilities.invokeLater(() -> new Game(height, width));

@@ -198,7 +198,7 @@ public class Pacman extends JLabel implements Runnable {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            tableModel.checkIfVictory();
+//            tableModel.checkIfVictory();
         }
     }
 

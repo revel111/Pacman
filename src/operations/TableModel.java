@@ -51,8 +51,6 @@ public class TableModel extends AbstractTableModel {
         return items;
     }
 
-
-
     public void checkIfVictory() {
         for (int[] item : items)
             for (int j = 0; j < items[0].length; j++)
@@ -78,9 +76,10 @@ public class TableModel extends AbstractTableModel {
             fireTableCellUpdated(rowIndex, columnIndex);
             return pac;
         } else if (items[rowIndex][columnIndex] == 3) {
-            ImageIcon dot = (new ImageIcon("src/images/black.png"));
+//            ImageIcon dot = (new ImageIcon("src/images/black.png"));
+            JLabel jLabel = new JLabel();
             fireTableCellUpdated(rowIndex, columnIndex);
-            return dot;
+            return jLabel;
         } else if (items[rowIndex][columnIndex] == 4) {
             ImageIcon ghost = (new ImageIcon("src/images/ghost.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
