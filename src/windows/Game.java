@@ -84,16 +84,27 @@ public class Game extends JFrame implements KeyListener {
                 hpLabel.setText("Health: " + tableModel.getPacman().getHp());
                 scoreLabel.repaint();
                 hpLabel.repaint();
-                tableModel.checkIfVictory();
 
+                tableModel.checkIfVictory();
                 if (tableModel.getPacman().getHp() == 0)
                     tableModel.setInGame(false);
+
                 try {
                     Thread.sleep(tableModel.getPacman().getSpeed());
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
+        }).start();
+
+        new Thread(() -> {
+            while (tableModel.isInGame())
+                tableModel.getPacman().movePac();
+//            end();
+        }).start();
+
+        new Thread(() -> {
+
         }).start();
 
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map
@@ -142,13 +153,13 @@ public class Game extends JFrame implements KeyListener {
                 jframe.dispose();
             }
         });
-//        if(!tableModel.isInGame()) {
-////            System.exit(100);
-//            String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
+    }
+
+    public static void end() {
+//        String name = JOptionPane.showInputDialog(, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
 //
-//            if (name == null || name.isEmpty()) {
-//                JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
+//        if (name == null || name.isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
 //        }
     }
 
@@ -159,15 +170,14 @@ public class Game extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+        else if (e.getKeyCode() == KeyEvent.VK_UP)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_UP);
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
-        }
 
 //        if (!tableModel.isInGame()) {
 //            this.dispose();

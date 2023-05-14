@@ -9,13 +9,16 @@ public class Ghost {
     private int j;
     private int startJ;
     private int startI;
-    private final TableModel tableModel;
+    private TableModel tableModel;
 
-    public Ghost(TableModel tableModel) {
+//    public Ghost(TableModel tableModel) {
+//        this.tableModel = tableModel;
+//    }
+
+
+    public void setTableModel(TableModel tableModel) {
         this.tableModel = tableModel;
     }
-
-
 
     public int getI() {
         return i;

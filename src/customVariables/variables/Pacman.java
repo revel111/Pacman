@@ -137,9 +137,8 @@ public class Pacman extends JLabel {
                     tableModel.getItems()[i][j] = 8;
                 mouth = !mouth;
             }
-
             try {
-                Thread.sleep(speed);
+                Thread.sleep(tableModel.getPacman().getSpeed());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

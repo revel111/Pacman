@@ -14,15 +14,14 @@ public class TableModel extends AbstractTableModel {
     private int[][] items;
     private Pacman pacman = new Pacman(this);
     boolean inGame = true;
-    private Ghost ghost = new Ghost(this);
+    private Ghost ghost = new Ghost();
 
     public TableModel(int[][] items) {
 //        new Thread(() -> pacman.move()).start();
         this.items = items;
-        new Thread(() -> pacman.movePac()).start();
-        new Thread(() -> ghost.moveGhost()).start();
+//        new Thread(() -> pacman.movePac()).start();
+//        new Thread(() -> ghost.moveGhost()).start();
 //        new Thread(this::trackChanges).start();
-//        new Thread(this::checkIfVictory).start();
     }
 
     @Override
@@ -185,7 +184,6 @@ public class TableModel extends AbstractTableModel {
             }
         }
         this.items = matrix;
-        ghost.
     }
 
 }
