@@ -79,7 +79,7 @@ public class TableModel extends AbstractTableModel {
             JLabel jLabel = new JLabel();
             fireTableCellUpdated(rowIndex, columnIndex);
             return jLabel;
-        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13) {
+        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13 || items[rowIndex][columnIndex] == 50) {
             ImageIcon ghost = (new ImageIcon("src/images/ghost.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return ghost;
