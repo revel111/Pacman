@@ -4,15 +4,23 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import operations.TableModel;
-import customVariables.variables.Pacman;
+import operations.ObjectScore;
 
 public class Game extends JFrame implements KeyListener {
-    //    Pacman pacman = new Pacman();
     private final TableModel tableModel = new TableModel(null);
+    private int counter = 0;
+    private final JPanel panelTable = new JPanel();
+    private JFrame jframe = new JFrame("Pacman");
+
     public Game(int height, int width) {
-        JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
         jframe.setIconImage(frameImage);
         jframe.pack();
@@ -20,19 +28,35 @@ public class Game extends JFrame implements KeyListener {
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setVisible(true);
-//        pacman.start();
+
         tableModel.generateMap(height, width);
         JTable jTable = new JTable(tableModel);
         jTable.setBackground(Color.BLACK);
 
-//        tableModel.setScore(score);
-
         JPanel hpScorePanel = new JPanel();
         hpScorePanel.setBackground(Color.BLACK);
         hpScorePanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
-        hpScorePanel.add(new JLabel("Score: " + tableModel.getPacman().getScore()), BorderLayout.WEST);
 
-        JPanel panelTable = new JPanel();
+
+        JLabel scoreLabel = new JLabel("Score: " + tableModel.getPacman().getScore());
+        JLabel hpLabel = new JLabel("Health: " + tableModel.getPacman().getHp());
+        JLabel time = new JLabel("Time:" + counter);
+
+        scoreLabel.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
+        scoreLabel.setForeground(Color.YELLOW);
+
+        time.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
+        time.setForeground(Color.YELLOW);
+
+
+        hpLabel.setIcon(new ImageIcon("src/images/heart.png"));
+        hpLabel.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
+        hpLabel.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 35));
+        hpLabel.setForeground(Color.YELLOW);
+
+        hpScorePanel.add(scoreLabel, new FlowLayout(FlowLayout.LEFT));
+        hpScorePanel.add(hpLabel, new FlowLayout(FlowLayout.RIGHT));
+        hpScorePanel.add(time, new FlowLayout(FlowLayout.CENTER));
         panelTable.setLayout(new BorderLayout());
         panelTable.add(jTable, BorderLayout.CENTER);
 
@@ -46,6 +70,68 @@ public class Game extends JFrame implements KeyListener {
         parentPanel.requestFocusInWindow();
         parentPanel.addKeyListener(this);
 
+        new Thread(() -> {
+            while (tableModel.isInGame()) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                counter++;
+                time.setText("Time: " + counter);
+                time.repaint();
+            }
+        }).start();
+
+        new Thread(() -> {
+            while (tableModel.isInGame()) {
+                scoreLabel.setText("Score: " + tableModel.getPacman().getScore());
+                hpLabel.setText("Health: " + tableModel.getPacman().getHp());
+                scoreLabel.repaint();
+                hpLabel.repaint();
+
+                tableModel.checkIfVictory();
+                if (tableModel.getPacman().getHp() == 0)
+                    tableModel.setInGame(false);
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
+
+        new Thread(() -> {
+            while (tableModel.isInGame())
+                tableModel.getPacman().movePac();
+            try {
+                end();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+
+        new Thread(() -> {
+            while (tableModel.isInGame())
+                tableModel.getGhost().moveGhost();
+        }).start();
+
+        new Thread(() -> {
+            while (tableModel.isInGame()) {
+                Random random = new Random();
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                int boost = 0;
+//                int boost = random.nextInt(4) + 0;
+                tableModel.getGhost().setBoost(boost);
+            }
+        }).start();
+
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -58,84 +144,21 @@ public class Game extends JFrame implements KeyListener {
                 if (value instanceof ImageIcon) {
                     ImageIcon imageIcon = (ImageIcon) value;
 
-                    Image originalImage = imageIcon.getImage();
-                    Image scaledImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+//                    Image originalImage = imageIcon.getImage();
+//                    Image scaledImage = originalImage.getScaledInstance(83, 51, Image.SCALE_SMOOTH);
 //                    label.setIcon(new ImageIcon(scaledImage));
                     label.setIcon(imageIcon);
-//                    label.setHorizontalAlignment(SwingConstants.CENTER);
-//                    label.setVerticalAlignment(SwingConstants.CENTER);
-                } else if (value instanceof Pacman) {
-//                    label = (JLabel) value;
-//                Pacman pacman;
-//                    Pacman pacman = (Pacman) value;
-//                    label.setHorizontalAlignment(SwingConstants.CENTER);
-//                    tableModel.setPacman(pacman);
-                    panelTable.repaint();
-                    return tableModel.getPacman();
-                } else if (value instanceof JPanel panel) {
+                } else if (value instanceof JLabel) {
+                    JLabel jLabel = (JLabel) value;
+
+                    jLabel.setBackground(Color.BLACK);
 
                     panelTable.repaint();
-                    return panel;
+                    return jLabel;
                 }
                 panelTable.repaint();
                 return label;
-//                if (value.toString().equals("0")) {
-//                    setBackground(new Color(0, 0, 47));
-//                    setBorder(BorderFactory.createLineBorder(new Color(0, 0, 185), 1));
-//                } else if (value.toString().equals("1")) {
-//                    setBackground(Color.BLACK);
-//                    return new JPanel() {
-//                        @Override
-//                        protected void paintComponent(Graphics g) {
-//                            super.paintComponent(g);
-//                            Graphics2D g2d = (Graphics2D) g.create();
-//                            //fill the background with black
-//                            g2d.setColor(Color.BLACK);
-//                            g2d.fillRect(0, 0, getWidth(), getHeight());
-//                            //draw the yellow dot
-//                            g2d.setColor(Color.YELLOW);
-//                            int centerX = getWidth() / 2;
-//                            int centerY = getHeight() / 2;
-//                            int dotX = centerX - (3);
-//                            int dotY = centerY - (3);
-//                            g2d.fillOval(dotX, dotY, 6, 6);
-//                            g2d.dispose();
-//                        }
-//                    };
-//                } else if (value.toString().equals("2")) { // pac
-//                    if (pacman.getKeyPressed() == KeyEvent.VK_RIGHT) {
-//                        ImageIcon pacIcon = (new ImageIcon("src/images/pacBO.png"));
-//                        JLabel label = new JLabel();
-//                        label.setIcon(scaleImage(pacIcon, table.getRowHeight(), table.getRowHeight()));
-//                        label.setOpaque(true);
-//                        label.setBackground(table.getBackground());
-//                        label.setForeground(table.getForeground());
-//                        return label;
-//                    } else if (pacman.getKeyPressed() == KeyEvent.VK_LEFT) {
-//                        ImageIcon pacIcon = (new ImageIcon("src/images/pacFrO.png"));
-//                        JLabel label = new JLabel();
-//                        label.setIcon(scaleImage(pacIcon, table.getRowHeight(), table.getRowHeight()));
-//                        label.setOpaque(true);
-//                        label.setBackground(table.getBackground());
-//                        label.setForeground(table.getForeground());
-//                        return label;
-//                    }
-//                }
-//                else
-//                    setBackground(Color.BLACK);
-
-//                return c = table.getValueAt(row,column);
             }
-
-//            private ImageIcon scaleIcon(ImageIcon originalIcon) {
-//                // Get the current size of the cell renderer component (e.g., JTable cell)
-//                int width = getWidth();
-//                int height = getHeight();
-//
-//                // Scale the original icon to fit the cell size while preserving the aspect ratio
-//                Image image = originalIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-//                return new ImageIcon(image);
-//            }
         });
         jTable.addComponentListener(new ComponentAdapter() { // resize-able
             @Override
@@ -155,14 +178,23 @@ public class Game extends JFrame implements KeyListener {
                 jframe.dispose();
             }
         });
-//        Thread thread = new Thread(() -> {
-//            tableModel.getPacman().run();
-//        });
-//        thread.start();
+    }
 
-//        new Thread(tableModel.getPacman()).run();
-//        new Thread(scoreLable).start();
-//        new Thread(tableModel.getPacman()).start();
+    public void end() throws IOException {
+        String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
+
+        if (name == null || name.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
+            SwingUtilities.invokeLater(MainMenu::new);
+            jframe.dispose();
+            return;
+        }
+        ObjectScore objectScore = new ObjectScore(tableModel.getPacman().getScore(), name);
+        ArrayList<ObjectScore> arrayList = ObjectScore.readObjects();
+        arrayList.add(objectScore);
+        ObjectScore.writeObject(arrayList);
+        jframe.dispose();
+        SwingUtilities.invokeLater(MainMenu::new);
     }
 
     @Override
@@ -172,25 +204,14 @@ public class Game extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-//            tableModel.setKeyPressed(KeyEvent.VK_RIGHT);
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
-            tableModel.moveRightPac();
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-//            tableModel.setKeyPressed(KeyEvent.VK_LEFT);
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);
-            tableModel.moveLeftPac();
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-//            tableModel.setKeyPressed(KeyEvent.VK_UP);
+        else if (e.getKeyCode() == KeyEvent.VK_UP)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_UP);
-            tableModel.moveUpPac();
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-//            tableModel.setKeyPressed(KeyEvent.VK_DOWN);
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
-            tableModel.moveDownPac();
-        }
-//        score.repaint();
-        tableModel.fireTableDataChanged();
     }
 
     @Override

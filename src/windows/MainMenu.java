@@ -3,6 +3,7 @@ package windows;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class MainMenu extends JFrame {
     public MainMenu() {
@@ -14,8 +15,6 @@ public class MainMenu extends JFrame {
         title.setBackground(Color.BLACK);
         title.setOpaque(true);
         jframe.add(title, BorderLayout.NORTH);
-
-        //add background
 
         JPanel buttons = new JPanel(new GridBagLayout());
         buttons.setBackground(Color.BLACK);
@@ -63,12 +62,6 @@ public class MainMenu extends JFrame {
                     return;
                 }
 
-//                String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
-//
-//                if (name == null || name.isEmpty()) {
-//                    JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
-//                    return;
-//                }
                 //kill main menu
                 jframe.dispose();
                 SwingUtilities.invokeLater(() -> new Game(height, width));
@@ -77,7 +70,13 @@ public class MainMenu extends JFrame {
 
         highScores.addActionListener(e -> {  //high scores
             jframe.dispose();
-            SwingUtilities.invokeLater(Scores::new);
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    new Scores();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
         });
 
         exit.addActionListener(e -> {
