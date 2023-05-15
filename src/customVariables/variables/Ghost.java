@@ -53,7 +53,7 @@ public class Ghost {
     }
 
     public void moveGhostCoordinates(int iN, int jN) {
-        if (tableModel.getItems()[i + iN][j + jN] != 0 /*|| tableModel.getItems()[i + iN][j + jN] != 4 || tableModel.getItems()[i + iN][j + jN] == 13 || tableModel.getItems()[i + iN][j + jN] == 50 || tableModel.getItems()[i + iN][j + jN] == 51 || tableModel.getItems()[i + iN][j + jN] == 52 || tableModel.getItems()[i + iN][j + jN] == 53 || tableModel.getItems()[i + iN][j + jN] == 54 || tableModel.getItems()[i + iN][j + jN] == 40 || tableModel.getItems()[i + iN][j + jN] == 41 || tableModel.getItems()[i + iN][j + jN] == 42 || tableModel.getItems()[i + iN][j + jN] == 43 || tableModel.getItems()[i + iN][j + jN] == 44*/) {//wall
+        if (tableModel.getItems()[i + iN][j + jN] != 0 && tableModel.getItems()[i + iN][j + jN] != 4 && tableModel.getItems()[i + iN][j + jN] != 13 && tableModel.getItems()[i + iN][j + jN] != 50 && tableModel.getItems()[i + iN][j + jN] != 51 && tableModel.getItems()[i + iN][j + jN] != 52 && tableModel.getItems()[i + iN][j + jN] != 53 && tableModel.getItems()[i + iN][j + jN] != 54 && tableModel.getItems()[i + iN][j + jN] != 40 && tableModel.getItems()[i + iN][j + jN] != 41 && tableModel.getItems()[i + iN][j + jN] != 42 && tableModel.getItems()[i + iN][j + jN] != 43 && tableModel.getItems()[i + iN][j + jN] != 44) {//wall
             if (tableModel.getItems()[i][j] == 13) {
                 tableModel.getItems()[i][j] = 1;
                 if (boost == 0) {//точка и буст

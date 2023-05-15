@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="trying to add boosts on map">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="trying to add more ghosts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/scores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/scores.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -375,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684180369398</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="trying to add more ghosts">
+      <created>1684192119036</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1684192119036</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -391,7 +397,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Well, I lied XD Matrix for map was generated" />
     <MESSAGE value="Map was created(alpha)" />
     <MESSAGE value="Map was created(alpha) again" />
     <MESSAGE value="trying to add pacman" />
@@ -416,7 +421,8 @@
     <MESSAGE value="trying to add boosts on map" />
     <MESSAGE value="just to save" />
     <MESSAGE value="1 boost was implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="1 boost was implemented" />
+    <MESSAGE value="trying to add more ghosts" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to add more ghosts" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

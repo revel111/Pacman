@@ -113,10 +113,10 @@ public class Game extends JFrame implements KeyListener {
             }
         }).start();
 
-        new Thread(() -> {
-            while (tableModel.isInGame())
-                tableModel.getGhost().moveGhost();
-        }).start();
+//        new Thread(() -> {
+//            while (tableModel.isInGame())
+//                tableModel.getGhost().moveGhost();
+//        }).start();
 
 //        new Thread(() -> {
 //            while (tableModel.isInGame()) {

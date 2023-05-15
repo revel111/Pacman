@@ -147,8 +147,6 @@ public class TableModel extends AbstractTableModel {
         int[][] matrix = new int[height][width];
         int counterMax = width * height / 5;
         int counter = 0;
-        int ghostMax = 3;
-        int ghostCounter = 0;
         pacman.setI(height / 2);
         pacman.setJ(width / 2);
         pacman.setStartI(height / 2);
@@ -172,12 +170,10 @@ public class TableModel extends AbstractTableModel {
                         continue;
                     else if (counter == counterMax)
                         matrix[i][j] = 1;
-                    else if (ghostCounter == ghostMax)
-                        matrix[i][j] = 1;
                     else if (rand == 1) {
                         matrix[i][j] = 0;
                         counter++;
-                    } /*else if (matrix[i][j] == 4) {
+                    }/* else if (matrix[i][j] == 4) {
                         matrix[i][j] = 0;
                         ghostCounter++;
                     }*/ else
