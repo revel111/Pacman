@@ -97,11 +97,11 @@ public class Ghost {
 //            int rand = random.nextInt(5) + 1;
 //
 //            switch (rand) {
-//                case 1 -> ;//hp
-//                case 2 -> ;//points
-//                case 3 -> ;//speed
-//                case 4 -> ;//invulnerability
-//                case 5 -> ;//killa
+//                case 1 -> ;//hp-red
+//                case 2 -> ;//points-blue
+//                case 3 -> ;//speed-orange
+//                case 4 -> ;//invulnerability-brown
+//                case 5 -> ;//killa-green
 //            }
 //
 //            try {

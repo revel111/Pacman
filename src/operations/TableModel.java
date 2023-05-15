@@ -2,12 +2,9 @@ package operations;
 
 import customVariables.variables.Ghost;
 import customVariables.variables.Pacman;
-import windows.Game;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class TableModel extends AbstractTableModel {
@@ -118,6 +115,26 @@ public class TableModel extends AbstractTableModel {
             ImageIcon pac = (new ImageIcon("src/images/pacRO.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return pac;
+        } else if (items[rowIndex][columnIndex] == 20) {
+            ImageIcon boost = (new ImageIcon("src/images/boostBlue.png"));
+            fireTableCellUpdated(rowIndex, columnIndex);
+            return boost;
+        } else if (items[rowIndex][columnIndex] == 21) {
+            ImageIcon boost = (new ImageIcon("src/images/boostRed.png"));
+            fireTableCellUpdated(rowIndex, columnIndex);
+            return boost;
+        } else if (items[rowIndex][columnIndex] == 22) {
+            ImageIcon boost = (new ImageIcon("src/images/boostOrange.png"));
+            fireTableCellUpdated(rowIndex, columnIndex);
+            return boost;
+        } else if (items[rowIndex][columnIndex] == 23) {
+            ImageIcon boost = (new ImageIcon("src/images/boostBrown.png"));
+            fireTableCellUpdated(rowIndex, columnIndex);
+            return boost;
+        } else if (items[rowIndex][columnIndex] == 24) {
+            ImageIcon boost = (new ImageIcon("src/images/boostGreen.png"));
+            fireTableCellUpdated(rowIndex, columnIndex);
+            return boost;
         }
         return null;
     }
