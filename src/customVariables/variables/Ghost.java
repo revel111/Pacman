@@ -57,7 +57,7 @@ public class Ghost {
         if (tableModel.getItems()[i + iN][j + jN] != 0 /*|| tableModel.getItems()[i + iN][j + jN] != 4*/) {//wall
             if (tableModel.getItems()[i][j] == 13) {
                 tableModel.getItems()[i][j] = 1;
-                /*if (boost == 0) {//точка и буст
+                if (boost == 0) {//точка и буст
                     tableModel.getItems()[i][j] = 30;  //blue hp
                     boost = -1;
                 } else if (boost == 1) {
@@ -72,10 +72,10 @@ public class Ghost {
                 } else if (boost == 4) {
                     tableModel.getItems()[i][j] = 34;
                     boost = -1;
-                }*/
+                }
             } else if (tableModel.getItems()[i][j] == 4) {
                 tableModel.getItems()[i][j] = 3;
-                /*if (boost == 0) {//prosto
+                if (boost == 0) {//prosto
                     tableModel.getItems()[i][j] = 20;  //blue hp
                     boost = -1;
                 } else if (boost == 1) {
@@ -90,7 +90,7 @@ public class Ghost {
                 } else if (boost == 4) {
                     tableModel.getItems()[i][j] = 24;
                     boost = -1;
-                }*/
+                }
             } /*else
                 tableModel.getItems()[i][j] = 3;*/
 
@@ -114,11 +114,9 @@ public class Ghost {
 //            } else if (tableModel.getItems()[i + iN][j + jN] == 34) {
 //                tableModel.getItems()[i + iN][j + jN] = 44;
 //            }
-            }
-//        else if (tableModel.getItems()[i + iN][j + jN] == 20) {
-//
-//        }
-            else {
+            } else if (tableModel.getItems()[i + iN][j + jN] == 20) {// буст и призрак
+                tableModel.getItems()[i + iN][j + jN] = 50; //точка и буст и призрак
+            } else {
                 tableModel.getItems()[i][j] = 3;
                 tableModel.getItems()[i + iN][j + jN] = 4;
             }

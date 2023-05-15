@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 
 public class Pacman extends JLabel {
-    private int hp = 1;
+    private int hp = 10;
     private int score = 0;
     private boolean mouth = true;
     private int keyPressed;
