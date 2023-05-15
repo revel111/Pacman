@@ -115,23 +115,23 @@ public class TableModel extends AbstractTableModel {
             ImageIcon pac = (new ImageIcon("src/images/pacRO.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return pac;
-        } else if (items[rowIndex][columnIndex] == 20) {
+        } else if (items[rowIndex][columnIndex] == 20 || items[rowIndex][columnIndex] == 30) {//hp
             ImageIcon boost = (new ImageIcon("src/images/boostBlue.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
-        } else if (items[rowIndex][columnIndex] == 21) {
+        } else if (items[rowIndex][columnIndex] == 21 || items[rowIndex][columnIndex] == 31) {//points
             ImageIcon boost = (new ImageIcon("src/images/boostRed.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
-        } else if (items[rowIndex][columnIndex] == 22) {
+        } else if (items[rowIndex][columnIndex] == 22 || items[rowIndex][columnIndex] == 32) {//speed
             ImageIcon boost = (new ImageIcon("src/images/boostOrange.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
-        } else if (items[rowIndex][columnIndex] == 23) {
+        } else if (items[rowIndex][columnIndex] == 23 || items[rowIndex][columnIndex] == 33) {//invulnerability
             ImageIcon boost = (new ImageIcon("src/images/boostBrown.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
-        } else if (items[rowIndex][columnIndex] == 24) {
+        } else if (items[rowIndex][columnIndex] == 24 || items[rowIndex][columnIndex] == 34) {//killa
             ImageIcon boost = (new ImageIcon("src/images/boostGreen.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;

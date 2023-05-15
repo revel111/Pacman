@@ -6,6 +6,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import operations.TableModel;
 import operations.ObjectScore;
@@ -112,6 +116,20 @@ public class Game extends JFrame implements KeyListener {
         new Thread(() -> {
             while (tableModel.isInGame())
                 tableModel.getGhost().moveGhost();
+        }).start();
+
+        new Thread(() -> {
+            while (tableModel.isInGame()) {
+                Random random = new Random();
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                int boost = 0;
+//                int boost = random.nextInt(4) + 0;
+                tableModel.getGhost().setBoost(boost);
+            }
         }).start();
 
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map

@@ -90,6 +90,11 @@ public class Pacman extends JLabel {
             else if (tableModel.getItems()[i + iN][j + jN] == 13) { //ghost + dot
                 score += 10;
                 hp -= 1;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 20) {// prosto blue
+                hp += 1;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 30) {// blue
+                hp += 1;
+                score += 10;
             } else if (tableModel.getItems()[i + iN][j + jN] == 4 || tableModel.getItems()[i][j] == 4) {
                 hp -= 1;
                 tableModel.getItems()[i][j] = 3;
