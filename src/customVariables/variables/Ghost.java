@@ -3,6 +3,7 @@ package customVariables.variables;
 import operations.TableModel;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ghost {
     private int i;
@@ -10,6 +11,7 @@ public class Ghost {
     private int startJ;
     private int startI;
     private TableModel tableModel;
+    int boost = 0;
 
     public Ghost(TableModel tableModel) {
         this.tableModel = tableModel;
@@ -51,7 +53,12 @@ public class Ghost {
         if (tableModel.getItems()[i + iN][j + jN] != 0 /*|| tableModel.getItems()[i + iN][j + jN] != 4*/) {//wall
             if (tableModel.getItems()[i][j] == 13) {
                 tableModel.getItems()[i][j] = 1;
-            } else
+            }
+//            else if(boost == 1) {
+//                tableModel.getItems()[i][j] = 21;
+//                boost = 0;
+//            }
+            else
                 tableModel.getItems()[i][j] = 3;
 
             if (tableModel.getItems()[i + iN][j + jN] == 5 || tableModel.getItems()[i + iN][j + jN] == 2 || tableModel.getItems()[i + iN][j + jN] == 6 || tableModel.getItems()[i + iN][j + jN] == 7 || tableModel.getItems()[i + iN][j + jN] == 8 || tableModel.getItems()[i + iN][j + jN] == 9 || tableModel.getItems()[i + iN][j + jN] == 10 || tableModel.getItems()[i + iN][j + jN] == 11 || tableModel.getItems()[i + iN][j + jN] == 12) {
@@ -74,9 +81,21 @@ public class Ghost {
     public void moveGhost() {
         Random random = new Random();
         while (tableModel.isInGame()) {
-            int rand = random.nextInt(4) + 1;
+            int randMove = random.nextInt(4) + 1;
+//            int randBoost = 0;
+//            new Thread(() -> {
+//                while (tableModel.isInGame()) {
+//                    try {
+//                        Thread.sleep(5000);
+//                    } catch (InterruptedException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//
+//                    boost = random.nextInt(100) + 1;
+//                }
+//            }).start();
 
-            switch (rand) {
+            switch (randMove) {
                 case 1 -> this.moveGhostCoordinates(0, -1); //left
                 case 2 -> this.moveGhostCoordinates(0, 1);//right
                 case 3 -> this.moveGhostCoordinates(-1, 0);//up
@@ -111,5 +130,4 @@ public class Ghost {
 //            }
 //        }
 //    }
-
 }
