@@ -126,8 +126,8 @@ public class Game extends JFrame implements KeyListener {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                int boost = 0;
-//                int boost = random.nextInt(4) + 0;
+//                int boost = 0;
+                int boost = random.nextInt(5);
                 tableModel.getGhost().setBoost(boost);
             }
         }).start();
