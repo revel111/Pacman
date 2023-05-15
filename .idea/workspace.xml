@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="trying to add boosts on map">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="just to save">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/scores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/scores.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -358,7 +359,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684174474029</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="just to save">
+      <created>1684178063653</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1684178063653</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -382,7 +390,6 @@
     <MESSAGE value="i achieved some result" />
     <MESSAGE value="movement" />
     <MESSAGE value="just save" />
-    <MESSAGE value="just to save" />
     <MESSAGE value="scorecounter works" />
     <MESSAGE value="pacman was animated" />
     <MESSAGE value="pacman can properly die" />
@@ -399,7 +406,8 @@
     <MESSAGE value="backup" />
     <MESSAGE value="i realized that it is impossible to have thread inside thread without special executor so backup" />
     <MESSAGE value="trying to add boosts on map" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to add boosts on map" />
+    <MESSAGE value="just to save" />
+    <option name="LAST_COMMIT_MESSAGE" value="just to save" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

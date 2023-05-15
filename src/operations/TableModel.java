@@ -79,7 +79,7 @@ public class TableModel extends AbstractTableModel {
             JLabel jLabel = new JLabel();
             fireTableCellUpdated(rowIndex, columnIndex);
             return jLabel;
-        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13 || items[rowIndex][columnIndex] == 50) {
+        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13 || items[rowIndex][columnIndex] == 50 || items[rowIndex][columnIndex] == 40 || items[rowIndex][columnIndex] == 41 || items[rowIndex][columnIndex] == 42 || items[rowIndex][columnIndex] == 43 || items[rowIndex][columnIndex] == 44) {
             ImageIcon ghost = (new ImageIcon("src/images/ghost.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return ghost;
@@ -115,7 +115,7 @@ public class TableModel extends AbstractTableModel {
             ImageIcon pac = (new ImageIcon("src/images/pacRO.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return pac;
-        } else if (items[rowIndex][columnIndex] == 20 || items[rowIndex][columnIndex] == 30) {//hp
+        } else if (items[rowIndex][columnIndex] == 20 || items[rowIndex][columnIndex] == 30 ) {//hp
             ImageIcon boost = (new ImageIcon("src/images/boostBlue.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;

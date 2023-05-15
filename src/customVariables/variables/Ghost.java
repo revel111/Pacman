@@ -57,10 +57,10 @@ public class Ghost {
         if (tableModel.getItems()[i + iN][j + jN] != 0 /*|| tableModel.getItems()[i + iN][j + jN] != 4*/) {//wall
             if (tableModel.getItems()[i][j] == 13) {
                 tableModel.getItems()[i][j] = 1;
-                /*if (boost == 0) {//точка и буст
+                if (boost == 0) {//точка и буст
                     tableModel.getItems()[i][j] = 30;  //blue hp
                     boost = -1;
-                }*/ /*else if (boost == 1) {
+                } else if (boost == 1) {
                     tableModel.getItems()[i][j] = 31;
                     boost = -1;
                 } else if (boost == 2) {
@@ -72,12 +72,10 @@ public class Ghost {
                 } else if (boost == 4) {
                     tableModel.getItems()[i][j] = 34;
                     boost = -1;
-                }*/ /*else if (tableModel.getItems()[i + iN][j + jN] == 40) {
-                    tableModel.getItems()[i + iN][j + jN] = 30;
-                }*/
+                }
             } else if (tableModel.getItems()[i][j] == 4) {
                 tableModel.getItems()[i][j] = 3;
-/*                if (boost == 0) {//prosto
+                if (boost == 0) {//prosto
                     tableModel.getItems()[i][j] = 20;  //blue hp
                     boost = -1;
                 } else if (boost == 1) {
@@ -92,13 +90,12 @@ public class Ghost {
                 } else if (boost == 4) {
                     tableModel.getItems()[i][j] = 24;
                     boost = -1;
-                }*/
-            } /*else if (tableModel.getItems()[i][j] == 50) {
+                }
+            } else if (tableModel.getItems()[i][j] == 50) {
                 tableModel.getItems()[i][j] = 20;
-            }*/
-
-            /*else
-                tableModel.getItems()[i][j] = 3;*/
+            } else if (tableModel.getItems()[i][j] == 40) {
+                tableModel.getItems()[i][j] = 30;
+            }
 
             if (tableModel.getItems()[i + iN][j + jN] == 5 || tableModel.getItems()[i + iN][j + jN] == 2 || tableModel.getItems()[i + iN][j + jN] == 6 || tableModel.getItems()[i + iN][j + jN] == 7 || tableModel.getItems()[i + iN][j + jN] == 8 || tableModel.getItems()[i + iN][j + jN] == 9 || tableModel.getItems()[i + iN][j + jN] == 10 || tableModel.getItems()[i + iN][j + jN] == 11 || tableModel.getItems()[i + iN][j + jN] == 12) {
                 tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
@@ -109,9 +106,7 @@ public class Ghost {
                 return;
             } else if (tableModel.getItems()[i + iN][j + jN] == 1) { // есть точка
                 tableModel.getItems()[i + iN][j + jN] = 13; //призрак и точка
-                /*if (tableModel.getItems()[i + iN][j + jN] == 30) { // буст и точка
-                    tableModel.getItems()[i + iN][j + jN] = 40; //точка и буст и призрак
-                }*/ /*else if (tableModel.getItems()[i + iN][j + jN] == 31) {*/
+                 /*else if (tableModel.getItems()[i + iN][j + jN] == 31) {*/
 //                tableModel.getItems()[i + iN][j + jN] = 41;
 //            } else if (tableModel.getItems()[i + iN][j + jN] == 32) {
 //                tableModel.getItems()[i + iN][j + jN] = 42;
@@ -120,9 +115,11 @@ public class Ghost {
 //            } else if (tableModel.getItems()[i + iN][j + jN] == 34) {
 //                tableModel.getItems()[i + iN][j + jN] = 44;
 //            }
-            }/* else if (tableModel.getItems()[i + iN][j + jN] == 20) {// буст и призрак
-                tableModel.getItems()[i + iN][j + jN] = 50; //точка и буст и призрак
-            }*/ else {
+            } else if (tableModel.getItems()[i + iN][j + jN] == 20) {// буст и призрак
+                tableModel.getItems()[i + iN][j + jN] = 50; //буст и призрак
+            } else if (tableModel.getItems()[i + iN][j + jN] == 30) {// буст и точка и призрак
+                tableModel.getItems()[i + iN][j + jN] = 40; //буст и призрак
+            } else {
                 tableModel.getItems()[i + iN][j + jN] = 4;
             }
             i += iN;
