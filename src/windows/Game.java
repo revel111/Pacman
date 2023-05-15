@@ -118,19 +118,42 @@ public class Game extends JFrame implements KeyListener {
                 tableModel.getGhost().moveGhost();
         }).start();
 
-        new Thread(() -> {
-            while (tableModel.isInGame()) {
-                Random random = new Random();
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+//        new Thread(() -> {
+//            while (tableModel.isInGame()) {
+//                Random random = new Random();
+//                try {
+//                    Thread.sleep(5000);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                int boost = random.nextInt(5);
+//                tableModel.getGhost().setBoost(boost);
+//            }
+//        }).start();
+//
+        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
+            int finalI = i;
+            new Thread(() -> {
+                while (tableModel.isInGame())
+                    tableModel.getGhosts().get(finalI).moveGhost();
+            }).start();
+        }
+
+        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
+            int finalI = i;
+            new Thread(() -> {
+                while (tableModel.isInGame()) {
+                    Random random = new Random();
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    int boost = random.nextInt(5);
+                    tableModel.getGhosts().get(finalI).setBoost(boost);
                 }
-//                int boost = 0;
-                int boost = random.nextInt(5);
-                tableModel.getGhost().setBoost(boost);
-            }
-        }).start();
+            }).start();
+        }
 
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map
             @Override

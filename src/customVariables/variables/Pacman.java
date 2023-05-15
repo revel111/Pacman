@@ -5,7 +5,6 @@ import operations.TableModel;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
-
 public class Pacman extends JLabel {
     private int hp = 10;
     private int score = 0;
@@ -99,8 +98,17 @@ public class Pacman extends JLabel {
                 score += 10;
             } else if (tableModel.getItems()[i + iN][j + jN] == 50) {// blue
                 score += 10;
-            }
-            else if (tableModel.getItems()[i + iN][j + jN] == 4 || tableModel.getItems()[i][j] == 4) {
+            } else if (tableModel.getItems()[i + iN][j + jN] == 21) {// points
+                score += 50;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 31) {
+                score += 60;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 41) {
+                score += 60;
+                hp -= 1;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 51) {// blue
+                score += 10;
+                hp -= 1;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 4 || tableModel.getItems()[i][j] == 4) {
                 hp -= 1;
                 tableModel.getItems()[i][j] = 3;
                 i = startI;

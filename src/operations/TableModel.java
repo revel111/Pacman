@@ -5,6 +5,7 @@ import customVariables.variables.Pacman;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TableModel extends AbstractTableModel {
@@ -13,12 +14,10 @@ public class TableModel extends AbstractTableModel {
     private Ghost ghost = new Ghost(this);
     boolean inGame = true;
 
+    private ArrayList<Ghost> ghosts = new ArrayList<>();
+
     public TableModel(int[][] items) {
-//        new Thread(() -> pacman.move()).start();
         this.items = items;
-//        new Thread(() -> pacman.movePac()).start();
-//        new Thread(() -> ghost.moveGhost()).start();
-//        new Thread(this::trackChanges).start();
     }
 
     @Override
@@ -47,6 +46,10 @@ public class TableModel extends AbstractTableModel {
         this.inGame = inGame;
     }
 
+    public ArrayList<Ghost> getGhosts() {
+        return ghosts;
+    }
+
     public int[][] getItems() {
         return items;
     }
@@ -54,7 +57,7 @@ public class TableModel extends AbstractTableModel {
     public void checkIfVictory() {
         for (int[] item : items)
             for (int j = 0; j < items[0].length; j++)
-                if (item[j] == 1 || item[j] == 13) {
+                if (item[j] == 1 || item[j] == 13 || item[j] == 30 || item[j] == 40 || item[j] == 31 || item[j] == 41 || item[j] == 32 || item[j] == 42 || item[j] == 33 || item[j] == 43 || item[j] == 34 || item[j] == 44) {
                     inGame = true;
                     return;
                 }
@@ -79,7 +82,7 @@ public class TableModel extends AbstractTableModel {
             JLabel jLabel = new JLabel();
             fireTableCellUpdated(rowIndex, columnIndex);
             return jLabel;
-        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13 || items[rowIndex][columnIndex] == 50 || items[rowIndex][columnIndex] == 40 || items[rowIndex][columnIndex] == 41 || items[rowIndex][columnIndex] == 42 || items[rowIndex][columnIndex] == 43 || items[rowIndex][columnIndex] == 44) {
+        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13 || items[rowIndex][columnIndex] == 50 || items[rowIndex][columnIndex] == 51 || items[rowIndex][columnIndex] == 52 || items[rowIndex][columnIndex] == 53 || items[rowIndex][columnIndex] == 54 || items[rowIndex][columnIndex] == 40 || items[rowIndex][columnIndex] == 41 || items[rowIndex][columnIndex] == 42 || items[rowIndex][columnIndex] == 43 || items[rowIndex][columnIndex] == 44) {
             ImageIcon ghost = (new ImageIcon("src/images/ghost.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return ghost;
@@ -115,7 +118,7 @@ public class TableModel extends AbstractTableModel {
             ImageIcon pac = (new ImageIcon("src/images/pacRO.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return pac;
-        } else if (items[rowIndex][columnIndex] == 20 || items[rowIndex][columnIndex] == 30 ) {//hp
+        } else if (items[rowIndex][columnIndex] == 20 || items[rowIndex][columnIndex] == 30) {//hp
             ImageIcon boost = (new ImageIcon("src/images/boostBlue.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
@@ -151,8 +154,9 @@ public class TableModel extends AbstractTableModel {
         pacman.setStartI(height / 2);
         pacman.setStartJ(width / 2);
 
-        ghost.setI(height / 3);
-        ghost.setJ(height / 3);
+
+//        ghost.setI(height / 3);
+//        ghost.setJ(height / 3);
 
         matrix[height / 2][width / 2] = 2;
         matrix[height / 3][width / 3] = 13;
@@ -182,6 +186,13 @@ public class TableModel extends AbstractTableModel {
             }
         }
         this.items = matrix;
+
+        for (int i = 0; i < 3; i++) {
+            Ghost ghost = new Ghost(this);
+            ghost.setI(height / 3);
+            ghost.setJ(height / 3);
+            ghosts.add(ghost);
+        }
     }
 
 }

@@ -3,7 +3,6 @@ package customVariables.variables;
 import operations.TableModel;
 
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ghost {
     private int i;
@@ -54,11 +53,11 @@ public class Ghost {
     }
 
     public void moveGhostCoordinates(int iN, int jN) {
-        if (tableModel.getItems()[i + iN][j + jN] != 0 /*|| tableModel.getItems()[i + iN][j + jN] != 4*/) {//wall
+        if (tableModel.getItems()[i + iN][j + jN] != 0 /*|| tableModel.getItems()[i + iN][j + jN] != 4 || tableModel.getItems()[i + iN][j + jN] == 13 || tableModel.getItems()[i + iN][j + jN] == 50 || tableModel.getItems()[i + iN][j + jN] == 51 || tableModel.getItems()[i + iN][j + jN] == 52 || tableModel.getItems()[i + iN][j + jN] == 53 || tableModel.getItems()[i + iN][j + jN] == 54 || tableModel.getItems()[i + iN][j + jN] == 40 || tableModel.getItems()[i + iN][j + jN] == 41 || tableModel.getItems()[i + iN][j + jN] == 42 || tableModel.getItems()[i + iN][j + jN] == 43 || tableModel.getItems()[i + iN][j + jN] == 44*/) {//wall
             if (tableModel.getItems()[i][j] == 13) {
                 tableModel.getItems()[i][j] = 1;
                 if (boost == 0) {//точка и буст
-                    tableModel.getItems()[i][j] = 30;  //blue hp
+                    tableModel.getItems()[i][j] = 30;//blue hp
                     boost = -1;
                 } else if (boost == 1) {
                     tableModel.getItems()[i][j] = 31;
@@ -121,27 +120,27 @@ public class Ghost {
                 tableModel.getItems()[tableModel.getPacman().getI()][tableModel.getPacman().getJ()] = 3;
                 return;
             } else if (tableModel.getItems()[i + iN][j + jN] == 1) { // есть точка
-                tableModel.getItems()[i + iN][j + jN] = 13; //призрак и точка
-            } else if (tableModel.getItems()[i + iN][j + jN] == 20) {// буст и призрак
-                tableModel.getItems()[i + iN][j + jN] = 50; //буст и призрак
+                tableModel.getItems()[i + iN][j + jN] = 13;//призрак и точка
+            } else if (tableModel.getItems()[i + iN][j + jN] == 20) {// буст
+                tableModel.getItems()[i + iN][j + jN] = 50;//буст и призрак
             } else if (tableModel.getItems()[i + iN][j + jN] == 30) {// буст и точка и призрак
-                tableModel.getItems()[i + iN][j + jN] = 40; //буст и призрак
-            } else if (tableModel.getItems()[i + iN][j + jN] == 21) {// буст и призрак
-                tableModel.getItems()[i + iN][j + jN] = 51; //буст и призрак
-            } else if (tableModel.getItems()[i + iN][j + jN] == 31) {// буст и точка и призрак
-                tableModel.getItems()[i + iN][j + jN] = 41; //буст и призрак
-            } else if (tableModel.getItems()[i + iN][j + jN] == 22) {// буст и призрак
-                tableModel.getItems()[i + iN][j + jN] = 52; //буст и призрак
-            } else if (tableModel.getItems()[i + iN][j + jN] == 32) {// буст и точка и призрак
-                tableModel.getItems()[i + iN][j + jN] = 42; //буст и призрак
-            } else if (tableModel.getItems()[i + iN][j + jN] == 23) {// буст и призрак
-                tableModel.getItems()[i + iN][j + jN] = 53; //буст и призрак
-            } else if (tableModel.getItems()[i + iN][j + jN] == 33) {// буст и точка и призрак
-                tableModel.getItems()[i + iN][j + jN] = 43; //буст и призрак
-            } else if (tableModel.getItems()[i + iN][j + jN] == 24) {// буст и призрак
-                tableModel.getItems()[i + iN][j + jN] = 54; //буст и призрак
-            } else if (tableModel.getItems()[i + iN][j + jN] == 34) {// буст и точка и призрак
-                tableModel.getItems()[i + iN][j + jN] = 44; //буст и призрак
+                tableModel.getItems()[i + iN][j + jN] = 40;//буст и точка
+            } else if (tableModel.getItems()[i + iN][j + jN] == 21) {
+                tableModel.getItems()[i + iN][j + jN] = 51;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 31) {
+                tableModel.getItems()[i + iN][j + jN] = 41;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 22) {
+                tableModel.getItems()[i + iN][j + jN] = 52;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 32) {
+                tableModel.getItems()[i + iN][j + jN] = 42;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 23) {
+                tableModel.getItems()[i + iN][j + jN] = 53;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 33) {
+                tableModel.getItems()[i + iN][j + jN] = 43;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 24) {
+                tableModel.getItems()[i + iN][j + jN] = 54;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 34) {
+                tableModel.getItems()[i + iN][j + jN] = 44;
             } else {
                 tableModel.getItems()[i + iN][j + jN] = 4;
             }
