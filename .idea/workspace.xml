@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="jlist sorts">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="backup before fixing pacman DeAtH">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/boosts/AddHp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/boosts/AddPoints.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/boosts/Boost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/boosts/Invulnerability.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/boosts/Speed.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/ObjectScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/ObjectScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/operations/scores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/scores.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/windows/Scores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Scores.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684144079504</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="backup before fixing pacman DeAtH">
+      <created>1684145039895</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1684145039895</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -343,7 +354,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="project was created" />
     <MESSAGE value="backup before resizing" />
     <MESSAGE value="gif was removed" />
     <MESSAGE value="Now i try to put split my program on pannels" />
@@ -368,7 +378,8 @@
     <MESSAGE value="some bugs were fixed" />
     <MESSAGE value="jlist works" />
     <MESSAGE value="jlist sorts" />
-    <option name="LAST_COMMIT_MESSAGE" value="jlist sorts" />
+    <MESSAGE value="backup before fixing pacman DeAtH" />
+    <option name="LAST_COMMIT_MESSAGE" value="backup before fixing pacman DeAtH" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

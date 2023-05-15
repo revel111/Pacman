@@ -57,7 +57,7 @@ public class TableModel extends AbstractTableModel {
     public void checkIfVictory() {
         for (int[] item : items)
             for (int j = 0; j < items[0].length; j++)
-                if (item[j] == 1) {
+                if (item[j] == 1 || item[j] == 13) {
                     inGame = true;
                     return;
                 }
@@ -79,7 +79,6 @@ public class TableModel extends AbstractTableModel {
             fireTableCellUpdated(rowIndex, columnIndex);
             return pac;
         } else if (items[rowIndex][columnIndex] == 3) {
-//            ImageIcon dot = (new ImageIcon("src/images/black.png"));
             JLabel jLabel = new JLabel();
             fireTableCellUpdated(rowIndex, columnIndex);
             return jLabel;
@@ -120,28 +119,6 @@ public class TableModel extends AbstractTableModel {
             fireTableCellUpdated(rowIndex, columnIndex);
             return pac;
         }
-//        if(items[rowIndex][columnIndex] == 1) {
-//            fireTableCellUpdated(rowIndex,columnIndex);
-//            return new JPanel() {
-//                @Override
-//                protected void paintComponent(Graphics g) {
-//                    super.paintComponent(g);
-//                    Graphics2D g2d = (Graphics2D) g.create();
-//                    //fill the background with black
-//                    g2d.setColor(Color.BLACK);
-//                    g2d.fillRect(0, 0, getWidth(), getHeight());
-//                    //draw the yellow dot
-//                    g2d.setColor(Color.YELLOW);
-//                    int centerX = getWidth() / 2;
-//                    int centerY = getHeight() / 2;
-//                    int dotX = centerX - (3);
-//                    int dotY = centerY - (3);
-//                    g2d.fillOval(dotX, dotY, 6, 6);
-//                    g2d.dispose();
-//                }
-//            };
-//        }
-//
         return null;
     }
 

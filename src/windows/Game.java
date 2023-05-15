@@ -92,7 +92,7 @@ public class Game extends JFrame implements KeyListener {
                     tableModel.setInGame(false);
 
                 try {
-                    Thread.sleep(tableModel.getPacman().getSpeed());
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

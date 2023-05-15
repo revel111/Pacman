@@ -74,7 +74,7 @@ public class Ghost {
     public void moveGhost() {
         Random random = new Random();
         while (tableModel.isInGame()) {
-            int rand = random.nextInt(1, 5);
+            int rand = random.nextInt(4) + 1;
 
             switch (rand) {
                 case 1 -> this.moveGhostCoordinates(0, -1); //left
@@ -90,4 +90,26 @@ public class Ghost {
             }
         }
     }
+
+//    public void spawmBoost() {
+//        Random random = new Random();
+//        while (tableModel.isInGame()) {
+//            int rand = random.nextInt(5) + 1;
+//
+//            switch (rand) {
+//                case 1 -> ;//hp
+//                case 2 -> ;//points
+//                case 3 -> ;//speed
+//                case 4 -> ;//invulnerability
+//                case 5 -> ;//killa
+//            }
+//
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
+
 }

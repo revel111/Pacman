@@ -85,9 +85,12 @@ public class Pacman extends JLabel {
     public void movePacCoordinates(int iN, int jN) {
         if (tableModel.getItems()[i + iN][j + jN] != 0) {//wall
             tableModel.getItems()[i][j] = 3;//black
-            if (tableModel.getItems()[i + iN][j + jN] == 1 || tableModel.getItems()[i + iN][j + jN] == 13) //dot
+            if (tableModel.getItems()[i + iN][j + jN] == 1) //dot
                 score += 10;
-            else if (tableModel.getItems()[i + iN][j + jN] == 4 || tableModel.getItems()[i][j] == 4) {//xz check
+            else if (tableModel.getItems()[i + iN][j + jN] == 13) { //ghost + dot
+                score += 10;
+                hp -= 1;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 4 || tableModel.getItems()[i][j] == 4) {
                 hp -= 1;
                 tableModel.getItems()[i][j] = 3;
                 i = startI;
