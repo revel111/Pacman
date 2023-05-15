@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class Scores extends JFrame {
@@ -44,12 +45,26 @@ public class Scores extends JFrame {
 
         ArrayList<ObjectScore> arrayList = ObjectScore.readObjects();
         ArrayList<String> stringArrayList = new ArrayList<>();
-        ArrayList<String> stringArrayListSorted = new ArrayList<>();
 
         for (ObjectScore objectScore : arrayList) {
             String string = objectScore.getNick() + ": " + objectScore.getScore();
             stringArrayList.add(string);
         }
+
+        Comparator<String> scoreComparator = new Comparator<>() {
+            @Override
+            public int compare(String element1, String element2) {
+                int score1 = extractScore(element1);
+                int score2 = extractScore(element2);
+                return Integer.compare(score2, score1);
+            }
+            private int extractScore(String element) {
+                String[] parts = element.split(":");
+                String scoreString = parts[1].trim();
+                return Integer.parseInt(scoreString);
+            }
+        };
+        stringArrayList.sort(scoreComparator);
 
         JList list = new JList(stringArrayList.toArray(new String[0]));
         list.setBackground(Color.BLACK);
