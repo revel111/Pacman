@@ -3,6 +3,7 @@ package windows;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class MainMenu extends JFrame {
     public MainMenu() {
@@ -69,7 +70,13 @@ public class MainMenu extends JFrame {
 
         highScores.addActionListener(e -> {  //high scores
             jframe.dispose();
-            SwingUtilities.invokeLater(Scores::new);
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    new Scores();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
         });
 
         exit.addActionListener(e -> {

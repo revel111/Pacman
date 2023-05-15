@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="ghost is moving">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="some bugs were fixed">
+      <change afterPath="$PROJECT_DIR$/src/operations/ObjectScore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/operations/scores.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/windows/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/windows/Scores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Scores.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +50,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "G:/Coding/finished/sharaga/java/idea/testing",
+    "last_opened_file_path": "G:/Coding/finished/sharaga/java/idea/GUI_FTS_EN_2223S_PRO1_s28324_INTELLIJ",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
@@ -303,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684082860810</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="some bugs were fixed">
+      <created>1684091527538</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1684091527538</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -341,9 +351,64 @@
     <MESSAGE value="backup" />
     <MESSAGE value="more and more backups" />
     <MESSAGE value="ghost is moving" />
-    <option name="LAST_COMMIT_MESSAGE" value="ghost is moving" />
+    <MESSAGE value="some bugs were fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="some bugs were fixed" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/windows/Scores.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/windows/Scores.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/windows/Scores.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/ObjectScore.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/ObjectScore.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/ObjectScore.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/ObjectScore.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/ObjectScore.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/ObjectScore.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/operations/ObjectScore.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="tableModel.pacman" />

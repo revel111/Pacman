@@ -1,15 +1,22 @@
 package windows;
 
+import operations.ObjectScore;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.Serializable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Scores extends JFrame implements Serializable {
-    public Scores() {
+public class Scores extends JFrame {
+    public Scores() throws IOException {
         JFrame jframe = new JFrame("Pacman");
         Image frameImage = new ImageIcon("src/images/icon.png").getImage();
         jframe.setIconImage(frameImage);
@@ -35,20 +42,20 @@ public class Scores extends JFrame implements Serializable {
             }
         });
 
+        ArrayList<ObjectScore> arrayList = ObjectScore.readObjects();
+        ArrayList<String> stringArrayList = new ArrayList<>();
+        ArrayList<String> stringArrayListSorted = new ArrayList<>();
 
+        for (ObjectScore objectScore : arrayList) {
+            String string = objectScore.getNick() + ": " + objectScore.getScore();
+            stringArrayList.add(string);
+        }
 
-        String[] all = {"fuuf", "shshh", "KKK"};
-
-        for (int i = 0; i < all.length; i++)
-            all[i] = i + 1 + ") " + all[i];
-
-
-
-        JList list = new JList(all);
+        JList list = new JList(stringArrayList.toArray(new String[0]));
         list.setBackground(Color.BLACK);
         list.setForeground(Color.YELLOW);
         list.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
-        
+
 
         jframe.add(list);
         JScrollPane jScrollPane = new JScrollPane(list);
@@ -57,4 +64,5 @@ public class Scores extends JFrame implements Serializable {
 
         jframe.getContentPane().add(jScrollPane);
     }
+
 }

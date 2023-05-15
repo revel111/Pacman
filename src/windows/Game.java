@@ -4,15 +4,18 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import operations.TableModel;
-import customVariables.variables.Pacman;
+import operations.ObjectScore;
 
 public class Game extends JFrame implements KeyListener {
     private final TableModel tableModel = new TableModel(null);
     private int counter = 0;
     private final JPanel panelTable = new JPanel();
-    JFrame jframe = new JFrame("Pacman");
+    private JFrame jframe = new JFrame("Pacman");
+
     public Game(int height, int width) {
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
         jframe.setIconImage(frameImage);
@@ -99,7 +102,11 @@ public class Game extends JFrame implements KeyListener {
         new Thread(() -> {
             while (tableModel.isInGame())
                 tableModel.getPacman().movePac();
-            end();
+            try {
+                end();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }).start();
 
         new Thread(() -> {
@@ -155,14 +162,18 @@ public class Game extends JFrame implements KeyListener {
         });
     }
 
-    public void end() {
+    public void end() throws IOException {
         String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
 
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.isEmpty())
             JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
 
+        ObjectScore objectScore = new ObjectScore(tableModel.getPacman().getScore(), name);
+        ArrayList<ObjectScore> arrayList = ObjectScore.readObjects();
+        arrayList.add(objectScore);
+        ObjectScore.writeObject(arrayList);
         jframe.dispose();
+        SwingUtilities.invokeLater(MainMenu::new);
     }
 
     @Override
@@ -180,13 +191,6 @@ public class Game extends JFrame implements KeyListener {
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_UP);
         else if (e.getKeyCode() == KeyEvent.VK_DOWN)
             tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
-
-//        if (!tableModel.isInGame()) {
-//            this.dispose();
-//            SwingUtilities.invokeLater(MainMenu::new);
-//            System.exit(100);
-//        }
-//        tableModel.fireTableDataChanged();
     }
 
     @Override
