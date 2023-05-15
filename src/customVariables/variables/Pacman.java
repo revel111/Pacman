@@ -26,10 +26,6 @@ public class Pacman extends JLabel {
         return mouth;
     }
 
-    public void setMouth(boolean mouth) {
-        this.mouth = mouth;
-    }
-
     public int getHp() {
         return hp;
     }
@@ -48,10 +44,6 @@ public class Pacman extends JLabel {
 
     public void setSpeed(int speed) {
         this.speed = speed;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public int getI() {
@@ -90,16 +82,12 @@ public class Pacman extends JLabel {
         this.keyPressed = keyPressed;
     }
 
-    public int getKeyPressed() {
-        return keyPressed;
-    }
-
     public void movePacCoordinates(int iN, int jN) {
         if (tableModel.getItems()[i + iN][j + jN] != 0) {//wall
             tableModel.getItems()[i][j] = 3;//black
             if (tableModel.getItems()[i + iN][j + jN] == 1 || tableModel.getItems()[i + iN][j + jN] == 13) //dot
                 score += 10;
-            else if (tableModel.getItems()[i + iN][j + jN] == 4) {
+            else if (tableModel.getItems()[i + iN][j + jN] == 4 || tableModel.getItems()[i][j] == 4) {//xz check
                 hp -= 1;
                 tableModel.getItems()[i][j] = 3;
                 i = startI;

@@ -165,9 +165,12 @@ public class Game extends JFrame implements KeyListener {
     public void end() throws IOException {
         String name = JOptionPane.showInputDialog(null, "Enter a nickname.", "Input name", JOptionPane.PLAIN_MESSAGE);
 
-        if (name == null || name.isEmpty())
+        if (name == null || name.isEmpty()) {
             JOptionPane.showMessageDialog(null, "You wrote nothing.", "Error", JOptionPane.ERROR_MESSAGE);
-
+            SwingUtilities.invokeLater(MainMenu::new);
+            jframe.dispose();
+            return;
+        }
         ObjectScore objectScore = new ObjectScore(tableModel.getPacman().getScore(), name);
         ArrayList<ObjectScore> arrayList = ObjectScore.readObjects();
         arrayList.add(objectScore);

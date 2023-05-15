@@ -8,12 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class Scores extends JFrame {
@@ -71,7 +67,6 @@ public class Scores extends JFrame {
         list.setForeground(Color.YELLOW);
         list.setFont(new Font("OCR A Extended", Font.PLAIN, 20));
 
-
         jframe.add(list);
         JScrollPane jScrollPane = new JScrollPane(list);
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -79,5 +74,4 @@ public class Scores extends JFrame {
 
         jframe.getContentPane().add(jScrollPane);
     }
-
 }
