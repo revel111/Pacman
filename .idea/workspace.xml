@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="trying to add more ghosts">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="save">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +44,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "G:/Coding/finished/sharaga/java/idea/GUI_FTS_EN_2223S_PRO1_s28324_INTELLIJ",
+    "last_opened_file_path": "G:/Coding/finished/sharaga/java/idea/GUI_FTS_EN_2223S_PRO2_s28324_INTELLIJ",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -381,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684192119036</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="save">
+      <created>1684194287321</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1684194287321</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -397,7 +400,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Map was created(alpha)" />
     <MESSAGE value="Map was created(alpha) again" />
     <MESSAGE value="trying to add pacman" />
     <MESSAGE value="i achieved some result" />
@@ -422,7 +424,8 @@
     <MESSAGE value="just to save" />
     <MESSAGE value="1 boost was implemented" />
     <MESSAGE value="trying to add more ghosts" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to add more ghosts" />
+    <MESSAGE value="save" />
+    <option name="LAST_COMMIT_MESSAGE" value="save" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
