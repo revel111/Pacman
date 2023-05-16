@@ -7,10 +7,8 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
+import customVariables.variables.Pacman;
 import operations.TableModel;
 import operations.ObjectScore;
 
@@ -103,55 +101,53 @@ public class Game extends JFrame implements KeyListener {
             }
         }).start();
 
-//        new Thread(() -> {
-//            while (tableModel.isInGame())
-//                tableModel.getPacman().movePac();
-//            try {
-//                end();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }).start();
+        new Thread(() -> {
+            while (tableModel.isInGame())
+                tableModel.getPacman().movePac();
+            try {
+                end();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
 
-//        new Thread(() -> {
-//            while (tableModel.isInGame())
-//                tableModel.getGhost().moveGhost();
-//        }).start();
+        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
+            int finalI = i;
+            new Thread(() -> {
+                while (tableModel.isInGame())
+                    tableModel.getGhosts().get(finalI).moveGhost();
+            }).start();
+        }
 
-//        new Thread(() -> {
-//            while (tableModel.isInGame()) {
-//                Random random = new Random();
-//                try {
-//                    Thread.sleep(5000);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                int boost = random.nextInt(5);
-//                tableModel.getGhost().setBoost(boost);
-//            }
-//        }).start();
-//
+        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
+            int finalI = i;
+            new Thread(() -> {
+                while (tableModel.isInGame()) {
+                    Random random = new Random();
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    int boost = random.nextInt(5);
+                    tableModel.getGhosts().get(finalI).setBoost(boost);
+                }
+            }).start();
+        }
 
-//        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
-//            int finalI = i;
-//            new Thread(() -> {
-//                while (tableModel.isInGame())
-//                    tableModel.getGhosts().get(finalI).moveGhost();
-//            }).start();
-//        }
-//
 //        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
 //            int finalI = i;
 //            new Thread(() -> {
 //                while (tableModel.isInGame()) {
-//                    Random random = new Random();
-//                    try {
-//                        Thread.sleep(5000);
-//                    } catch (InterruptedException e) {
-//                        throw new RuntimeException(e);
+//                    if (tableModel.getPacman().getBoost() == 2) {
+//                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() / 2);
+//                        try {
+//                            Thread.sleep(5000);
+//                        } catch (InterruptedException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() * 2);
 //                    }
-//                    int boost = random.nextInt(5);
-//                    tableModel.getGhosts().get(finalI).setBoost(boost);
 //                }
 //            }).start();
 //        }
