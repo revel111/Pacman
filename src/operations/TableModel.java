@@ -147,48 +147,70 @@ public class TableModel extends AbstractTableModel {
         int[][] matrix = new int[height][width];
         int counterMax = width * height / 5;
         int counter = 0;
-        pacman.setI(height / 2);
-        pacman.setJ(width / 2);
-        pacman.setStartI(height / 2);
-        pacman.setStartJ(width / 2);
 
+        int rateForMiddleSpace = width * height / 50;
+        int rateForBorderWalls = 0;
 
-//        ghost.setI(height / 3);
-//        ghost.setJ(height / 3);
-
-        matrix[height / 2][width / 2] = 2;
-        matrix[height / 3][width / 3] = 13;
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
                 if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
                     matrix[i][j] = 0;
-                else {
-                    int rand = random.nextInt(10) + 1;
-                    if (matrix[i][j] == 2)
-                        continue;
-                    else if (matrix[i][j] == 13)
-                        continue;
-                    else if (counter == counterMax)
-                        matrix[i][j] = 1;
-                    else if (rand == 1) {
-                        matrix[i][j] = 0;
-                        counter++;
-                    }/* else if (matrix[i][j] == 4) {
-                        matrix[i][j] = 0;
-                        ghostCounter++;
-                    }*/ else
-                        matrix[i][j] = 1;
-                }
+                else if (i == 1 || j == 1 || i == height - 2 || j == width - 2)
+                    matrix[i][j] = 1;
+
+        int cellsToFill = Math.min(rateForMiddleSpace, Math.min(height, width));
+        int startRow = height / 2 - cellsToFill / 2;
+        int startCol = width / 2 - cellsToFill / 2;
+
+        for (int i = startRow; i < startRow + cellsToFill; i++) {
+            for (int j = startCol; j < startCol + cellsToFill; j++) {
+                matrix[i][j] = 1;
             }
         }
-        this.items = matrix;
 
-        for (int i = 0; i < 3; i++) {
-            Ghost ghost = new Ghost(this);
-            ghost.setI(height / 3);
-            ghost.setJ(height / 3);
-            ghosts.add(ghost);
-        }
+//        pacman.setI(height / 2);
+//        pacman.setJ(width / 2);
+//        pacman.setStartI(height / 2);
+//        pacman.setStartJ(width / 2);
+//
+//
+////        ghost.setI(height / 3);
+////        ghost.setJ(height / 3);
+//
+//        matrix[height / 2][width / 2] = 2;
+//        matrix[height / 3][width / 3] = 13;
+//        for (int i = 0; i < height; i++) {
+//            for (int j = 0; j < width; j++) {
+//                if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
+//                    matrix[i][j] = 0;
+//                else {
+//                    int rand = random.nextInt(10) + 1;
+//                    if (matrix[i][j] == 2)
+//                        continue;
+//                    else if (matrix[i][j] == 13)
+//                        continue;
+//                    else if (counter == counterMax)
+//                        matrix[i][j] = 1;
+//                    else if (rand == 1) {
+//                        matrix[i][j] = 0;
+//                        counter++;
+//                    }/* else if (matrix[i][j] == 4) {
+//                        matrix[i][j] = 0;
+//                        ghostCounter++;
+//                    }*/ else
+//                        matrix[i][j] = 1;
+//                }
+//            }
+//        }
+//        this.items = matrix;
+//
+//        for (int i = 0; i < 3; i++) {
+//            Ghost ghost = new Ghost(this);
+//            ghost.setI(height / 3);
+//            ghost.setJ(height / 3);
+//            ghosts.add(ghost);
+//        }
+        this.items = matrix;
     }
 
 }
