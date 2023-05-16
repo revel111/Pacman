@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="bonuses were implemented (need effect)">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="trying to add more ghosts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Ghost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customVariables/variables/Pacman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/TableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/TableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,15 +43,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;G:/Coding/finished/sharaga/java/idea/GUI_FTS_EN_2223S_PRO2_s28324_INTELLIJ&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "G:/Coding/finished/sharaga/java/idea/GUI_FTS_EN_2223S_PRO1_s28324_INTELLIJ",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="windows" />
@@ -370,12 +374,12 @@
       <option name="project" value="LOCAL" />
       <updated>1684180369398</updated>
     </task>
-    <task id="LOCAL-00043" summary="bonuses were implemented (need effect)">
-      <created>1684182197475</created>
+    <task id="LOCAL-00043" summary="trying to add more ghosts">
+      <created>1684192119036</created>
       <option name="number" value="00043" />
       <option name="presentableId" value="LOCAL-00043" />
       <option name="project" value="LOCAL" />
-      <updated>1684182197475</updated>
+      <updated>1684192119036</updated>
     </task>
     <option name="localTasksCounter" value="44" />
     <servers />
@@ -417,8 +421,8 @@
     <MESSAGE value="trying to add boosts on map" />
     <MESSAGE value="just to save" />
     <MESSAGE value="1 boost was implemented" />
-    <MESSAGE value="bonuses were implemented (need effect)" />
-    <option name="LAST_COMMIT_MESSAGE" value="bonuses were implemented (need effect)" />
+    <MESSAGE value="trying to add more ghosts" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to add more ghosts" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

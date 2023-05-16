@@ -5,7 +5,6 @@ import operations.TableModel;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
-
 public class Pacman extends JLabel {
     private int hp = 10;
     private int score = 0;
@@ -92,15 +91,24 @@ public class Pacman extends JLabel {
                 hp -= 1;
             } else if (tableModel.getItems()[i + iN][j + jN] == 20) {// prosto blue
                 hp += 1;
-            } else if (tableModel.getItems()[i + iN][j + jN] == 30) {// blue
+            } else if (tableModel.getItems()[i + iN][j + jN] == 30) {
                 hp += 1;
                 score += 10;
-            } else if (tableModel.getItems()[i + iN][j + jN] == 40) {// blue
+            } else if (tableModel.getItems()[i + iN][j + jN] == 40) {
                 score += 10;
-            } else if (tableModel.getItems()[i + iN][j + jN] == 50) {// blue
+            } else if (tableModel.getItems()[i + iN][j + jN] == 50) {
                 score += 10;
-            }
-            else if (tableModel.getItems()[i + iN][j + jN] == 4 || tableModel.getItems()[i][j] == 4) {
+            } else if (tableModel.getItems()[i + iN][j + jN] == 21) {
+                score += 50;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 31) {
+                score += 60;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 41) {
+                score += 60;
+                hp -= 1;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 51) {
+                score += 10;
+                hp -= 1;
+            } else if (tableModel.getItems()[i + iN][j + jN] == 4 || tableModel.getItems()[i][j] == 4 || tableModel.getItems()[i][j] == 13 || tableModel.getItems()[i][j] == 50 || tableModel.getItems()[i][j] == 51 || tableModel.getItems()[i][j] == 52 || tableModel.getItems()[i][j] == 53 || tableModel.getItems()[i][j] == 54 || tableModel.getItems()[i][j] == 40 || tableModel.getItems()[i][j] == 41 || tableModel.getItems()[i][j] == 42 || tableModel.getItems()[i][j] == 43 || tableModel.getItems()[i][j] == 44) {
                 hp -= 1;
                 tableModel.getItems()[i][j] = 3;
                 i = startI;
