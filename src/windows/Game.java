@@ -102,12 +102,14 @@ public class Game extends JFrame implements KeyListener {
         }).start();
 
         new Thread(() -> {
-            while (tableModel.isInGame())
-                tableModel.getPacman().movePac();
-            try {
-                end();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            synchronized (this) {
+                while (tableModel.isInGame())
+                    tableModel.getPacman().movePac();
+                try {
+                    end();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }).start();
 
@@ -124,33 +126,35 @@ public class Game extends JFrame implements KeyListener {
             new Thread(() -> {
                 while (tableModel.isInGame()) {
                     Random random = new Random();
+                    int randomS = random.nextInt(5);
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    int boost = random.nextInt(5);
-                    tableModel.getGhosts().get(finalI).setBoost(boost);
+                    if (randomS == 0) {
+                        int boost = random.nextInt(5);
+                        tableModel.getGhosts().get(finalI).setBoost(boost);
+                    }
                 }
             }).start();
         }
 
-//        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
-//            int finalI = i;
-//            new Thread(() -> {
-//                while (tableModel.isInGame()) {
-//                    if (tableModel.getPacman().getBoost() == 2) {
-//                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() / 2);
-//                        try {
-//                            Thread.sleep(5000);
-//                        } catch (InterruptedException e) {
-//                            throw new RuntimeException(e);
-//                        }
-//                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() * 2);
-//                    }
-//                }
-//            }).start();
-//        }
+        new Thread(() -> {
+            synchronized (this) {
+                while (tableModel.isInGame()) {
+                    if (tableModel.getPacman().getBoost() == 2) {
+                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() / 5);
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() * 2);
+                    }
+                }
+            }
+        }).start();
 
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map
             @Override
@@ -165,7 +169,7 @@ public class Game extends JFrame implements KeyListener {
                     ImageIcon imageIcon = (ImageIcon) value;
 
 //                    Image originalImage = imageIcon.getImage();
-//                    Image scaledImage = originalImage.getScaledInstance(83, 51, Image.SCALE_SMOOTH);
+//                    Image scaledImage = originalImage.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
 //                    label.setIcon(new ImageIcon(scaledImage));
                     label.setIcon(imageIcon);
                 } else if (value instanceof JLabel) {
@@ -180,14 +184,20 @@ public class Game extends JFrame implements KeyListener {
                 return label;
             }
         });
+
         jTable.addComponentListener(new ComponentAdapter() { // resize-able
             @Override
             public void componentResized(ComponentEvent e) {
-                jTable.setRowHeight(jTable.getHeight() / jTable.getRowCount());
-                for (int i = 0; i < jTable.getColumnCount(); i++)
-                    jTable.getColumnModel().getColumn(i).setPreferredWidth(jTable.getWidth() / jTable.getColumnCount());
+                try {
+                    jTable.setRowHeight(jTable.getHeight() / jTable.getRowCount());
+                    for (int i = 0; i < jTable.getColumnCount(); i++)
+                        jTable.getColumnModel().getColumn(i).setPreferredWidth(jTable.getWidth() / jTable.getColumnCount());
+                } catch (IllegalArgumentException ex) {
+                    System.out.println("So small window");
+                }
             }
         });
+
 
         KeyStroke ctrlShiftQ = KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK);//shortcut to close window
         jframe.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(ctrlShiftQ, "closeWindow");
