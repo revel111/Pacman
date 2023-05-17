@@ -11,7 +11,6 @@ import java.util.Random;
 public class TableModel extends AbstractTableModel {
     private int[][] items;
     private Pacman pacman = new Pacman(this);
-    private Ghost ghost = new Ghost(this);
     boolean inGame = true;
 
     private ArrayList<Ghost> ghosts = new ArrayList<>();
@@ -32,10 +31,6 @@ public class TableModel extends AbstractTableModel {
 
     public Pacman getPacman() {
         return pacman;
-    }
-
-    public Ghost getGhost() {
-        return ghost;
     }
 
     public boolean isInGame() {
@@ -145,11 +140,18 @@ public class TableModel extends AbstractTableModel {
     public void generateMap(int height, int width) {
         Random random = new Random();
         int[][] matrix = new int[height][width];
-        int counterMax = width * height / 5;
-        int counter = 0;
 
-        int rateForMiddleSpace = width * height / 50;
-        int rateForBorderWalls = 0;
+        pacman.setI(height / 2);
+        pacman.setJ(width / 2);
+        pacman.setStartI(height / 2);
+        pacman.setStartJ(width / 2);
+
+        int rateForMiddleSpace = width * height / 100;
+        if (rateForMiddleSpace > 4)
+            rateForMiddleSpace = 4;
+
+        int rateForBorderWalls = rateForMiddleSpace;
+
 
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++)
@@ -159,58 +161,47 @@ public class TableModel extends AbstractTableModel {
                     matrix[i][j] = 1;
 
         int cellsToFill = Math.min(rateForMiddleSpace, Math.min(height, width));
-        int startRow = height / 2 - cellsToFill / 2;
-        int startCol = width / 2 - cellsToFill / 2;
 
-        for (int i = startRow; i < startRow + cellsToFill; i++) {
-            for (int j = startCol; j < startCol + cellsToFill; j++) {
+        for (int i = height / 2 - cellsToFill / 2; i < height / 2 - cellsToFill / 2 + cellsToFill; i++)
+            for (int j = width / 2 - cellsToFill / 2; j < width / 2 - cellsToFill / 2 + cellsToFill; j++)
                 matrix[i][j] = 1;
+
+        for (int i = 1; i < height - 1; i++)
+            for (int j = 1; j < width - 1; j++) {
+                int rand = random.nextInt(10) + 1;
+                if (i <= rateForBorderWalls || i >= height - 1 - rateForBorderWalls || j <= rateForBorderWalls || j >= width - 1 - rateForBorderWalls)
+                    if (rand == 1 && rateForMiddleSpace > 2)
+                        matrix[i][j] = 0;
+                    else
+                        matrix[i][j] = 1;
+            }
+        matrix[height / 2][width / 2] = 2;
+        for (int j = 1; j < width - 1; j++) {
+            if (matrix[height / 2][j] == 2)
+                continue;
+            else
+                matrix[height / 2][j] = 1;
+        }
+
+        for (int i = 1; i < height - 1; i++) {
+            if (matrix[i][width / 2] == 2)
+                continue;
+            else {
+                matrix[i][width / 2] = 1;
+                if (rateForMiddleSpace == 4) {
+                    matrix[i][width / 3] = 1;
+                    matrix[i][width / 3 + width / 3] = 1;
+                }
             }
         }
 
-//        pacman.setI(height / 2);
-//        pacman.setJ(width / 2);
-//        pacman.setStartI(height / 2);
-//        pacman.setStartJ(width / 2);
-//
-//
-////        ghost.setI(height / 3);
-////        ghost.setJ(height / 3);
-//
-//        matrix[height / 2][width / 2] = 2;
-//        matrix[height / 3][width / 3] = 13;
-//        for (int i = 0; i < height; i++) {
-//            for (int j = 0; j < width; j++) {
-//                if (i == 0 || j == 0 || i == height - 1 || j == width - 1)
-//                    matrix[i][j] = 0;
-//                else {
-//                    int rand = random.nextInt(10) + 1;
-//                    if (matrix[i][j] == 2)
-//                        continue;
-//                    else if (matrix[i][j] == 13)
-//                        continue;
-//                    else if (counter == counterMax)
-//                        matrix[i][j] = 1;
-//                    else if (rand == 1) {
-//                        matrix[i][j] = 0;
-//                        counter++;
-//                    }/* else if (matrix[i][j] == 4) {
-//                        matrix[i][j] = 0;
-//                        ghostCounter++;
-//                    }*/ else
-//                        matrix[i][j] = 1;
-//                }
-//            }
-//        }
-//        this.items = matrix;
-//
-//        for (int i = 0; i < 3; i++) {
-//            Ghost ghost = new Ghost(this);
-//            ghost.setI(height / 3);
-//            ghost.setJ(height / 3);
-//            ghosts.add(ghost);
-//        }
         this.items = matrix;
+        for (int i = 0; i < 3; i++) {
+            Ghost ghost = new Ghost(this);
+            ghost.setI(1);
+            ghost.setJ(1);
+            ghosts.add(ghost);
+        }
     }
 
 }

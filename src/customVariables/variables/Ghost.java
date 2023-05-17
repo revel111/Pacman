@@ -7,8 +7,6 @@ import java.util.Random;
 public class Ghost {
     private int i;
     private int j;
-    private int startJ;
-    private int startI;
     private TableModel tableModel;
     int boost = -1;
 
@@ -30,22 +28,6 @@ public class Ghost {
 
     public void setJ(int j) {
         this.j = j;
-    }
-
-    public int getStartJ() {
-        return startJ;
-    }
-
-    public void setStartJ(int startJ) {
-        this.startJ = startJ;
-    }
-
-    public int getStartI() {
-        return startI;
-    }
-
-    public void setStartI(int startI) {
-        this.startI = startI;
     }
 
     public void setBoost(int boost) {
@@ -112,12 +94,12 @@ public class Ghost {
                 tableModel.getItems()[i][j] = 34;
             }
 
-            if (tableModel.getItems()[i + iN][j + jN] == 5 || tableModel.getItems()[i + iN][j + jN] == 2 || tableModel.getItems()[i + iN][j + jN] == 6 || tableModel.getItems()[i + iN][j + jN] == 7 || tableModel.getItems()[i + iN][j + jN] == 8 || tableModel.getItems()[i + iN][j + jN] == 9 || tableModel.getItems()[i + iN][j + jN] == 10 || tableModel.getItems()[i + iN][j + jN] == 11 || tableModel.getItems()[i + iN][j + jN] == 12) {
+            if (tableModel.getItems()[i + iN][j + jN] == 5 || tableModel.getItems()[i + iN][j + jN] == 2 || tableModel.getItems()[i + iN][j + jN] == 6 || tableModel.getItems()[i + iN][j + jN] == 7 || tableModel.getItems()[i + iN][j + jN] == 8 || tableModel.getItems()[i + iN][j + jN] == 9 || tableModel.getItems()[i + iN][j + jN] == 10 || tableModel.getItems()[i + iN][j + jN] == 11 || tableModel.getItems()[i + iN][j + jN] == 12 || tableModel.getItems()[i][j] == 5 || tableModel.getItems()[i][j] == 2 || tableModel.getItems()[i][j] == 6 || tableModel.getItems()[i][j] == 7 || tableModel.getItems()[i][j] == 8 || tableModel.getItems()[i][j] == 9 || tableModel.getItems()[i][j] == 10 || tableModel.getItems()[i][j] == 11 || tableModel.getItems()[i][j] == 12) {
                 tableModel.getPacman().setHp(tableModel.getPacman().getHp() - 1);
-                tableModel.getItems()[tableModel.getPacman().getStartI()][tableModel.getPacman().getStartJ()] = 2;
-                i = startI;
-                j = startJ;
                 tableModel.getItems()[tableModel.getPacman().getI()][tableModel.getPacman().getJ()] = 3;
+                tableModel.getPacman().setI(tableModel.getPacman().getStartI());
+                tableModel.getPacman().setJ(tableModel.getPacman().getStartJ());
+                tableModel.getItems()[tableModel.getPacman().getStartI()][tableModel.getPacman().getStartJ()] = 2;
                 return;
             } else if (tableModel.getItems()[i + iN][j + jN] == 1) { // есть точка
                 tableModel.getItems()[i + iN][j + jN] = 13;//призрак и точка
