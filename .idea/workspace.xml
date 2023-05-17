@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="creating map">
+    <list default="true" id="bc9bd693-3052-4826-9a51-3ff2690d97fe" name="Changes" comment="backup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operations/scores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/operations/scores.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/windows/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/windows/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -378,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684192119036</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="backup">
+      <created>1684327320312</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1684327320312</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -413,20 +421,20 @@
     <MESSAGE value="jlist sorts" />
     <MESSAGE value="backup before fixing pacman DeAtH" />
     <MESSAGE value="now i will try to add boosts" />
-    <MESSAGE value="backup" />
     <MESSAGE value="i realized that it is impossible to have thread inside thread without special executor so backup" />
     <MESSAGE value="trying to add boosts on map" />
     <MESSAGE value="just to save" />
     <MESSAGE value="1 boost was implemented" />
     <MESSAGE value="trying to add more ghosts" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to add more ghosts" />
+    <MESSAGE value="backup" />
+    <option name="LAST_COMMIT_MESSAGE" value="backup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/windows/Game.java</url>
-          <line>140</line>
+          <line>146</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
