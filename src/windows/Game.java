@@ -135,22 +135,19 @@ public class Game extends JFrame implements KeyListener {
             }).start();
         }
 
-//        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
-//            int finalI = i;
-//            new Thread(() -> {
-//                while (tableModel.isInGame()) {
-//                    if (tableModel.getPacman().getBoost() == 2) {
-//                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() / 2);
-//                        try {
-//                            Thread.sleep(5000);
-//                        } catch (InterruptedException e) {
-//                            throw new RuntimeException(e);
-//                        }
-//                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() * 2);
-//                    }
-//                }
-//            }).start();
-//        }
+        new Thread(() -> {
+            while (tableModel.isInGame()) {
+                if (tableModel.getPacman().getBoost() == 2) {
+                    tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() / 5);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() * 2);
+                }
+            }
+        }).start();
 
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map
             @Override
