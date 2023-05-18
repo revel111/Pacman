@@ -46,7 +46,6 @@ public class Scores extends JFrame {
             String string = objectScore.getNick() + ": " + objectScore.getScore();
             stringArrayList.add(string);
         }
-
         Comparator<String> scoreComparator = new Comparator<>() {
             @Override
             public int compare(String element1, String element2) {

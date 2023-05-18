@@ -10,10 +10,9 @@ import java.util.Random;
 
 public class TableModel extends AbstractTableModel {
     private int[][] items;
-    private Pacman pacman = new Pacman(this);
+    private final Pacman pacman = new Pacman(this);
     boolean inGame = true;
-
-    private ArrayList<Ghost> ghosts = new ArrayList<>();
+    private final ArrayList<Ghost> ghosts = new ArrayList<>();
 
     public TableModel(int[][] items) {
         this.items = items;
@@ -77,7 +76,7 @@ public class TableModel extends AbstractTableModel {
             JLabel jLabel = new JLabel();
             fireTableCellUpdated(rowIndex, columnIndex);
             return jLabel;
-        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13 || items[rowIndex][columnIndex] == 50 || items[rowIndex][columnIndex] == 51 || items[rowIndex][columnIndex] == 52 || items[rowIndex][columnIndex] == 53 || items[rowIndex][columnIndex] == 54 || items[rowIndex][columnIndex] == 40 || items[rowIndex][columnIndex] == 41 || items[rowIndex][columnIndex] == 42 || items[rowIndex][columnIndex] == 43 || items[rowIndex][columnIndex] == 44) {
+        } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13 || items[rowIndex][columnIndex] == 50 || items[rowIndex][columnIndex] == 51 || items[rowIndex][columnIndex] == 52 || items[rowIndex][columnIndex] == 53 || items[rowIndex][columnIndex] == 54 || items[rowIndex][columnIndex] == 30 || items[rowIndex][columnIndex] == 31 || items[rowIndex][columnIndex] == 32 || items[rowIndex][columnIndex] == 33 || items[rowIndex][columnIndex] == 34) {
             ImageIcon ghost = (new ImageIcon("src/images/ghost.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return ghost;
@@ -113,23 +112,23 @@ public class TableModel extends AbstractTableModel {
             ImageIcon pac = (new ImageIcon("src/images/pacRO.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return pac;
-        } else if (items[rowIndex][columnIndex] == 20 || items[rowIndex][columnIndex] == 30) {//hp
+        } else if (items[rowIndex][columnIndex] == 20 || items[rowIndex][columnIndex] == 40) {//hp
             ImageIcon boost = (new ImageIcon("src/images/boostBlue.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
-        } else if (items[rowIndex][columnIndex] == 21 || items[rowIndex][columnIndex] == 31) {//points
+        } else if (items[rowIndex][columnIndex] == 21 || items[rowIndex][columnIndex] == 41) {//points
             ImageIcon boost = (new ImageIcon("src/images/boostRed.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
-        } else if (items[rowIndex][columnIndex] == 22 || items[rowIndex][columnIndex] == 32) {//speed
+        } else if (items[rowIndex][columnIndex] == 22 || items[rowIndex][columnIndex] == 42) {//speed
             ImageIcon boost = (new ImageIcon("src/images/boostOrange.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
-        } else if (items[rowIndex][columnIndex] == 23 || items[rowIndex][columnIndex] == 33) {//invulnerability
+        } else if (items[rowIndex][columnIndex] == 23 || items[rowIndex][columnIndex] == 43) {//invulnerability
             ImageIcon boost = (new ImageIcon("src/images/boostBrown.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
-        } else if (items[rowIndex][columnIndex] == 24 || items[rowIndex][columnIndex] == 34) {//killa
+        } else if (items[rowIndex][columnIndex] == 24 || items[rowIndex][columnIndex] == 44) {//neutralize
             ImageIcon boost = (new ImageIcon("src/images/boostGreen.png"));
             fireTableCellUpdated(rowIndex, columnIndex);
             return boost;
@@ -152,6 +151,20 @@ public class TableModel extends AbstractTableModel {
 
         int rateForBorderWalls = rateForMiddleSpace;
 
+        for (int i = 0; i < 3; i++) {
+            Ghost ghost = new Ghost(this);
+            if (i == 0) {
+                ghost.setI(1);
+                ghost.setJ(1);
+            } else if (i == 1) {
+                ghost.setI(height - 2);
+                ghost.setJ(width - 2);
+            } else {
+                ghost.setI(height - 2);
+                ghost.setJ(1);
+            }
+            ghosts.add(ghost);
+        }
 
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++)
@@ -196,12 +209,5 @@ public class TableModel extends AbstractTableModel {
         }
 
         this.items = matrix;
-        for (int i = 0; i < 3; i++) {
-            Ghost ghost = new Ghost(this);
-            ghost.setI(1);
-            ghost.setJ(1);
-            ghosts.add(ghost);
-        }
     }
-
 }

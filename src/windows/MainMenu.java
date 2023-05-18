@@ -37,7 +37,7 @@ public class MainMenu extends JFrame {
 
         newGame.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { // start game
+            public void actionPerformed(ActionEvent e) { // start the game
                 String valueStr = JOptionPane.showInputDialog(null, "Enter a height:", "Input Value", JOptionPane.PLAIN_MESSAGE);
                 int height;
                 int width;
@@ -62,7 +62,6 @@ public class MainMenu extends JFrame {
                     return;
                 }
 
-                //kill main menu
                 jframe.dispose();
                 SwingUtilities.invokeLater(() -> new Game(height, width));
             }

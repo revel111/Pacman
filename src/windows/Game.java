@@ -1,5 +1,8 @@
 package windows;
 
+import operations.ObjectScore;
+import operations.TableModel;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
@@ -8,15 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import customVariables.variables.Pacman;
-import operations.TableModel;
-import operations.ObjectScore;
-
 public class Game extends JFrame implements KeyListener {
     private final TableModel tableModel = new TableModel(null);
     private int counter = 0;
     private final JPanel panelTable = new JPanel();
-    private JFrame jframe = new JFrame("Pacman");
+    private final JFrame jframe = new JFrame("Pacman");
 
     public Game(int height, int width) {
         Image frameImage = new ImageIcon("src/images/icon.png").getImage(); //taskbar icon
@@ -113,48 +112,31 @@ public class Game extends JFrame implements KeyListener {
             }
         }).start();
 
-        for (int i = 0; i < tableModel.getGhosts().size(); i++) {
-            int finalI = i;
-            new Thread(() -> {
-                while (tableModel.isInGame())
-                    tableModel.getGhosts().get(finalI).moveGhost();
-            }).start();
-        }
+        for (int i = 0; i < tableModel.getGhosts().size(); i++)
+            tableModel.getGhosts().get(i).start();
 
         for (int i = 0; i < tableModel.getGhosts().size(); i++) {
             int finalI = i;
             new Thread(() -> {
-                while (tableModel.isInGame()) {
-                    Random random = new Random();
-                    int randomS = random.nextInt(5);
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    if (randomS == 0) {
-                        int boost = random.nextInt(5);
-                        tableModel.getGhosts().get(finalI).setBoost(boost);
-                    }
-                }
-            }).start();
-        }
-
-        new Thread(() -> {
-            synchronized (this) {
-                while (tableModel.isInGame()) {
-                    if (tableModel.getPacman().getBoost() == 2) {
-                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() / 5);
+                try {
+                    while (!tableModel.getGhosts().get(finalI).isInterrupted()) {
+                        Random random = new Random();
+                        int randomS = random.nextInt(5);
                         try {
                             Thread.sleep(5000);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
-                        tableModel.getPacman().setSpeed(tableModel.getPacman().getSpeed() * 2);
+                        if (randomS == 0) {
+                            int boost = random.nextInt(5);
+                            tableModel.getGhosts().get(finalI).setBoost(boost);
+                        }
                     }
+                } catch (IndexOutOfBoundsException ex) {
+                    System.out.println(" ");
                 }
-            }
-        }).start();
+            }).start();
+        }
 
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {  //draw map
             @Override
@@ -169,7 +151,7 @@ public class Game extends JFrame implements KeyListener {
                     ImageIcon imageIcon = (ImageIcon) value;
 
 //                    Image originalImage = imageIcon.getImage();
-//                    Image scaledImage = originalImage.getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+//                    Image scaledImage = originalImage.getScaledInstance(75, 75, Image.SCALE_SMOOTH); //laggy scaled images
 //                    label.setIcon(new ImageIcon(scaledImage));
                     label.setIcon(imageIcon);
                 } else if (value instanceof JLabel) {
