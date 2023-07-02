@@ -3,8 +3,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ObjectScore implements Serializable {
-    private int score;
-    private String nick;
+    private final int score;
+    private final String nick;
 
     public ObjectScore(int score, String nick) {
         this.score = score;

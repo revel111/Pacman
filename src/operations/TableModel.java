@@ -61,77 +61,41 @@ public class TableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (items[rowIndex][columnIndex] == 0) {
-            ImageIcon wall = (new ImageIcon("src/images/wall.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return wall;
+            return (new ImageIcon("src/images/wall.png"));
         } else if (items[rowIndex][columnIndex] == 1) {
-            ImageIcon dot = (new ImageIcon("src/images/dot.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return dot;
+            return (new ImageIcon("src/images/dot.png"));
         } else if (items[rowIndex][columnIndex] == 2) {
-            ImageIcon pac = (new ImageIcon("src/images/pacRO.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacRO.png"));
         } else if (items[rowIndex][columnIndex] == 3) {
-            JLabel jLabel = new JLabel();
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return jLabel;
+            return new JLabel();
         } else if (items[rowIndex][columnIndex] == 4 || items[rowIndex][columnIndex] == 13 || items[rowIndex][columnIndex] == 50 || items[rowIndex][columnIndex] == 51 || items[rowIndex][columnIndex] == 52 || items[rowIndex][columnIndex] == 53 || items[rowIndex][columnIndex] == 54 || items[rowIndex][columnIndex] == 30 || items[rowIndex][columnIndex] == 31 || items[rowIndex][columnIndex] == 32 || items[rowIndex][columnIndex] == 33 || items[rowIndex][columnIndex] == 34) {
-            ImageIcon ghost = (new ImageIcon("src/images/ghost.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return ghost;
+            return (new ImageIcon("src/images/ghost.png"));
         } else if (items[rowIndex][columnIndex] == 5) {
-            ImageIcon pac = (new ImageIcon("src/images/pacBCl.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacBCl.png"));
         } else if (items[rowIndex][columnIndex] == 6) {
-            ImageIcon pac = (new ImageIcon("src/images/pacBO.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacBO.png"));
         } else if (items[rowIndex][columnIndex] == 7) {
-            ImageIcon pac = (new ImageIcon("src/images/pacFrCl.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacFrCl.png"));
         } else if (items[rowIndex][columnIndex] == 8) {
-            ImageIcon pac = (new ImageIcon("src/images/pacFrO.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacFrO.png"));
         } else if (items[rowIndex][columnIndex] == 9) {
-            ImageIcon pac = (new ImageIcon("src/images/pacLCl.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacLCl.png"));
         } else if (items[rowIndex][columnIndex] == 10) {
-            ImageIcon pac = (new ImageIcon("src/images/pacLO.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacLO.png"));
         } else if (items[rowIndex][columnIndex] == 11) {
-            ImageIcon pac = (new ImageIcon("src/images/pacRCl.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacRCl.png"));
         } else if (items[rowIndex][columnIndex] == 12) {
-            ImageIcon pac = (new ImageIcon("src/images/pacRO.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return pac;
+            return (new ImageIcon("src/images/pacRO.png"));
         } else if (items[rowIndex][columnIndex] == 20 || items[rowIndex][columnIndex] == 40) {//hp
-            ImageIcon boost = (new ImageIcon("src/images/boostBlue.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return boost;
+            return (new ImageIcon("src/images/boostBlue.png"));
         } else if (items[rowIndex][columnIndex] == 21 || items[rowIndex][columnIndex] == 41) {//points
-            ImageIcon boost = (new ImageIcon("src/images/boostRed.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return boost;
+            return (new ImageIcon("src/images/boostRed.png"));
         } else if (items[rowIndex][columnIndex] == 22 || items[rowIndex][columnIndex] == 42) {//speed
-            ImageIcon boost = (new ImageIcon("src/images/boostOrange.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return boost;
+            return (new ImageIcon("src/images/boostOrange.png"));
         } else if (items[rowIndex][columnIndex] == 23 || items[rowIndex][columnIndex] == 43) {//invulnerability
-            ImageIcon boost = (new ImageIcon("src/images/boostBrown.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return boost;
+            return (new ImageIcon("src/images/boostBrown.png"));
         } else if (items[rowIndex][columnIndex] == 24 || items[rowIndex][columnIndex] == 44) {//neutralize
-            ImageIcon boost = (new ImageIcon("src/images/boostGreen.png"));
-            fireTableCellUpdated(rowIndex, columnIndex);
-            return boost;
+            return (new ImageIcon("src/images/boostGreen.png"));
         }
         return null;
     }
@@ -189,24 +153,19 @@ public class TableModel extends AbstractTableModel {
                         matrix[i][j] = 1;
             }
         matrix[height / 2][width / 2] = 2;
-        for (int j = 1; j < width - 1; j++) {
-            if (matrix[height / 2][j] == 2)
-                continue;
-            else
-                matrix[height / 2][j] = 1;
-        }
 
-        for (int i = 1; i < height - 1; i++) {
-            if (matrix[i][width / 2] == 2)
-                continue;
-            else {
+        for (int j = 1; j < width - 1; j++)
+            if (matrix[height / 2][j] != 2)
+                matrix[height / 2][j] = 1;
+
+        for (int i = 1; i < height - 1; i++)
+            if (matrix[i][width / 2] != 2) {
                 matrix[i][width / 2] = 1;
                 if (rateForMiddleSpace == 4) {
                     matrix[i][width / 3] = 1;
                     matrix[i][width / 3 + width / 3] = 1;
                 }
             }
-        }
 
         this.items = matrix;
     }

@@ -147,21 +147,13 @@ public class Game extends JFrame implements KeyListener {
                 table.setIntercellSpacing(new Dimension(0, 0)); //no grid lines
                 JLabel label = new JLabel();
 
-                if (value instanceof ImageIcon) {
-                    ImageIcon imageIcon = (ImageIcon) value;
-
+                if (value instanceof ImageIcon imageIcon)
 //                    Image originalImage = imageIcon.getImage();
 //                    Image scaledImage = originalImage.getScaledInstance(75, 75, Image.SCALE_SMOOTH); //laggy scaled images
 //                    label.setIcon(new ImageIcon(scaledImage));
                     label.setIcon(imageIcon);
-                } else if (value instanceof JLabel) {
-                    JLabel jLabel = (JLabel) value;
-
+                else if (value instanceof JLabel jLabel)
                     jLabel.setBackground(Color.BLACK);
-
-                    panelTable.repaint();
-                    return jLabel;
-                }
                 panelTable.repaint();
                 return label;
             }
@@ -216,14 +208,12 @@ public class Game extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);
-        else if (e.getKeyCode() == KeyEvent.VK_UP)
-            tableModel.getPacman().setKeyPressed(KeyEvent.VK_UP);
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_RIGHT -> tableModel.getPacman().setKeyPressed(KeyEvent.VK_RIGHT);
+            case KeyEvent.VK_LEFT -> tableModel.getPacman().setKeyPressed(KeyEvent.VK_LEFT);
+            case KeyEvent.VK_UP -> tableModel.getPacman().setKeyPressed(KeyEvent.VK_UP);
+            case KeyEvent.VK_DOWN -> tableModel.getPacman().setKeyPressed(KeyEvent.VK_DOWN);
+        }
     }
 
     @Override
